@@ -17,11 +17,204 @@
   align-items: center;
 }
 
+.work-snippets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+}
+
+.about-me-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  text-overflow: clip;
+}
+
+.about-me-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+
+}
+
+.cv-img {
+  height: 300px;
+  width: 200px;
+  object-fit: cover;
+}
+
+.display-leisure-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hobby-imgs-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .hobby-imgs {
   height: 100px;
   width: 100px;
   object-fit: cover;
   padding: 10px;
+  gap: 20px;
+}
+
+.hobby-captions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5px;
+  padding: 5px;
+}
+
+.qualities-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.designer-coder-img {
+  height: 200px;
+  width: 200px;
+}
+
+
+@media only screen and (min-width: 768px) {
+  .intro-div {
+    flex-direction: row;
+    margin: 40px 0;
+  }
+
+  .designer-part-div {
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  margin: 10px;
+}
+
+.display-work-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.work-snippets {
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
+  margin: 10px;
+}
+
+.about-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 80px 0;
+}
+
+.about-me-div {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex: 0 0 30%;
+  margin: 80px 0;
+}
+
+.about-me-img {
+  flex-direction: row;
+}
+
+.qualities-div {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.designer-coder-img {
+  height: 300px;
+  width: 300px;
+}
+
+.designing-skill-div {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+}
 
 }
 
+@media only screen and (min-width: 992px) {
+  .intro-div {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 85px 0;
+  }
+
+  .designer-part-div {
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+  .display-work-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 80px 0;
+}
+
+  .work-snippets {
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+  .qualities-div {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+  .designer-coder-img {
+    height: 300px;
+    width: 300px;
+  }
+
+  .designing-skill-div {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+    line-height: 2px;
+  }
+
+  .about-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 80px 0;
+  }
+
+  .about-me-div {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex: 0 0 30%;
+  }
+
+  .about-me-img {
+    flex-direction: row;
+  }
+
+}
