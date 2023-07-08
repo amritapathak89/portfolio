@@ -1,0 +1,27 @@
+.intro-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.designer-part-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+}
+
+.display-work-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hobby-imgs {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  padding: 10px;
+
+}
+
