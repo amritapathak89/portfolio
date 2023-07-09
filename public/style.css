@@ -1,7 +1,8 @@
 :root {
   --main-font: 'Oswald', sans-serif;
   --primaryColors: darkred;
-  --backgroundColor: rgb(235, 227, 227);
+  --backgroundColor: white;
+  --boxShadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 body {
@@ -11,7 +12,8 @@ body {
 
 .navbar-dark .navbar-nav .nav-link {
   color: white;
-  }
+  padding: 10px 20px
+}
 
 .intro-div {
   display: flex;
@@ -26,10 +28,18 @@ body {
   margin: 10px;
 }
 
+.designer-part-div h1 {
+  margin: 20px 0;
+}
+
 .display-work-div {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.display-work-div h5 {
+  margin: 20px 0;
 }
 
 .work-snippets {
@@ -37,25 +47,34 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  margin: 10px;
+  margin: 20px;
+}
+
+.card {
+  margin: 20px 0;
+  box-shadow: var(--boxShadow);
 }
 
 .about-me-div {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
-  margin: 10px;
+  padding: 30px;
+  margin: 20px;
   text-overflow: clip;
 }
 
-.about-me-img {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  margin: 10px;
+.about-me-div h1 {
+  margin: 20px 0;
+}
 
+.about-me-img {
+  text-align: center;
+}
+
+.about-me-img img {
+  box-shadow: var(--boxShadow);
+  margin: 20px;
 }
 
 .cv-img {
@@ -71,6 +90,11 @@ body {
   margin: 20px 0;
 }
 
+.display-leisure-time h5 {
+  margin: 40px 0;
+}
+
+
 .hobby-imgs-div {
   display: flex;
   flex-direction: row;
@@ -85,6 +109,10 @@ body {
   gap: 20px;
 }
 
+.designing-skill-div h1 {
+  margin: 20px 0;
+}
+
 .qualities-div {
   display: flex;
   flex-direction: column;
@@ -96,6 +124,7 @@ body {
 .designer-coder-img {
   height: 200px;
   width: 200px;
+  box-shadow: var(--boxShadow);
 }
 
 
@@ -125,6 +154,10 @@ body {
     margin: 10px;
   }
 
+  .card {
+    box-shadow: var(--boxShadow);
+  }
+
   .about-section {
     display: flex;
     flex-direction: row;
@@ -132,53 +165,53 @@ body {
     margin: 80px 0;
   }
 
-.about-me-div {
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-around;
-  flex: 0 0 30%;
-  margin: 80px 0;
-}
+  .about-me-div {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex: 0 0 30%;
+    margin: 80px 0;
+  }
 
-.about-me-img {
-  flex-direction: row;
-}
+  .about-me-img img {
+    margin: 80px 0;
+  }
 
-.qualities-div {
-  flex-direction: row;
-  justify-content: space-between;
-}
+  .qualities-div {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
-.designer-coder-img {
-  height: 300px;
-  width: 300px;
-}
+  .designer-coder-img {
+    height: 300px;
+    width: 300px;
+    box-shadow: var(--boxShadow);
+  }
 
-.designing-skill-div {
-  display: flex;
-  flex-direction: column;
-  margin: 20px;
-  padding: 20px;
-}
+  .designing-skill-div {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+  }
 
-.hobby-imgs-div {
-  margin: 40px 0;
-}
+  .hobby-imgs-div {
+    margin: 40px 0;
+  }
 
-.navbar-expand-lg .navbar-collapse {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end
-}
+  .navbar-expand-lg .navbar-collapse {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end
+  }
 
-.qualities-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 40px 0;
+  .qualities-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 40px 0;
+  }
 }
-}
-
 
 @media only screen and (min-width: 992px) {
   .navbar-expand-lg .navbar-collapse {
@@ -205,23 +238,28 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 80px 0;
+    margin-top: 40px;
   }
 
   .work-snippets {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin: 10px;
+  }
+
+  .card {
+    box-shadow: var(--boxShadow);
   }
 
   .qualities-div {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
   }
 
   .designer-coder-img {
     height: 300px;
     width: 300px;
+    box-shadow: var(--boxShadow);
   }
 
   .designing-skill-div {
