@@ -1,8 +1,14 @@
 :root {
+  --primary-color: #fff; /* #212121 for dark mode */
   --main-font: 'Oswald', sans-serif;
   --primaryColors: darkred;
   --backgroundColor: white;
   --boxShadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -105,8 +111,9 @@ body {
   height: 100px;
   width: 100px;
   object-fit: cover;
-  padding: 10px;
+  padding: 20px;
   gap: 20px;
+  box-shadow: var(--boxShadow);
 }
 
 .designing-skill-div h1 {
@@ -124,7 +131,62 @@ body {
 .designer-coder-img {
   height: 200px;
   width: 200px;
-  box-shadow: var(--boxShadow);
+}
+
+/* Timeline Container */
+.timeline {
+  background: var(--primary-color);
+  margin: 20px auto;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Outer Layer with the timeline border */
+.outer {
+  border-left: 2px solid #c5baba;
+}
+
+/* Card container */
+.card {
+  position: relative;
+  margin: 0 0 20px 20px;
+  padding: 10px;
+  background: rgb(237,237,237);
+  color: gray;
+  border-radius: 8px;
+  max-width: 400px;
+}
+
+/* Information about the timeline */
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Title of the card */
+.title {
+  color: orangered;
+  position: relative;
+}
+
+/* Timeline dot  */
+.title::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 999px;
+  left: -39px;
+  border: 3px solid orangered;
+}
+
+.edu-exp-section h1 {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -185,7 +247,6 @@ body {
   .designer-coder-img {
     height: 300px;
     width: 300px;
-    box-shadow: var(--boxShadow);
   }
 
   .designing-skill-div {
@@ -197,6 +258,14 @@ body {
 
   .hobby-imgs-div {
     margin: 40px 0;
+  }
+
+    .hobby-imgs {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    padding: 10px;
+    gap: 20px;
   }
 
   .navbar-expand-lg .navbar-collapse {
@@ -259,7 +328,6 @@ body {
   .designer-coder-img {
     height: 300px;
     width: 300px;
-    box-shadow: var(--boxShadow);
   }
 
   .designing-skill-div {
