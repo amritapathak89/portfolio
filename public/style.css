@@ -1,3 +1,18 @@
+:root {
+  --main-font: 'Oswald', sans-serif;
+  --primaryColors: darkred;
+  --backgroundColor: rgb(235, 227, 227);
+}
+
+body {
+  font-family: var(--main-font);
+  background-color: var(--backgroundColor);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: white;
+  }
+
 .intro-div {
   display: flex;
   flex-direction: column;
@@ -53,12 +68,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 20px 0;
 }
 
 .hobby-imgs-div {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .hobby-imgs {
@@ -69,18 +85,12 @@
   gap: 20px;
 }
 
-.hobby-captions {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 5px;
-  padding: 5px;
-}
-
 .qualities-div {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 20px 0;
+  gap: 20px;
 }
 
 .designer-coder-img {
@@ -96,31 +106,31 @@
   }
 
   .designer-part-div {
-  flex-direction: column;
-  justify-content: center;
-  padding: 10px;
-  margin: 10px;
-}
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+  }
 
-.display-work-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
+  .display-work-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
 
-.work-snippets {
-  flex-direction: row;
-  justify-content: center;
-  padding: 10px;
-  margin: 10px;
-}
+  .work-snippets {
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+  }
 
-.about-section {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin: 80px 0;
-}
+  .about-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 80px 0;
+  }
 
 .about-me-div {
   flex-direction: column;
@@ -151,9 +161,32 @@
   padding: 20px;
 }
 
+.hobby-imgs-div {
+  margin: 40px 0;
 }
 
+.navbar-expand-lg .navbar-collapse {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end
+}
+
+.qualities-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 40px 0;
+}
+}
+
+
 @media only screen and (min-width: 992px) {
+  .navbar-expand-lg .navbar-collapse {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end
+  }
+
   .intro-div {
     flex-direction: row;
     justify-content: space-between;
@@ -166,25 +199,25 @@
     justify-content: center;
     padding: 10px;
     margin: 10px;
-}
+  }
 
   .display-work-div {
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin: 80px 0;
-}
+  }
 
   .work-snippets {
     flex-direction: row;
     justify-content: space-between;
     margin: 10px;
-}
+  }
 
   .qualities-div {
     flex-direction: row;
     justify-content: space-between;
-}
+  }
 
   .designer-coder-img {
     height: 300px;
@@ -215,6 +248,10 @@
 
   .about-me-img {
     flex-direction: row;
+  }
+
+  .hobby-imgs-div {
+    margin: 40px 0;
   }
 
 }
