@@ -185,8 +185,12 @@ body {
 
 .edu-exp-section h1 {
   margin: 20px;
+}
+
+.edu-exp-section {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 
@@ -260,7 +264,7 @@ body {
     margin: 40px 0;
   }
 
-    .hobby-imgs {
+  .hobby-imgs {
     height: 200px;
     width: 200px;
     object-fit: cover;
@@ -280,6 +284,12 @@ body {
     justify-content: center;
     margin: 40px 0;
   }
+
+  .edu-exp-section {
+    display: flex;
+    flex-direction: row;
+  }
+
 }
 
 @media only screen and (min-width: 992px) {
@@ -358,6 +368,11 @@ body {
 
   .hobby-imgs-div {
     margin: 40px 0;
+  }
+
+  .edu-exp-section {
+    display: flex;
+    flex-direction: row;
   }
 
 }
