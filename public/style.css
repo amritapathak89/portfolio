@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #fff; /* #212121 for dark mode */
+  --primary-color: #ffffff; /* #212121 for dark mode */
   --main-font: 'Oswald', sans-serif;
   --primaryColors: darkred;
   --backgroundColor: white;
@@ -152,7 +152,7 @@ body {
   position: relative;
   margin: 0 0 20px 20px;
   padding: 10px;
-  background: rgb(237,237,237);
+  background: rgb(255, 255, 255);
   color: gray;
   border-radius: 8px;
   max-width: 400px;
@@ -167,7 +167,7 @@ body {
 
 /* Title of the card */
 .title {
-  color: orangered;
+  color: var(--primaryColors);
   position: relative;
 }
 
@@ -190,7 +190,7 @@ body {
 .edu-exp-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  text-align: center;
 }
 
 
@@ -288,6 +288,7 @@ body {
   .edu-exp-section {
     display: flex;
     flex-direction: row;
+    justify-content: center;
   }
 
 }
@@ -373,6 +374,7 @@ body {
   .edu-exp-section {
     display: flex;
     flex-direction: row;
+    justify-content: center;
   }
 
 }
