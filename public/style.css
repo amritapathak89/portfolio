@@ -30,6 +30,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   padding: 10px;
   margin: 10px;
 }
@@ -116,8 +117,12 @@ body {
   box-shadow: var(--boxShadow);
 }
 
+.designing-skill-div {
+  text-align: center;
+}
+
 .designing-skill-div h1 {
-  margin: 20px 0;
+  margin: 30px 0;
 }
 
 .qualities-div {
@@ -130,7 +135,7 @@ body {
 
 .designer-coder-img {
   height: 200px;
-  width: 200px;
+  width: 250px;
 }
 
 /* Timeline Container */
@@ -150,12 +155,15 @@ body {
 /* Card container */
 .card {
   position: relative;
-  margin: 0 0 20px 20px;
   padding: 10px;
   background: rgb(255, 255, 255);
   color: gray;
   border-radius: 8px;
   max-width: 400px;
+}
+
+.card-timeline {
+  margin: 0 0 20px 20px;
 }
 
 /* Information about the timeline */
@@ -179,7 +187,7 @@ body {
   height: 10px;
   background: white;
   border-radius: 999px;
-  left: -39px;
+  left: -37px;
   border: 3px solid orangered;
 }
 
@@ -403,10 +411,6 @@ body {
     margin: 10px;
   }
 
-  .card {
-    box-shadow: var(--boxShadow);
-  }
-
   .qualities-div {
     flex-direction: row;
     justify-content: space-around;
@@ -414,7 +418,7 @@ body {
 
   .designer-coder-img {
     height: 300px;
-    width: 300px;
+    width: 350px;
   }
 
   .designing-skill-div {
@@ -458,5 +462,4 @@ body {
     margin: 50px auto;
     position: relative;
   }
-
 }
