@@ -1,9 +1,10 @@
 :root {
-  --primary-color: #ffffff; /* #212121 for dark mode */
+  --primary-color: #B76D68;
   --main-font: 'Oswald', sans-serif;
-  --primaryColors: darkred;
-  --backgroundColor: white;
-  --boxShadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  --primaryColors: #121420;
+  --backgroundColor: #121420;
+  --boxShadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --font-color: white;
 }
 
 * {
@@ -14,11 +15,20 @@
 body {
   font-family: var(--main-font);
   background-color: var(--backgroundColor);
+  color: var(--font-color);
 }
 
-.navbar-dark .navbar-nav .nav-link {
-  color: white;
-  padding: 10px 20px
+.navbar-expand-lg {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+}
+.navbar-expand-lg .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.btn {
+  background-color: var(--primary-color);
+  color: var(--font-color);
 }
 
 .intro-div {
@@ -37,6 +47,7 @@ body {
 
 .designer-part-div h1 {
   margin: 20px 0;
+  color: var(--font-color);
 }
 
 .display-work-div {
@@ -140,7 +151,7 @@ body {
 
 /* Timeline Container */
 .timeline {
-  background: var(--primary-color);
+  background: var(--backgroundColor);
   margin: 20px auto;
   padding: 20px;
   display: flex;
@@ -192,7 +203,7 @@ body {
 }
 
 .edu-exp-section h1 {
-  margin: 20px;
+  margin: 40px;
 }
 
 .edu-exp-section {
@@ -214,7 +225,7 @@ body {
   font-size: 3.2em;
   line-height: 48px;
   padding-bottom: 48px;
-  color: black;
+  color: var(--font-color);
 }
 
 .contact-form .form-field {
@@ -231,6 +242,7 @@ body {
   font-size: 18px;
   line-height: 26px;
   font-weight: 400;
+  border-radius: 3px;
 }
 
 .contact-form .input-text:focus {
@@ -245,11 +257,11 @@ body {
 .contact-form .label {
   position: absolute;
   left: 20px;
-  bottom: 11px;
+  bottom: 2px;
   font-size: 18px;
   line-height: 26px;
   font-weight: 400;
-  color: var(--primaryColors);
+  color: var(--primary-color);
   cursor: text;
   transition: -webkit-transform .2s ease-in-out;
   transition: transform .2s ease-in-out;
@@ -259,16 +271,18 @@ body {
 
 .contact-form .submit-btn {
   display: inline-block;
-  background-color: #000;
-  background-image: linear-gradient(125deg,#430f0d,#681414);
+  background-color: var(--primary-color);
+  background-image: linear-gradient(#f27f77, #803631);
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 16px;
   padding: 8px 16px;
   border: none;
+  border-radius: 10px;
   width:200px;
   cursor: pointer;
+  text-align: center;
 }
 
 
