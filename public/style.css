@@ -1,10 +1,10 @@
 :root {
-  --primary-color: #B76D68;
+  --primary-color: #720e42;
   --main-font: 'Oswald', sans-serif;
   --primaryColors: #101743;
   --backgroundColor: #121420;
   --boxShadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  --font-color: white;
+  --font-color: #ceb66f;
 }
 
 * {
@@ -26,7 +26,7 @@ body {
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
-  color: #fff;
+  color: var(--font-color);
 }
 
 .btn {
@@ -39,6 +39,9 @@ body {
   flex-direction: column;
 }
 
+.intro-img {
+  text-align: center;
+}
 .designer-part-div {
   display: flex;
   flex-direction: column;
@@ -76,6 +79,10 @@ body {
   box-shadow: var(--boxShadow);
 }
 
+.about-section {
+  align-items: center;
+}
+
 .about-me-div {
   display: flex;
   flex-direction: column;
@@ -95,13 +102,16 @@ body {
 
 .about-me-img img {
   box-shadow: var(--boxShadow);
-  margin: 20px;
+  margin-bottom: 40px;
 }
 
 .cv-img {
-  height: 300px;
+  height: 200px;
   width: 200px;
   object-fit: cover;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  box-shadow: var(--boxShadow);
 }
 
 .display-leisure-time {
@@ -223,7 +233,7 @@ body {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 3px;
-  font-size: 3.2em;
+  font-size: 2.2em;
   line-height: 70px;
   padding-bottom: 48px;
   color: var(--font-color);
@@ -278,8 +288,8 @@ body {
 .contact-form .submit-btn {
   display: inline-block;
   background-color: var(--primary-color);
-  background-image: linear-gradient(#f27f77, #803631);
-  color: #fff;
+  background-image: linear-gradient(#c8557b, var(--primary-color));
+  color: var(--font-color);
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 16px;
@@ -481,7 +491,6 @@ body {
   .footer-links {
     color: white;
     text-decoration: none;
-    box-shadow: inset 0 -1px 0 hsla(0, 0%, 100%, 0.4);
   }
 
   .footer-links:hover {
@@ -499,6 +508,10 @@ body {
     padding: 25px 20px;
     box-sizing: border-box;
     box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  }
+
+  .title-contact {
+    font-size: 3.2rem;
   }
 }
 
