@@ -21,7 +21,8 @@ body {
 
 .navbar-expand-lg {
   padding: 10px 20px;
-  background-color: var(--primary-color)
+  background-color: var(--primary-color);
+  z-index: 1;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
@@ -324,7 +325,11 @@ body {
 .footer-div {
   width: 100%;
   background-color: var(--primary-color);
-  font-family: Menlo, monospace;
+}
+
+footer {
+  z-index: 1;
+  position: relative;
 }
 
 /* skills */
@@ -382,7 +387,15 @@ body {
   width: 100%;
   height: 15px;
   border-radius: 8px;
-	}
+}
+
+#background, #stars {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
 
 @media only screen and (min-width: 768px) {
   .intro-div {
