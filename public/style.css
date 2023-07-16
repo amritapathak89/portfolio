@@ -19,10 +19,17 @@ body {
 
 /*navbar*/
 
+header {
+  margin-bottom: 60px;
+}
+
 .navbar-expand-lg {
   padding: 10px 20px;
   background-color: var(--primary-color);
   z-index: 1;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
