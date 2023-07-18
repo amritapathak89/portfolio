@@ -2,9 +2,9 @@ ready(function() {
   initializeBackground();
 });
 
-var resizeTimeout;
-var resizeCooldown = 500;
-var lastResizeTime = Date.now();
+let resizeTimeout;
+let resizeCooldown = 500;
+let lastResizeTime = Date.now();
 function initializeBackground() {
   canvas = document.getElementById("stars");
   canvas.width = window.innerWidth;
@@ -29,8 +29,8 @@ function initializeBackground() {
     setTimeout(paintLoop, ms);
 }
 
-var canvas;
-var stars = [];
+let canvas;
+let stars = [];
 
 function rand(max) {
   return Math.random() * max;
@@ -58,38 +58,38 @@ Star.prototype.animate = function(delta) {
 };
 
 function initializeStars() {
-  var winArea = window.innerWidth * window.innerHeight;
-  var smallStarsDensity = 0.0001;
-  var mediumStarsDensity = 0.00005;
-  var largeStarsDensity = 0.00002;
-  var smallStarsCount = winArea * smallStarsDensity;
-  var mediumStarsCount = winArea * mediumStarsDensity;
-  var largeStarsCount = winArea * largeStarsDensity;
+  let winArea = window.innerWidth * window.innerHeight;
+  let smallStarsDensity = 0.0001;
+  let mediumStarsDensity = 0.00005;
+  let largeStarsDensity = 0.00002;
+  let smallStarsCount = winArea * smallStarsDensity;
+  let mediumStarsCount = winArea * mediumStarsDensity;
+  let largeStarsCount = winArea * largeStarsDensity;
   stars = [];
-  for (var i = 0; i < smallStarsCount; i++) {
+  for (let i = 0; i < smallStarsCount; i++) {
     stars.push(new Star(canvas, 1, 30));
   }
 
-  for (var i = 0; i < mediumStarsCount; i++) {
+  for (let i = 0; i < mediumStarsCount; i++) {
     stars.push(new Star(canvas, 2, 20));
   }
 
-  for (var i = 0; i < largeStarsCount; i++) {
+  for (let i = 0; i < largeStarsCount; i++) {
     stars.push(new Star(canvas, 3, 10));
   }
 }
 
 function drawStars(delta) {
-  for (var i = 0; i < stars.length; i++) {
+  for (let i = 0; i < stars.length; i++) {
     stars[i].animate(delta);
   }
 }
 
-var ms = 16;
-var lastPaintTime = 0;
+let ms = 16;
+let lastPaintTime = 0;
 function paintLoop(timestamp) {
   canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-  var delta =
+  let delta =
     (window.requestAnimationFrame ? timestamp - lastPaintTime : ms) / 1000;
   if(delta > 0.05){
     delta = 0.05;
@@ -104,9 +104,9 @@ function fadeIn(element, duration, callback) {
   element.style.opacity = 0;
   element.style.display = "block";
 
-  var startTime = Date.now();
-  var tick = function() {
-    var newOpacity = (Date.now() - startTime) / duration;
+  let startTime = Date.now();
+  let tick = function() {
+    let newOpacity = (Date.now() - startTime) / duration;
     if (newOpacity > 1) {
       newOpacity = 1;
       callback && callback();
@@ -131,4 +131,14 @@ function ready(fn) {
   } else {
     document.addEventListener("DOMContentLoaded", fn);
   }
+}
+
+let navLinks = document.querySelectorAll('.nav-link');
+navLinks.forEach((navItem) => {
+  navItem.addEventListener('click', hideNavBar);
+});
+
+function hideNavBar() {
+  let removeClass = document.querySelector('#navbarNav');
+  removeClass.classList.remove("show");
 }
