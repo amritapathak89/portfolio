@@ -142,3 +142,39 @@ function hideNavBar() {
   let removeClass = document.querySelector('#navbarNav');
   removeClass.classList.remove("show");
 }
+
+// carousel
+document.addEventListener("DOMContentLoaded", function () {
+  const carousels = document.querySelectorAll(".carousel");
+
+  carousels.forEach((carousel) => {
+    const carouselImages = carousel.querySelector(".carousel-images");
+    const images = carousel.querySelectorAll(".carousel-image");
+    const prevButton = carousel.querySelector(".carousel-control.prev");
+    const nextButton = carousel.querySelector(".carousel-control.next"); // Corrected the quotation mark here
+
+    let currentIndex = 0;
+    const imageCount = images.length;
+
+    function updateCarousel() {
+      const offset = -currentIndex * 100;
+      carouselImages.style.transform = `translateX(${offset}%)`;
+    }
+
+    function showNextImage() {
+      currentIndex = (currentIndex + 1) % imageCount; // Move to the next image
+      updateCarousel();
+    }
+
+    function showPreviousImage() {
+      currentIndex = (currentIndex - 1 + imageCount) % imageCount; // Move to the previous image
+      updateCarousel();
+    }
+
+    prevButton.addEventListener("click", showPreviousImage);
+    nextButton.addEventListener("click", showNextImage);
+
+    // Initialize the carousel
+    updateCarousel();
+  });
+});

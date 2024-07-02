@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <link rel="stylesheet" href="./style.css">
   <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -60,7 +61,7 @@
         <p>Product designer specialising in UX, UI & UML design </p>
       </div>
       <div class="intro-img">
-        <img src="./images/amy-coder.svg" alt="girl-coder">
+        <img class="center-image-girl" src="./images/coder-girl.png" alt="girl-coder">
       </div>
       <div class="designer-part-div">
         <h1>Coder</h1>
@@ -75,38 +76,183 @@
     </div>
     <div class="work-snippets">
       <div class="card card-work" style="width: 18rem;">
-        <img src="./images/brasserie.png" class="card-img-top" alt="Speedily Pro">
-      <div class="card-body">
-        <h4 class="card-title">Developed a Delivery App</h4>
-        <p class="card-text">
-          A fully functional PWA and desktop version of a logistics app
-          <br>#reactjs #typescript #nextjs #mysql #sequelize #nextauth
-        </p>
-        <a href="#" class="btn">View Project</a>
+        <div class="carousel">
+          <div class="carousel-images">
+            <img src="./images/work-snippets/speedily/homepage.png" class="carousel-image card-img-top" alt="Speedily-homepage">
+            <img src="./images/work-snippets/speedily/login.png" class="carousel-image card-img-top" alt="Speedily-loginpage">
+            <img src="./images/work-snippets/speedily/shopping-list.png" class="carousel-image card-img-top" alt="Speedily-shopping-page">
+            <img src="./images/work-snippets/speedily/delivery.png" class="carousel-image card-img-top" alt="Speedily-deliverypage">
+          </div>
+          <div class="carousel-buttons">
+            <button class="carousel-control prev"><</button>
+            <button class="carousel-control next">></button>
+        </div>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">Designed & Developed a delivery app</h4>
+          <p class="card-text">
+            Made a fully functional, secure PWA from scratch
+            <br>#nextjs #tailwind #react #typescript #sequelize #mysql
+          </p>
+          <a href="https://speedily.pro/" class="btn">View Project</a>
+        </div>
+    </div>
+    <div class="card card-work" style="width: 18rem;">
+      <div class="carousel">
+        <div class="carousel-images">
+          <img src="./images/work-snippets/justhomes/homepage.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+          <img src="./images/work-snippets/justhomes/properties.png" class="carousel-image card-img-top" alt="Justhomes-properties">
+          <img src="./images/work-snippets/justhomes/filterproperties.png" class="carousel-image card-img-top" alt="Justhomes-filter-properties">
+          <img src="./images/work-snippets/justhomes/contactusform.png" class="carousel-image card-img-top" alt="Justhomes-contactus-form">
+          <img src="./images/work-snippets/justhomes/searchprperty.png" class="carousel-image card-img-top" alt="Justhomes-search-property">
+        </div>
+        <div class="carousel-buttons">
+          <button class="carousel-control prev"><</button>
+          <button class="carousel-control next">></button>
       </div>
       </div>
-      <div class="card card-work" style="width: 18rem;">
-        <img src="./images/figma-project.png" class="card-img-top" alt="9Onions Infotech">
       <div class="card-body">
         <h4 class="card-title">Built a Lead generation Website</h4>
         <p class="card-text">
-          Prepared a well defined website for generating leads for a real estate company
+          Worked on a website for generating leads for a real estate company
           <br>#nodejs #bootstrap #react #typescript #express #mysql
         </p>
         <a href="#" class="btn">View Project</a>
       </div>
+    </div>
+    <div class="card card-work" style="width: 18rem;">
+      <div class="carousel">
+        <div class="carousel-images">
+          <img src="./images/work-snippets/desktop-app/mainpage.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+          <img src="./images/work-snippets/desktop-app/page2.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+        </div>
+        <div class="carousel-buttons">
+          <button class="carousel-control prev"><</button>
+          <button class="carousel-control next">></button>
+        </div>
       </div>
-      <div class="card card-work" style="width: 18rem;">
-        <img src="./images/dunzo.png" class="card-img-top" alt="HDM Project">
       <div class="card-body">
-        <h4 class="card-title">Worked on an Admin Dashboard for HDM Network</h4>
+        <h4 class="card-title">A ready to use PDF Utility App</h4>
+        <p class="card-text">
+          A classic desktop application that compresses PDF size
+          <br>#react #electronJS #tailwind #nodeJs
+        </p>
+        <a href="#" class="btn">View Project</a>
+      </div>
+    </div>
+    <div class="card card-work" style="width: 18rem;">
+      <div class="carousel">
+        <div class="carousel-images">
+          <img src="./images/work-snippets/hdm/hdm1.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+          <img src="./images/work-snippets/hdm/hdm2.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+          <img src="./images/work-snippets/hdm/hdm3.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+          <img src="./images/work-snippets/hdm/hdm4.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+        </div>
+        <div class="carousel-buttons">
+          <button class="carousel-control prev"><</button>
+          <button class="carousel-control next">></button>
+        </div>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Worked on a Dashboard for HDM Network</h4>
+        <p class="card-text">
+          A fully functional mobile and desktop version of a logistics app
+          <br>#react #nextJS #ts #mysql #node #php #symfony #apiplatform
+        </p>
+        <a href="#" class="btn">View Project</a>
+      </div>
+    </div>
+    </div>
+    <div class="work-snippets">
+      <div class="card card-work" style="width: 18rem;">
+      <div class="carousel">
+        <div class="carousel-images">
+          <img src="./images/work-snippets/travaux-decor/home.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+          <img src="./images/work-snippets/travaux-decor/dropdown.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+          <img src="./images/work-snippets/travaux-decor/ratecards.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+          <img src="./images/work-snippets/travaux-decor/login.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+          <img src="./images/work-snippets/travaux-decor/contact.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+        </div>
+        <div class="carousel-buttons">
+          <button class="carousel-control prev"><</button>
+          <button class="carousel-control next">></button>
+        </div>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Developed a Work and Services App</h4>
+        <p class="card-text">
+          A website that allows you to book services online
+          <br>#react #nextJS #typescript #mysql #tailwind #flowbite
+        </p>
+        <a href="#" class="btn">View Project</a>
+      </div>
+    </div>
+    <div class="card card-work" style="width: 18rem;">
+      <div class="carousel">
+        <div class="carousel-images">
+          <img src="./images/work-snippets/brasseire-project/home.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+          <img src="./images/work-snippets/brasseire-project/footer.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+          <img src="./images/work-snippets/brasseire-project/booking.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+          <img src="./images/work-snippets/brasseire-project/menu.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+        </div>
+        <div class="carousel-buttons">
+          <button class="carousel-control prev"><</button>
+          <button class="carousel-control next">></button>
+        </div>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Designed a basic Website for a client</h4>
+        <p class="card-text">
+          A minimilstic yet sophisticated Brasserie Website for a client
+          <br>#react #ts #mysql #css
+        </p>
+        <a href="#" class="btn">View Project</a>
+      </div>
+    </div>
+    <div class="card card-work" style="width: 18rem;">
+      <div class="carousel">
+        <div class="carousel-images">
+          <img src="./images/work-snippets/hdm/hdm1.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+          <img src="./images/work-snippets/hdm/hdm2.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+          <img src="./images/work-snippets/hdm/hdm3.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+          <img src="./images/work-snippets/hdm/hdm4.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+        </div>
+        <div class="carousel-buttons">
+          <button class="carousel-control prev"><</button>
+          <button class="carousel-control next">></button>
+        </div>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Worked on a Dashboard for HDM Network</h4>
         <p class="card-text">
           A fully functional mobile and desktop version of a logistics app
           <br>#react #nextJS #ts #mysql #node
         </p>
         <a href="#" class="btn">View Project</a>
       </div>
+    </div>
+    <div class="card card-work" style="width: 18rem;">
+      <div class="carousel">
+        <div class="carousel-images">
+          <img src="./images/work-snippets/desktop-app/home.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+          <img src="./images/work-snippets/desktop-app/convert.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+          <img src="./images/work-snippets/desktop-app/converting.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+          <img src="./images/work-snippets/desktop-app/convert-complete.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
+        </div>
+        <div class="carousel-buttons">
+          <button class="carousel-control prev"><</button>
+          <button class="carousel-control next">></button>
+        </div>
       </div>
+      <div class="card-body">
+        <h4 class="card-title">Created a simple Video Convertor App</h4>
+        <p class="card-text">
+          A light desktop application that allows you to convert videos into AVI, MP4n MOV format
+          <br>#react #nextJS #ts #mysql #node
+        </p>
+        <a href="#" class="btn">View Project</a>
+      </div>
+    </div>
     </div>
   </section>
   <hr id="about-me-section">
@@ -114,9 +260,11 @@
     <div class="about-section">
       <div class="about-me-div">
       <h1>About Me</h1>
-      <h4>I am a Web Developer and a Web Designer</h4>
-      <p>In 2018 I began coding as an hobby but soon my hobby turned into an obsession and i decided to take my passion to another level by enrolling myself in a bootcamp and the rest is history.</p>
-    </div>
+      <h4>Passionate Front-End Developer</h4>
+      <p>
+        With over 3 years of professional experience, I specialize in creating dynamic, responsive web applications with a strong focus on user experience and performance optimization. Leveraging technologies like React, TypeScript, and Tailwind CSS, I build scalable and maintainable solutions. My journey in web development began in 2018, transforming a hobby into a rewarding career. Based in Grand Paris, France, I thrive on integrating APIs, implementing state management libraries, and utilizing modern development tools to deliver high-quality code. Let's build something amazing together!
+      </p>
+      </div>
     <div class="about-me-img">
       <img class="cv-img" src="./images/amrita-photocv.jpg" alt="amritaphoto">
     </div>
@@ -163,7 +311,7 @@
         <div class="card card-timeline">
           <div class="info">
             <h3 class="title">2023</h3>
-            <p>Pursuing a full time course in Web Designing and Web Development from G2R, Paris France.</p>
+            <p>Pursued a full time course in Web Designing and Web Development from G2R, Paris France.</p>
           </div>
         </div>
         <div class="card card-timeline">
@@ -175,7 +323,7 @@
         <div class="card card-timeline">
           <div class="info">
             <h3 class="title">2018</h3>
-            <p>Started coding with a beginners Certificate course in Front-End Development from Disha Computers, India</p>
+            <p>Started coding with a Diploma course in Full-stack Development from Disha Computers, India</p>
           </div>
         </div>
         <div class="card card-timeline">
@@ -199,10 +347,18 @@
         <div class="outer">
           <div class="card card-timeline">
             <div class="info">
+              <h3 class="title">2023</h3>
+              <p>A Full-Stack Developer for HDM Netowrk, Belgium
+                <br>Tech used: LAMP stack, ReactJS, Tailwind, PHP, Symfony, Apiplatform, Github, SCRUM
+              </p>
+            </div>
+          </div>
+          <div class="card card-timeline">
+            <div class="info">
               <h3 class="title">2022-2023</h3>
               <p>
-                Frontend developer (Freelance), Fusion Platter, Paris, FR.
-                <br>Tech used: LAMP stack, built on wordpress, GIT, JS, LESS
+                Frontend developer (Freelance), WikiStage, Paris, FR.
+                <br>Tech used: LAMP stack, MongoDB, Node, NextJs
               </p>
             </div>
           </div>
@@ -211,14 +367,8 @@
               <h3 class="title">2020-2022</h3>
               <p>
                 Frontend Developer, 9ONIONS CULTURE INFOTECH Pvt. Ltd, Pune, IN.
-                <br>Tech used: LAMP stack, ReactJS, Wordpress scripts, CSS3.
+                <br>Tech used: LAMP stack, ReactJS, Typescript, Bootstrap, Jest, Cypress, GitHub Actions
               </p>
-            </div>
-          </div>
-          <div class="card card-timeline">
-            <div class="info">
-              <h3 class="title">2022-2023</h3>
-              <p>ESL Part-Time Teacher at British Council Paris, FR</p>
             </div>
           </div>
           <!-- <div class="card card-timeline">
@@ -348,7 +498,7 @@
       </div>
     </footer>
   </section>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
   <script src="../src/script.js"></script>
 </body>
