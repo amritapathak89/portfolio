@@ -1,4 +1,4 @@
-ready(function() {
+ready(function () {
   initializeBackground();
 });
 
@@ -9,7 +9,7 @@ function initializeBackground() {
   canvas = document.getElementById("stars");
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  window.addEventListener("resize", function() {
+  window.addEventListener("resize", function () {
     if (Date.now() - lastResizeTime < resizeCooldown && resizeTimeout) {
       clearTimeout(resizeTimeout);
       delete resizeTimeout;
@@ -17,7 +17,7 @@ function initializeBackground() {
 
     lastResizeTime = Date.now();
     canvas.style.display = "none";
-    resizeTimeout = setTimeout(function() {
+    resizeTimeout = setTimeout(function () {
       fadeIn(canvas, 500);
       initializeStars();
     }, 500);
@@ -25,8 +25,7 @@ function initializeBackground() {
     canvas.height = window.innerHeight;
   });
   initializeStars();
-  (window.requestAnimationFrame && requestAnimationFrame(paintLoop)) ||
-    setTimeout(paintLoop, ms);
+  (window.requestAnimationFrame && requestAnimationFrame(paintLoop)) || setTimeout(paintLoop, ms);
 }
 
 let canvas;
@@ -44,7 +43,7 @@ function Star(canvas, size, speed) {
   this.y = rand(window.innerHeight);
 }
 
-Star.prototype.animate = function(delta) {
+Star.prototype.animate = function (delta) {
   this.x += this.speed * delta;
   this.y -= this.speed * delta;
   if (this.y < 0) {
@@ -89,14 +88,12 @@ let ms = 16;
 let lastPaintTime = 0;
 function paintLoop(timestamp) {
   canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-  let delta =
-    (window.requestAnimationFrame ? timestamp - lastPaintTime : ms) / 1000;
-  if(delta > 0.05){
+  let delta = (window.requestAnimationFrame ? timestamp - lastPaintTime : ms) / 1000;
+  if (delta > 0.05) {
     delta = 0.05;
   }
   drawStars(delta);
-  (window.requestAnimationFrame && requestAnimationFrame(paintLoop)) ||
-    setTimeout(paintLoop, ms);
+  (window.requestAnimationFrame && requestAnimationFrame(paintLoop)) || setTimeout(paintLoop, ms);
   lastPaintTime = timestamp;
 }
 
@@ -105,14 +102,13 @@ function fadeIn(element, duration, callback) {
   element.style.display = "block";
 
   let startTime = Date.now();
-  let tick = function() {
+  let tick = function () {
     let newOpacity = (Date.now() - startTime) / duration;
     if (newOpacity > 1) {
       newOpacity = 1;
       callback && callback();
     } else {
-      (window.requestAnimationFrame && requestAnimationFrame(tick)) ||
-        setTimeout(tick, 16);
+      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
     }
 
     element.style.opacity = newOpacity;
@@ -122,24 +118,20 @@ function fadeIn(element, duration, callback) {
 
 //http://youmightnotneedjquery.com/
 function ready(fn) {
-  if (
-    document.attachEvent
-      ? document.readyState === "complete"
-      : document.readyState !== "loading"
-  ) {
+  if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
     fn();
   } else {
     document.addEventListener("DOMContentLoaded", fn);
   }
 }
 
-let navLinks = document.querySelectorAll('.nav-link');
+let navLinks = document.querySelectorAll(".nav-link");
 navLinks.forEach((navItem) => {
-  navItem.addEventListener('click', hideNavBar);
+  navItem.addEventListener("click", hideNavBar);
 });
 
 function hideNavBar() {
-  let removeClass = document.querySelector('#navbarNav');
+  let removeClass = document.querySelector("#navbarNav");
   removeClass.classList.remove("show");
 }
 
@@ -178,3 +170,75 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCarousel();
   });
 });
+
+// card animation
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".card");
+
+  const observerOptions = {
+    root: null, // Use the viewport as the root
+    rootMargin: "0px",
+    threshold: 0.02,
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("slide-in");
+        observer.unobserve(entry.target); // Stop observing once the animation is triggered
+      }
+    });
+  }, observerOptions);
+
+  cards.forEach((card) => {
+    observer.observe(card);
+  });
+});
+
+// hobby image animation
+
+document.addEventListener("DOMContentLoaded", () => {
+  const target = document.querySelector(".hobby-imgs-div");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-slideInOut");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.02 }
+  );
+
+  observer.observe(target);
+});
+
+// animation for skills bar box
+
+document.addEventListener("DOMContentLoaded", () => {
+  const skillsSection = document.querySelector(".skills-bar");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Add animation class to each skillbox
+          document.querySelectorAll(".skillbox").forEach((skillbox) => {
+            skillbox.classList.add("animate");
+          });
+          // Once animated, we can unobserve the element if we only want the animation to happen once
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  ); // Adjust the threshold as needed
+
+  observer.observe(skillsSection);
+});
+
+
+
