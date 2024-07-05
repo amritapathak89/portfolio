@@ -240,5 +240,44 @@ document.addEventListener("DOMContentLoaded", () => {
   observer.observe(skillsSection);
 });
 
+/* form-submit */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contactForm");
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formData = {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      company: document.getElementById("company").value,
+      phone: document.getElementById("phone").value,
+      message: document.getElementById("message").value,
+    };
+
+    try {
+      const response = await fetch("http://localhost:8000/submit-form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        alert(result.message);
+        form.reset();
+      } else {
+        const error = await response.json();
+        alert(`Error: ${error.message}`);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred while submitting the form.");
+    }
+  });
+});
 
 
