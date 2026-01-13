@@ -1,503 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="../dist/output.css">
   <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/5ff543a53f.js" crossorigin="anonymous"></script>
-  <link rel="canonical" href="https://amritavidhate.com" />
-  <title>Amrita Vidhate - Designer - Coder</title>
-  <meta name="description" content="Full Stack Junior Developer trained in conception, designing and building a website. Well-versed in Latest Technological Frameworks"/>
-  <meta property="og:title" content="Amrita Vidhate - Designer - Coder" />
-  <meta property="og:description" content="Full Stack Junior Developer trained in conception, designing and building a website. Well-versed in Latest Technological Frameworks" />
-  <meta property="og:url" content="https://amritavidhate.com/" />
-	<meta property="og:site_name" content="Amrita Vidhate" />
+  <title>Amrita Vidhate - Designer & Coder</title>
 </head>
-<body>
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">
-          <img src="./assets/images/amy-logo.svg" alt="logo" width="50" height="30" class="d-inline-block align-text-top">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#about-me-section">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#work-section">My Work</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://fusionplatter.eu/">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact-page-section">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-  </nav>
+
+<body class="font-sans bg-gray-50 text-gray-900">
+
+  <!-- Header -->
+  <header class="bg-white shadow">
+    <nav class="container mx-auto flex justify-between items-center p-4">
+      <a href="index.html" class="flex items-center gap-4">
+        <img src="./assets/images/amy-logo.svg" alt="logo" class="w-12 h-12">
+        <span class="font-bold text-xl">Amrita Vidhate | Web Developer</span>
+      </a>
+      <ul class="hidden md:flex gap-6 text-gray-700 font-medium">
+        <li><a href="about.html" class="hover:text-blue-500">About</a></li>
+        <li><a href="work.html" class="hover:text-blue-500">My Work</a></li>
+        <li><a href="https://fusionplatter.eu/" class="hover:text-blue-500">Blog</a></li>
+        <li><a href="contact.html" class="hover:text-blue-500">Contact</a></li>
+      </ul>
+    </nav>
   </header>
-  <section>
-    <div id="background">
-      <canvas id="stars"></canvas>
-    </div>
-    <div class="intro-div">
-      <div class="designer-part-div">
-        <h1>Designer</h1>
-        <p>Product designer specialising in UX, UI & UML design </p>
-      </div>
-      <div class="intro-img">
-        <img class="center-image-girl" src="./assets/images/coder-girl.png" alt="girl-coder">
-      </div>
-      <div class="designer-part-div">
-        <h1>Coder</h1>
-        <p>Full stack developer who writes clean, elegant and efficient code</hé>
+
+  <!-- Intro Section -->
+<section class="w-full relative flex h-screen">
+  <!-- Left Half -->
+  <div class="w-1/2 bg-stone-400 relative"></div>
+    <div class="w-1/2 bg-white relative flex flex-col justify-center">
+      <p class="text-3xl font-bold text-gray-800 ml-[25%]">Hello,</p>
+      <p class="text-2xl text-gray-700 ml-[25%]">Here's who I am & what I do</p>
+      <div class="flex flex-row gap-4 ml-[25%] mt-2">
+        <button class="bg-blue-600 p-2 rounded-full text-white text-center border-2 hover:bg-white hover:text-black hover:border-black">Resume</button>
+        <button class="border-2 border-black p-2 rounded-full text-center hover:bg-blue-600 hover:text-white hover:border-blue-600">Project</button>
       </div>
     </div>
-  </section>
-  <section id="work-section">
-    <hr>
-    <div class="display-work-div">
-      <h3>Some of my latest Work</h3>
+
+  <!-- Beige Square overlapping both halves -->
+  <!-- Beige Square overlapping both halves -->
+  <div
+    class="shadow-xl/30 absolute top-1/2 left-[35%] -translate-y-1/2 bg-stone-300 w-[25%] h-[60%] flex flex-col justify-between p-4">
+
+    <!-- Top: Photo + Name + Title -->
+    <div class="flex flex-col items-center gap-2">
+      <div class="bg-gray-200 rounded-full w-48 h-48 flex items-center justify-center">
+        <img src="./assets/images/amrita-photocv.jpg" alt="Amrita Photo" class="w-36 h-36 rounded-full shadow">
+      </div>
+      <p class="text-center capitalize font-extrabold text-lg">Amrita Vidhate</p>
+      <hr class="border-blue-800 w-1/2">
+      <p class="uppercase text-center">Full-Stack Developer</p>
     </div>
-    <div class="work-snippets">
-      <div class="card card-work" style="width: 18rem;">
-        <div class="carousel">
-          <div class="carousel-images">
-            <img src="./assets/images/work-snippets/speedily/homepage.png" class="carousel-image card-img-top" alt="Speedily-homepage">
-            <img src="./assets/images/work-snippets/speedily/login.png" class="carousel-image card-img-top" alt="Speedily-loginpage">
-            <img src="./assets/images/work-snippets/speedily/shopping-list.png" class="carousel-image card-img-top" alt="Speedily-shopping-page">
-            <img src="./assets/images/work-snippets/speedily/delivery.png" class="carousel-image card-img-top" alt="Speedily-deliverypage">
-          </div>
-          <div class="carousel-buttons">
-            <button class="carousel-control prev"><</button>
-            <button class="carousel-control next">></button>
-          </div>
-        </div>
-        <div class="card-body">
-          <h4 class="card-title">Designed & Developed a delivery app</h4>
-          <p class="card-text">
-            Made a fully functional, secure PWA from scratch
-            <br>#nextjs #tailwind #react #typescript #sequelize #mysql
-          </p>
-          <a href="https://speedily.pro/" class="btn">View Project</a>
-        </div>
-      </div>
-      <div class="card card-work" style="width: 18rem;">
-        <div class="carousel">
-          <div class="carousel-images">
-            <img src="./assets/images/work-snippets/justhomes/homepage.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-            <img src="./assets/images/work-snippets/justhomes/properties.png" class="carousel-image card-img-top" alt="Justhomes-properties">
-            <img src="./assets/images/work-snippets/justhomes/filterproperties.png" class="carousel-image card-img-top" alt="Justhomes-filter-properties">
-            <img src="./assets/images/work-snippets/justhomes/contactusform.png" class="carousel-image card-img-top" alt="Justhomes-contactus-form">
-            <img src="./assets/images/work-snippets/justhomes/searchprperty.png" class="carousel-image card-img-top" alt="Justhomes-search-property">
-          </div>
-          <div class="carousel-buttons">
-            <button class="carousel-control prev"><</button>
-            <button class="carousel-control next">></button>
-        </div>
-        </div>
-        <div class="card-body">
-          <h4 class="card-title">Built a Lead generation Website</h4>
-          <p class="card-text">
-            Worked on a website for generating leads for a real estate company
-            <br>#nodejs #bootstrap #react #typescript #express #mysql
-          </p>
-          <a href="#" class="btn">View Project</a>
-        </div>
-      </div>
-      <div class="card card-work" style="width: 18rem;">
-        <div class="carousel">
-          <div class="carousel-images">
-            <img src="./assets/images/work-snippets/desktop-app/mainpage.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-            <img src="./assets/images/work-snippets/desktop-app/page2.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-          </div>
-          <div class="carousel-buttons">
-            <button class="carousel-control prev"><</button>
-            <button class="carousel-control next">></button>
-          </div>
-        </div>
-        <div class="card-body">
-          <h4 class="card-title">A ready to use PDF Utility App</h4>
-          <p class="card-text">
-            A classic desktop application that compresses PDF size
-            <br>#react #electronJS #tailwind #nodeJs
-          </p>
-          <a href="#" class="btn">View Project</a>
-        </div>
-      </div>
-      <div class="card card-work" style="width: 18rem;">
-        <div class="carousel">
-          <div class="carousel-images">
-            <img src="./assets/images/wiki.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-          </div>
-          <div class="carousel-buttons">
-            <button class="carousel-control prev"><</button>
-            <button class="carousel-control next">></button>
-          </div>
-        </div>
-        <div class="card-body">
-          <h4 class="card-title">Worked as a freelancer for Wikistage</h4>
-          <p class="card-text">
-            Helped in enhancing the seo and testing the site
-            <br>#asana #seo #mongodb #storybook
-          </p>
-          <a href="#" class="btn">View Project</a>
-        </div>
-      </div>
+
+    <!-- Bottom: Footer links -->
+    <div class="flex justify-center gap-4 mt-2 bg-white p-2 shadow-2xl rounded-lg">
+      <a href="https://www.linkedin.com/in/amritapathak89/" aria-label="LinkedIn"
+        class="text-gray-700 hover:text-blue-600">
+        <i class="fab fa-linkedin fa-lg"></i>
+      </a>
+      <a href="https://github.com/amritapathak89" aria-label="Github" class="text-gray-700 hover:text-gray-900">
+        <i class="fab fa-github fa-lg"></i>
+      </a>
+      <a href="#" aria-label="Facebook" class="text-gray-700 hover:text-blue-500">
+        <i class="fab fa-facebook fa-lg"></i>
+      </a>
+      <a href="https://stackoverflow.com/users/16912931/amrita-pathak?tab=topactivity" aria-label="StackOverflow"
+        class="text-gray-700 hover:text-orange-500">
+        <i class="fab fa-stack-overflow fa-lg"></i>
+      </a>
     </div>
-    <div class="work-snippets">
-      <div class="card card-work" style="width: 18rem;">
-        <div class="carousel">
-          <div class="carousel-images">
-            <img src="./assets/images/work-snippets/travaux-decor/home.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-            <img src="./assets/images/work-snippets/travaux-decor/dropdown.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-            <img src="./assets/images/work-snippets/travaux-decor/ratecards.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-            <img src="./assets/images/work-snippets/travaux-decor/login.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-            <img src="./assets/images/work-snippets/travaux-decor/contact.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-          </div>
-          <div class="carousel-buttons">
-            <button class="carousel-control prev"><</button>
-            <button class="carousel-control next">></button>
-          </div>
+  </div>
+</section>
+
+  <!-- Contact Section -->
+  <!-- <section id="contact-page-section" class="py-16 bg-gray-50">
+    <div class="container mx-auto max-w-xl">
+      <h2 class="text-3xl font-bold mb-8 text-center">Get in Touch</h2>
+      <form class="space-y-6">
+        <div>
+          <label class="block mb-1 font-medium" for="name">Name</label>
+          <input type="text" id="name" placeholder="Your Name"
+            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
-        <div class="card-body">
-          <h4 class="card-title">Developed a Work and Services App</h4>
-          <p class="card-text">
-            A website that allows you to book services online
-            <br>#react #nextJS #typescript #mysql #tailwind #flowbite
-          </p>
-          <a href="#" class="btn">View Project</a>
+        <div>
+          <label class="block mb-1 font-medium" for="email">Email</label>
+          <input type="email" id="email" placeholder="Your Email"
+            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
+        <div>
+          <label class="block mb-1 font-medium" for="company">Company</label>
+          <input type="text" id="company" placeholder="Company Name"
+            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div>
+          <label class="block mb-1 font-medium" for="message">Message</label>
+          <textarea id="message" placeholder="Your Message"
+            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 h-32"></textarea>
+        </div>
+        <button type="submit"
+          class="w-full bg-blue-600 text-white font-bold py-3 rounded hover:bg-blue-700 transition">Submit</button>
+      </form>
     </div>
-    <div class="card card-work" style="width: 18rem;">
-      <div class="carousel">
-        <div class="carousel-images">
-          <img src="./assets/images/work-snippets/brasseire-project/home.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-          <img src="./assets/images/work-snippets/brasseire-project/footer.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-          <img src="./assets/images/work-snippets/brasseire-project/booking.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-          <img src="./assets/images/work-snippets/brasseire-project/menu.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-        </div>
-        <div class="carousel-buttons">
-          <button class="carousel-control prev"><</button>
-          <button class="carousel-control next">></button>
-        </div>
-      </div>
-      <div class="card-body">
-        <h4 class="card-title">Designed an elegant Website for a Client</h4>
-        <p class="card-text">
-          A minimilstic yet sophisticated Brasserie Website for a client which offers menu and booking details.
-          <br>#react #ts #github #css #html
-        </p>
-        <a href="#" class="btn">View Project</a>
-      </div>
+  </section> -->
+
+  <!-- Footer -->
+  <footer class="bg-white text-black py-8">
+    <div class="container mx-auto flex justify-center gap-6">
+      <p class="text-sm text-gray-500">Connect with me :</p>
+      <p class="text-sm text-gray-500">amritavidhate@gmail.com</p>
     </div>
-    <div class="card card-work" style="width: 18rem;">
-      <div class="carousel">
-        <div class="carousel-images">
-          <img src="./assets/images/work-snippets/hdm/hdm1.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-          <img src="./assets/images/work-snippets/hdm/hdm2.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-          <img src="./assets/images/work-snippets/hdm/hdm3.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-          <img src="./assets/images/work-snippets/hdm/hdm4.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-        </div>
-        <div class="carousel-buttons">
-          <button class="carousel-control prev"><</button>
-          <button class="carousel-control next">></button>
-        </div>
-      </div>
-      <div class="card-body">
-        <h4 class="card-title">Worked on a Dashboard for HDM Network</h4>
-        <p class="card-text">
-          A fully functional mobile and desktop version of a logistics app
-          A fully functional mobile
-          <br>#react #nextJS #ts #mysql #node
-        </p>
-        <a href="#" class="btn">View Project</a>
-      </div>
-    </div>
-    <div class="card card-work" style="width: 18rem;">
-      <div class="carousel">
-        <div class="carousel-images">
-          <img src="./assets/images/work-snippets/desktop-app/home.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-          <img src="./assets/images/work-snippets/desktop-app/convert.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-          <img src="./assets/images/work-snippets/desktop-app/converting.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-          <img src="./assets/images/work-snippets/desktop-app/convert-complete.png" class="carousel-image card-img-top" alt="Justhomes-homepage">
-        </div>
-        <div class="carousel-buttons">
-          <button class="carousel-control prev"><</button>
-          <button class="carousel-control next">></button>
-        </div>
-      </div>
-      <div class="card-body">
-        <h4 class="card-title">Created a Video Convertor App</h4>
-        <p class="card-text">
-          A light desktop app that allows you to convert videos into AVI, MP4n MOV format
-          <br>#react #nextJS #ts #mysql #node
-        </p>
-        <a href="#" class="btn">View Project</a>
-      </div>
-    </div>
-    </div>
-  </section>
-  <hr id="about-me-section">
-  <section>
-    <div class="about-section">
-      <div class="about-me-div">
-      <h1>About Me</h1>
-      <h4>Passionate Front-End Developer</h4>
-      <p>
-        With over 3 years of professional experience, I specialize in creating dynamic, responsive web applications with a strong focus on user experience and performance optimization. Leveraging technologies like React, TypeScript, and Tailwind CSS, I build scalable and maintainable solutions. My journey in web development began in 2018, transforming a hobby into a rewarding career. Based in Grand Paris, France, I thrive on integrating APIs, implementing state management libraries, and utilizing modern development tools to deliver high-quality code. Let's build something amazing together!
-      </p>
-      </div>
-    <div class="about-me-img">
-      <img class="cv-img" src="./assets/images/amrita-photocv.jpg" alt="amritaphoto">
-    </div>
-    </div>
-  </section>
-  <section>
-    <hr>
-    <div class="display-leisure-time">
-      <h4>When I'm not Developing I'm ...</h4>
-    </div>
-    <div class="hobby-imgs-div">
-      <img class="hobby-imgs" src="./assets/images/cooking.jpg" alt="Cooking">
-      <img class="hobby-imgs" src="./assets/images/readinggirl.jpeg" alt="Reading">
-      <img class="hobby-imgs" src="./assets/images/creativity.jpg" alt="Diy-art-craft">
-      <img class="hobby-imgs" src="./assets/images/travel.jpg" alt="Travelling">
-    </div>
-  </section>
-  <section>
-    <hr>
-    <div class="qualities-div">
-      <div class="designing-skill-div">
-        <h1>Strengths as a Designer</h1>
-        <h5>Creative</h5>
-        <h5>Attentive</h5>
-        <h5>Detail Oriented</h5>
-      </div>
-      <div>
-        <img class="designer-coder-img" src="./assets/images/amy-dev.svg" alt="girl-designer">
-      </div>
-      <div class="designing-skill-div">
-        <h1>Traits as a Coder</h1>
-        <h5>Meticulous</h5>
-        <h5>Team Player</h5>
-        <h5>Problem solver</h5>
-      </div>
-    </div>
-  </section>
-  <hr>
-  <section class="edu-exp-section">
-    <div class="edu-section">
-      <h1>Education</h1>
-    <div class="timeline">
-      <div class="outer">
-        <div class="card card-timeline">
-          <div class="info">
-            <h3 class="title">2023</h3>
-            <p>Pursued a full time course in Web Designing and Web Development from G2R, Paris France.</p>
-          </div>
-        </div>
-        <div class="card card-timeline">
-          <div class="info">
-            <h3 class="title">2022</h3>
-            <p>Successfully completed an intense Full Stack Web Developer Bootcamp from Udemy.</p>
-          </div>
-        </div>
-        <div class="card card-timeline">
-          <div class="info">
-            <h3 class="title">2018</h3>
-            <p>Started coding with a Diploma course in Full-stack Development from Disha Computers, India</p>
-          </div>
-        </div>
-        <div class="card card-timeline">
-          <div class="info">
-            <h3 class="title">2015</h3>
-            <p>Secured distinction in Master's in English Literature from Pune University, India</p>
-          </div>
-        </div>
-        <!-- <div class="card card-timeline">
-          <div class="info">
-            <h3 class="title">2013</h3>
-            <p>Completed Bacherlor's in Education from Pune University, India</p>
-          </div>
-        </div> -->
-      </div>
-    </div>
-    </div>
-    <div class="exp-section">
-      <h1>Experience</h1>
-      <div class="timeline">
-        <div class="outer">
-          <div class="card card-timeline">
-            <div class="info">
-              <h3 class="title">2023</h3>
-              <p>A Full-Stack Developer for HDM Netowrk, Belgium
-                <br>Tech used: LAMP stack, ReactJS, Tailwind, PHP, Symfony, Apiplatform, Github, SCRUM
-              </p>
-            </div>
-          </div>
-          <div class="card card-timeline">
-            <div class="info">
-              <h3 class="title">2022-2023</h3>
-              <p>
-                Frontend developer (Freelance), WikiStage, Paris, FR.
-                <br>Tech used: LAMP stack, MongoDB, Node, NextJs
-              </p>
-            </div>
-          </div>
-          <div class="card card-timeline">
-            <div class="info">
-              <h3 class="title">2020-2022</h3>
-              <p>
-                Frontend Developer, 9ONIONS CULTURE INFOTECH Pvt. Ltd, Pune, IN.
-                <br>Tech used: LAMP stack, ReactJS, Typescript, Bootstrap, Jest, Cypress, GitHub Actions
-              </p>
-            </div>
-          </div>
-          <!-- <div class="card card-timeline">
-            <div class="info">
-              <h3 class="title">2018-2022</h3>
-              <p>Business Language Teacher at Monceau Langues, Paris-FR</p>
-            </div>
-          </div>
-          <div class="card card-timeline">
-            <div class="info">
-              <h3 class="title">2010-2018</h3>
-              <p>Lecturer at St Felix High School, Pune-IN</p>
-            </div>
-          </div>
-          <div class="card card-timeline">
-            <div class="info">
-              <h3 class="title">2009-2010</h3>
-              <p>Primary Teacher at Symboisis School, Pune-IN</p>
-            </div>
-          </div> -->
-        </div>
-      </div>
-    </div>
-  </section>
-  <hr>
-  <section class="skills-bar">
-    <div class="box">
-		<h1>Skills Bar</h1>
-    <div class="skillbox">
-        <p>TypeScript</p>
-        <p>90%</p>
-			<div class="skill">
-				<div class="level" style="--final-width: 90%; background: #3ee064;"></div>
-			</div>
-      </div>
-      <div class="skillbox">
-        <p>React - NextJS</p>
-        <p>90%</p>
-			<div class="skill">
-				<div class="level" style="--final-width: 90%; background: #fed330;"></div>
-			</div>
-      </div>
-      <div class="skillbox">
-        <p>HTML, CSS & Bootstrap, Tailwind</p>
-        <p>95%</p>
-        <div class="skill">
-          <div class="level" style="--final-width: 90%; background: #2fc4b2;"></div>
-        </div>
-      </div>
-      <div class="skillbox">
-        <p>UX, UI, UML, Figma</p>
-        <p>90%</p>
-        <div class="skill">
-          <div class="level" style="--final-width: 90%; background: #d32626;"></div>
-        </div>
-      </div>
-      <div class="skillbox">
-        <p>NodeJS, Express, MongoDB</p>
-        <p>85%</p>
-      <div class="skill">
-        <div class="level" style="--final-width: 85%; background: #79d70f;"></div>
-      </div>
-      </div>
-      <div class="skillbox">
-        <p>PHP, Mysql, Symfony</p>
-        <p>80%</p>
-			<div class="skill">
-				<div class="level" style="--final-width: 80%; background: #b5076b;"></div>
-			</div>
-      </div>
-    </div>
-  </section>
-  <hr id="contact-page-section">
-  <section class="get-in-touch">
-    <h1 class="title-contact">Get in touch</h1>
-    <form id="contactForm" class="contact-form row">
-      <div class="form-field col-lg-8">
-        <input id="name" class="input-text js-input" type="text" required placeholder=" ">
-        <label class="label" for="name">Name</label>
-      </div>
-      <div class="form-field col-lg-8">
-        <input id="email" class="input-text js-input" type="email" required placeholder=" ">
-        <label class="label" for="email">E-mail</label>
-      </div>
-      <div class="form-field col-lg-8">
-        <input id="company" class="input-text js-input" type="text" required placeholder=" ">
-        <label class="label" for="company">Company Name</label>
-      </div>
-      <div class="form-field col-lg-8">
-        <input id="phone" class="input-text js-input" type="text" required placeholder=" ">
-        <label class="label" for="phone">Contact Number</label>
-      </div>
-      <div class="form-field col-lg-8">
-        <input id="message" class="input-text js-input" type="text" required placeholder=" ">
-        <label class="label" for="message">Message</label>
-      </div>
-      <div class="form-submit-btn">
-        <button class="submit-btn" type="submit" value="Submit">Submit</button>
-      </div>
-    </form>
-  </section>
-  <section>
-    <footer>
-      <div class="footer-div">
-        <ul class="footer-list">
-          <li class="footer-links">
-            <a href="https://www.linkedin.com/in/amritapathak89/" aria-label="Linkden link">
-              <i class="bi bi-linkedin"></i>
-            </a>
-          </li>
-          <li class="footer-links">
-            <a href="https://github.com/amritapathak89" aria-label="Github link">
-              <i class="bi bi-github"></i>
-            </a>
-          </li>
-          <li class="footer-links">
-            <a href="#" aria-label="Facebook link">
-              <i class="bi bi-facebook"></i>
-            </a>
-          </li>
-          <li class="footer-links">
-            <a href="https://stackoverflow.com/users/16912931/amrita-pathak?tab=topactivity" aria-label="Stackoverflow link">
-              <i class="bi-stack-overflow"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </footer>
-  </section>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-  <script src="./script.js"></script>
+  </footer>
 </body>
 </html>
