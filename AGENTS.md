@@ -11,9 +11,9 @@ A personal portfolio website with a contact form. Static multi-page frontend (HT
 ```
 Makefile           # Colorful task runner (make help)
 frontend/
-  public/          # Static site: *.html pages, style.css, script.js, config.js, assets/
+  public/          # Static site root (deployable): *.html, style.css, script.js, config.js, assets/
+    dist/output.css  # Tailwind build output (git-ignored)
   src/input.css    # Tailwind entry (source)
-  dist/output.css  # Tailwind build output (git-ignored)
   tailwind.config.js
 backend/
   server.js        # Loads env + starts the listener
@@ -46,8 +46,10 @@ Easiest path — from the repo root via the Makefile (`make help` lists all):
 
 Frontend (run from `frontend/`):
 - `npm install`
-- `npm run build:css` — compile Tailwind once (`src/input.css` → `dist/output.css`)
+- `npm run build:css` — compile Tailwind once (`src/input.css` → `public/dist/output.css`)
 - `npm run watch:css` — rebuild on change
+
+`frontend/public/` is the deployable web root (HTML references `./dist/output.css`); serve that directory directly.
 
 Backend (run from `backend/`):
 - `npm install`

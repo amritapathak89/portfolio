@@ -49,11 +49,11 @@ make help        # list all available commands
 ```bash
 cd frontend
 npm install
-npm run build:css      # build Tailwind once (src/input.css -> dist/output.css)
+npm run build:css      # build Tailwind once (src/input.css -> public/dist/output.css)
 # or: npm run watch:css to rebuild on change
 ```
 
-Serve the contents of `frontend/public/` with any static file server.
+Serve the contents of `frontend/public/` (the deployable web root) with any static file server.
 
 ### Backend
 
