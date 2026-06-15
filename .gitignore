@@ -4,7 +4,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-package-lock.json
+# Lockfiles are committed for reproducible `npm ci` installs.
 yarn.lock
 pnpm-lock.yaml
 
@@ -44,6 +44,9 @@ Thumbs.db
 # Ignore OS-specific and editor temp files
 *.swp
 *~
+
+# Makefile background run artifacts
+.run/
 
 # Workspace-specific
 /backend/node_modules/

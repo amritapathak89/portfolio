@@ -30,6 +30,19 @@ docs/       # Project documentation and plans
 
 - Node.js and npm (Node Package Manager)
 - MySQL
+- `make` and `python3` (optional, for the Makefile helpers)
+
+### Quick start (Makefile)
+
+From the repo root:
+
+```bash
+make install     # install frontend + backend deps
+make db-setup    # load the DB schema (needs backend/.env)
+make start       # build CSS and start both servers in the background
+make stop        # stop them again
+make help        # list all available commands
+```
 
 ### Frontend
 
@@ -44,25 +57,34 @@ Serve the contents of `frontend/public/` with any static file server.
 
 ### Backend
 
-Create a `.env` file in `backend/` with:
+Copy `backend/.env.example` to `backend/.env` and fill in your values:
 
 ```
 APP_SERVER_PORT=8000
+CORS_ORIGIN=                 # comma-separated allowed origins (blank = allow all, dev only)
 MYSQL_HOST_IP=<host>
 MYSQL_USER=<user>
 MYSQL_PASSWORD=<password>
 MYSQL_DATABASE=<database>
 ```
 
-The database should contain a `contact_form` table with columns: `name`, `email`, `company`, `phone`, `message`.
+Create the database table from the provided schema:
+
+```bash
+mysql -u <user> -p <database> < backend/db/schema.sql
+```
+
+Then install and run:
 
 ```bash
 cd backend
 npm install
-node server.js
+npm start          # or: npm run dev (auto-reload)
+npm test           # run the smoke tests
 ```
 
-The contact form posts to `http://localhost:8000/submit-form` (configured in `frontend/public/script.js`).
+The contact form posts to the backend URL configured in `frontend/public/config.js`
+(`window.APP_CONFIG.backendUrl`, default `http://localhost:8000`).
 
 ## Development Notes
 
@@ -71,4 +93,6 @@ The contact form posts to `http://localhost:8000/submit-form` (configured in `fr
 
 ## CI
 
-GitHub Actions (`.github/workflows/ci.yml`) installs dependencies and builds the frontend CSS on pull requests and pushes to `master`. Test and deploy steps are currently placeholders.
+GitHub Actions (`.github/workflows/ci.yml`) runs on pull requests and pushes to `master`:
+a **frontend** job that builds the CSS, and a **backend** job that lints and tests. The
+deploy step is gated to `master` and is currently a placeholder.

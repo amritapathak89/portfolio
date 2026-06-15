@@ -9,16 +9,24 @@ A personal portfolio website with a contact form. Static multi-page frontend (HT
 ## Layout
 
 ```
+Makefile           # Colorful task runner (make help)
 frontend/
-  public/          # Static site: *.html pages, style.css, script.js, assets/
+  public/          # Static site: *.html pages, style.css, script.js, config.js, assets/
   src/input.css    # Tailwind entry (source)
   dist/output.css  # Tailwind build output (git-ignored)
   tailwind.config.js
 backend/
-  server.js        # Express app entrypoint
-  config/db.js     # MySQL connection pool
+  server.js        # Loads env + starts the listener
+  src/app.js       # Express app (CORS, body-parser, routes) — exported for tests
+  config/db.js     # MySQL2 promise connection pool
   src/routes/      # index.js aggregates routes; submit-form.routes.js handles POST /submit-form
+  src/middleware/  # validate-contact.js — contact-form validation
+  db/schema.sql    # contact_form table definition
+  __tests__/       # Jest + supertest smoke tests
+  eslint.config.js # ESLint v9 flat config
+  .env.example
 .github/workflows/ci.yml
+.prettierrc.json
 ```
 
 ## Tech stack
@@ -29,6 +37,13 @@ backend/
 
 ## Commands
 
+Easiest path — from the repo root via the Makefile (`make help` lists all):
+- `make install` — install frontend + backend deps
+- `make build` — build Tailwind CSS
+- `make start` / `make stop` / `make restart` — run both servers in the background
+- `make lint` / `make test` / `make format` — backend quality checks
+- `make db-setup` — load `backend/db/schema.sql` using `backend/.env`
+
 Frontend (run from `frontend/`):
 - `npm install`
 - `npm run build:css` — compile Tailwind once (`src/input.css` → `dist/output.css`)
@@ -36,32 +51,34 @@ Frontend (run from `frontend/`):
 
 Backend (run from `backend/`):
 - `npm install`
-- `node server.js` — start the server (no npm script defined yet)
+- `npm start` — start the server · `npm run dev` — start with nodemon
+- `npm test` — Jest + supertest · `npm run lint` — ESLint · `npm run format` — Prettier
 
 The static site can be served with any static file server pointing at `frontend/public/`.
 
 ## Environment
 
-Backend reads from a `.env` file (git-ignored) in `backend/`:
-- `APP_SERVER_PORT` — backend port (frontend expects `8000`, see `frontend/public/script.js`)
+Backend reads from a `.env` file (git-ignored) in `backend/` — see `backend/.env.example`:
+- `APP_SERVER_PORT` — backend port (defaults to `8000`; frontend expects `8000`)
+- `CORS_ORIGIN` — comma-separated allowed origins (unset = allow all, dev only)
 - `MYSQL_HOST_IP`, `MYSQL_USER`, `MYSQL_PASSWORD`, `MYSQL_DATABASE`
 
-Database expects a `contact_form` table with columns: `name`, `email`, `company`, `phone`, `message`.
+Database expects a `contact_form` table (`backend/db/schema.sql`). The frontend backend URL is set in `frontend/public/config.js` (`window.APP_CONFIG.backendUrl`).
 
 ## Conventions
 
 - CommonJS modules (`require`/`module.exports`) throughout the backend.
-- Routes live under `backend/src/routes/`; register new ones in `index.js`.
-- SQL uses parameterized queries (`?` placeholders) — keep it that way.
+- Routes live under `backend/src/routes/`; register new ones in `index.js`. Add request validation as middleware (see `src/middleware/`).
+- SQL uses parameterized queries (`?` placeholders) via the mysql2 promise pool — keep it that way.
 - Frontend uses no framework or bundler; edit files in `frontend/public/` directly. Do not hand-edit `dist/output.css` — regenerate via Tailwind.
-- The contact form's backend URL is hard-coded in `script.js`; update there if the port/host changes.
+- Backend code is linted with ESLint and formatted with Prettier (`printWidth: 100`, double quotes, semicolons).
 
 ## CI
 
-`.github/workflows/ci.yml` installs deps and builds CSS for `frontend/` on PRs and pushes to `master`. Test and deploy steps are placeholders.
+`.github/workflows/ci.yml` runs two jobs on PRs and pushes to `master`: **frontend** (build CSS) and **backend** (lint + test). A deploy job is gated to `master` and is still a placeholder.
 
 ## Notes for agents
 
-- There are currently no automated tests and no linter configured.
-- `package-lock.json` is git-ignored (see `.gitignore`); CI uses `npm ci` for frontend, so be mindful if changing lockfile handling.
+- Backend has Jest + supertest tests (`npm test`) and ESLint (`npm run lint`) — run both before committing backend changes.
+- Lockfiles are committed; CI uses `npm ci`. Run `npm install` after changing deps so the lockfile updates.
 - Do not commit secrets or `.env` files.

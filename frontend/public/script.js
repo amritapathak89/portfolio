@@ -7,6 +7,7 @@ let resizeCooldown = 500;
 let lastResizeTime = Date.now();
 function initializeBackground() {
   canvas = document.getElementById("stars");
+  if (!canvas) return; // No starfield canvas on this page.
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   window.addEventListener("resize", function () {
@@ -244,20 +245,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contactForm");
+  if (!form) return; // No contact form on this page.
+
+  const backendUrl = (window.APP_CONFIG && window.APP_CONFIG.backendUrl) || "http://localhost:8000";
+  const status = document.getElementById("formStatus");
+
+  function showStatus(message, ok) {
+    if (!status) return;
+    status.textContent = message;
+    status.className = `text-sm mt-2 ${ok ? "text-green-600" : "text-red-600"}`;
+  }
+
+  const getValue = (id) => {
+    const el = document.getElementById(id);
+    return el ? el.value : "";
+  };
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const formData = {
-      name: document.getElementById("name").value,
-      email: document.getElementById("email").value,
-      company: document.getElementById("company").value,
-      phone: document.getElementById("phone").value,
-      message: document.getElementById("message").value,
+      name: getValue("name"),
+      email: getValue("email"),
+      company: getValue("company"),
+      phone: getValue("phone"),
+      message: getValue("message"),
+      website: getValue("website"), // honeypot — should stay empty
     };
 
+    showStatus("Sending…", true);
+
     try {
-      const response = await fetch("http://localhost:8000/submit-form", {
+      const response = await fetch(`${backendUrl}/submit-form`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -265,17 +284,18 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify(formData),
       });
 
+      const result = await response.json().catch(() => ({}));
+
       if (response.ok) {
-        const result = await response.json();
-        alert(result.message);
+        showStatus(result.message || "Form submitted successfully!", true);
         form.reset();
       } else {
-        const error = await response.json();
-        alert(`Error: ${error.message}`);
+        const detail = result.errors ? result.errors.join(", ") : result.message;
+        showStatus(`Error: ${detail || "submission failed"}`, false);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("An error occurred while submitting the form.");
+      showStatus("An error occurred while submitting the form.", false);
     }
   });
 });
