@@ -1,18 +1,29 @@
-ready(function () {
-  initializeBackground();
-});
-
-let resizeTimeout;
+// --- Starfield background ---
+// All module state is declared up front so initializeBackground() is safe to
+// call synchronously (the deferred script runs while readyState is "interactive").
+let canvas;
+let ctx;
+let stars = [];
+let lastPaintTime = 0;
+let rafId = null;
+let resizeTimeout = null;
 let resizeCooldown = 500;
 let lastResizeTime = Date.now();
+
+const prefersReducedMotion =
+  window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 function initializeBackground() {
   canvas = document.getElementById("stars");
+  if (!canvas) return;
+  ctx = canvas.getContext("2d"); // cache the 2D context once
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+
   window.addEventListener("resize", function () {
     if (Date.now() - lastResizeTime < resizeCooldown && resizeTimeout) {
       clearTimeout(resizeTimeout);
-      delete resizeTimeout;
+      resizeTimeout = null;
     }
 
     lastResizeTime = Date.now();
@@ -20,23 +31,41 @@ function initializeBackground() {
     resizeTimeout = setTimeout(function () {
       fadeIn(canvas, 500);
       initializeStars();
+      drawStars(0); // repaint immediately (matters when the loop isn't running)
     }, 500);
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   });
+
   initializeStars();
-  (window.requestAnimationFrame && requestAnimationFrame(paintLoop)) || setTimeout(paintLoop, ms);
+
+  // Respect the user's motion preference: draw a static starfield, no loop.
+  if (prefersReducedMotion) {
+    drawStars(0);
+    return;
+  }
+
+  startLoop();
 }
 
-let canvas;
-let stars = [];
+function startLoop() {
+  if (rafId === null) {
+    rafId = requestAnimationFrame(paintLoop);
+  }
+}
+
+function stopLoop() {
+  if (rafId !== null) {
+    cancelAnimationFrame(rafId);
+    rafId = null;
+  }
+}
 
 function rand(max) {
   return Math.random() * max;
 }
 
-function Star(canvas, size, speed) {
-  this.ctx = canvas.getContext("2d");
+function Star(size, speed) {
   this.size = size;
   this.speed = speed;
   this.x = rand(window.innerWidth);
@@ -52,8 +81,8 @@ Star.prototype.animate = function (delta) {
   if (this.x > window.innerWidth) {
     this.x = 0;
   }
-  this.ctx.fillStyle = "#ffffff";
-  this.ctx.fillRect(this.x, this.y, this.size, this.size);
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(this.x, this.y, this.size, this.size);
 };
 
 function initializeStars() {
@@ -66,36 +95,49 @@ function initializeStars() {
   let largeStarsCount = winArea * largeStarsDensity;
   stars = [];
   for (let i = 0; i < smallStarsCount; i++) {
-    stars.push(new Star(canvas, 1, 30));
+    stars.push(new Star(1, 30));
   }
 
   for (let i = 0; i < mediumStarsCount; i++) {
-    stars.push(new Star(canvas, 2, 20));
+    stars.push(new Star(2, 20));
   }
 
   for (let i = 0; i < largeStarsCount; i++) {
-    stars.push(new Star(canvas, 3, 10));
+    stars.push(new Star(3, 10));
   }
 }
 
 function drawStars(delta) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   for (let i = 0; i < stars.length; i++) {
     stars[i].animate(delta);
   }
 }
 
-let ms = 16;
-let lastPaintTime = 0;
 function paintLoop(timestamp) {
-  canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-  let delta = (window.requestAnimationFrame ? timestamp - lastPaintTime : ms) / 1000;
+  let delta = (timestamp - lastPaintTime) / 1000;
   if (delta > 0.05) {
     delta = 0.05;
   }
   drawStars(delta);
-  (window.requestAnimationFrame && requestAnimationFrame(paintLoop)) || setTimeout(paintLoop, ms);
   lastPaintTime = timestamp;
+  rafId = requestAnimationFrame(paintLoop);
 }
+
+// Pause the animation when the tab is hidden; resume when it becomes visible.
+document.addEventListener("visibilitychange", function () {
+  if (prefersReducedMotion) return;
+  if (document.hidden) {
+    stopLoop();
+  } else {
+    lastPaintTime = 0; // avoid a large delta jump on resume
+    startLoop();
+  }
+});
+
+ready(function () {
+  initializeBackground();
+});
 
 function fadeIn(element, duration, callback) {
   element.style.opacity = 0;
