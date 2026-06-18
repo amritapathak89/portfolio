@@ -1,24 +1,39 @@
 # Portfolio Website
 
-## Project Description
+A personal portfolio — a single **static** page showcasing education, experience, skills, and selected work, with a contact email.
 
-This project is a simple portfolio website showcasing personal education, experience, and a contact form. The website is built with a tech stack that includes HTML, CSS, JavaScript, Node.js, Express, and MySQL. Companies and individuals can use the contact form to reach out for potential opportunities and inquiries.
+## Stack
 
-## Project Stack
+- **HTML, CSS, and vanilla JavaScript** — no build step, no framework, no backend.
+- Bootstrap 5 (via CDN) for layout and icons; a small custom starfield canvas, image carousel, and scroll animations live in `script.js`.
 
-- **Frontend**: HTML, CSS, JavaScript
-- **Backend**: Node.js, Express
-- **Database**: MySQL
+## Project structure
 
-## Features
+```
+frontend/public/
+├── index.html      # the page
+├── style.css       # styles
+├── script.js       # starfield, carousel, scroll animations, contact-email tooltip
+└── assets/images/  # images
+```
 
-- **Personal Information**: Display of education and experience details.
-- **Contact Form**: A form for visitors to send messages directly to the website owner.
-- **Responsive Design**: Ensuring the website is accessible and usable on various devices.
+## Running locally
 
-## Installation and Setup
+It's a static site — open `frontend/public/index.html` directly in a browser, or serve the folder with any static server:
 
-### Prerequisites
+```bash
+# Python
+python3 -m http.server --directory frontend/public 8080
+# or Node
+npx serve frontend/public
+```
 
-- Node.js and npm (Node Package Manager)
-- MySQL
+Then visit http://localhost:8080.
+
+## Deployment
+
+Serve the contents of `frontend/public/` from any static host or web server (e.g. Apache from `/var/www/html`). No server-side runtime is required.
+
+---
+
+> **History:** earlier versions bundled an Express/MySQL backend for a contact form. The form was replaced by a static email and the backend was removed (2026-06-18). See [`docs/plans/`](./docs/plans/) for the change plans and the code review.

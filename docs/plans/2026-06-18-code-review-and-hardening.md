@@ -7,15 +7,16 @@
 
 ---
 
-> ## 🔄 Update — 2026-06-18 (post-review)
-> The **contact form was replaced with a static, obfuscated email** (`Email: *****@gmail.com` + a reveal-on-hover/tap tooltip), decoupling the frontend from the backend. See [2026-06-18-contact-section-to-email.md](./2026-06-18-contact-section-to-email.md).
-> Findings resolved by this change are marked **✅ Resolved (2026-06-18)** below. The `backend/` service is now **unused** and a candidate for removal; until it is deleted, its hardening items in §6 still apply *if* it is ever deployed elsewhere.
+> ## 🔄 Updates — 2026-06-18 (post-review)
+> **1. Contact form → static email.** Replaced with an obfuscated email (`Email: *****@gmail.com` + reveal-on-hover/tap tooltip). See [2026-06-18-contact-section-to-email.md](./2026-06-18-contact-section-to-email.md).
+> **2. Backend removed.** The `backend/` Express/MySQL service has been **deleted** — the project is now a **pure static frontend**. This resolves *all* backend findings by removal: the **5 npm vulnerabilities** (§6.1), the **CORS / input-validation / rate-limiting / helmet** hardening (§6.2), and the entire **§3.1 Backend** review. Those sections are kept below for history, marked **✅ Resolved by removal**.
+> **Remaining active scope is frontend-only** — summary items 7–9 and §3.2 / §3.3 / §5. Resolved items are struck through and marked **✅ Resolved (2026-06-18)**.
 
 ---
 
 ## 1. Executive Summary
 
-This is a small personal-portfolio website: a **static frontend** (plain HTML/CSS/vanilla JS) served by a web server (Apache, from `/var/www/html`), plus a **minimal Express backend** exposing a single `POST /submit-form` endpoint that writes contact-form submissions into a MySQL table.
+This is a small personal-portfolio website. **As of 2026-06-18 it is a pure static frontend** (plain HTML/CSS/vanilla JS) served by Apache from `/var/www/html`. *(It originally bundled a minimal Express/MySQL backend for a contact form; both the form and the backend have since been removed — see the update banner above.)*
 
 The code is small, readable, and the one piece of database code already uses **parameterised queries** (good — no SQL injection on the insert). However, the project is at a "works on my machine" stage and is **not production-ready**. The most important issues are:
 
@@ -23,15 +24,15 @@ The code is small, readable, and the one piece of database code already uses **p
 |---|-------|----------|------|
 | 1 | ~~Contact form has **no rate limiting / anti-spam**~~ — **✅ Resolved (2026-06-18):** form removed (now a static email); endpoint no longer reachable from the site | ✅ | Security |
 | 2 | ~~Frontend calls a **hardcoded `http://localhost:8000`**~~ — **✅ Resolved (2026-06-18):** the `fetch` call was removed with the form | ✅ | Correctness |
-| 3 | **CORS is fully open** (`cors()` with no options) | 🟠 Medium-High | Security |
-| 4 | **No input validation / size limits** on the form payload | 🟠 Medium-High | Security |
-| 5 | **5 npm vulnerabilities (3 high)** from **unused** deps (`@babel/*`, `axios`) | 🟠 Medium | Supply chain |
-| 6 | **No security headers** (no `helmet`) | 🟠 Medium | Security |
+| 3 | ~~**CORS is fully open**~~ — **✅ Resolved by backend removal (2026-06-18)** | ✅ | Security |
+| 4 | ~~**No input validation / size limits**~~ — **✅ Resolved by backend removal (2026-06-18)** | ✅ | Security |
+| 5 | ~~**5 npm vulnerabilities (3 high)**~~ — **✅ Resolved by backend removal (2026-06-18):** `backend/` + `node_modules` deleted | ✅ | Supply chain |
+| 6 | ~~**No security headers** (no `helmet`)~~ — **✅ Resolved by backend removal (2026-06-18)** | ✅ | Security |
 | 7 | Duplicate/conflicting **Bootstrap 4 + Bootstrap 5** and unused, outdated **jQuery 3.2.1** loaded from CDNs | 🟠 Medium | Perf / Security |
 | 8 | Unoptimised images, render-blocking assets, always-on canvas animation | 🟡 Medium | Performance |
 | 9 | Malformed HTML (`</hé>`), wrong `alt` text, dead `constants.js`, no `npm` scripts | 🟡 Low | Quality |
 
-None of the findings are catastrophic for a low-traffic personal site, but items 1–4 should be fixed before the endpoint is exposed publicly, and item 2 means the form **does not currently work off `localhost`**.
+After the 2026-06-18 changes (contact form → static email; backend deleted), items **1–6 are resolved**. The **remaining active findings are frontend-only** — items 7–9: redundant CDN libraries, image/render performance, and assorted HTML/CSS/JS quality issues.
 
 > **Note on branches:** `git log --all` shows a more advanced line of work on other branches (`master`) — Tailwind build pipeline, email obfuscation, SEO meta, lazy loading, asset pruning. Several items below may already be addressed there. This review is scoped to **`original-site`** as requested; where relevant, "converge with `master`" is called out.
 
@@ -40,37 +41,26 @@ None of the findings are catastrophic for a low-traffic personal site, but items
 ## 2. Architecture Overview
 
 ```
-portfolio/
-├── frontend/                         # Static site (served by Apache, NOT by Express)
-│   ├── public/
-│   │   ├── index.html                # Single-page portfolio (502 lines)
-│   │   ├── style.css                 # Hand-written CSS (720 lines)
-│   │   ├── script.js                 # Vanilla JS: starfield, carousel, animations, form (283 lines)
-│   │   └── assets/images/            # ~40 PNG/JPG screenshots + SVGs (unoptimised)
-│   └── src/shared/constants.js       # EMPTY — dead file
-└── backend/                          # Express API
-    ├── server.js                     # App bootstrap (28 lines)
-    ├── config/db.js                  # MySQL connection pool (uses legacy `mysql` driver)
-    ├── src/routes/
-    │   ├── index.js                  # Route aggregator
-    │   └── submit-form.routes.js     # POST /submit-form → INSERT into contact_form
-    ├── package.json                  # No name/version/scripts; mixes runtime + build deps
-    └── package-lock.json
+portfolio/                            # Pure static frontend (backend removed 2026-06-18)
+├── Readme.md
+├── docs/plans/                       # this review + the change plans
+└── frontend/public/
+    ├── index.html                    # single-page portfolio
+    ├── style.css                     # hand-written CSS
+    ├── script.js                     # starfield, carousel, scroll animations, email tooltip
+    └── assets/images/                # ~40 PNG/JPG screenshots + SVGs (unoptimised)
 ```
 
-**Request flow (original):** Browser → `fetch('http://localhost:8000/submit-form')` → Express → `mysql` pool → `INSERT INTO contact_form`.
-> **✅ Updated 2026-06-18:** the contact form was replaced by a static email, so this flow no longer exists — the site is now **fully static** with no backend calls.
-
-**Key architectural observations:**
-- The backend **does not serve the frontend** (no `express.static`); the two are deployed independently.
-- The frontend has **no build step** on this branch (raw files in `public/`).
-- ~~The only dynamic feature is the contact form.~~ **✅ Updated 2026-06-18:** the contact form has been removed; the site is now entirely static and `backend/` is unused.
+**Architecture (current):** a single static page (`index.html` + `style.css` + `script.js`) served directly by Apache from `/var/www/html`. **No backend, no build step, no network calls.**
+> *Originally* the page POSTed a contact form to an Express endpoint (`/submit-form` → MySQL). Both the form and the backend were removed on 2026-06-18.
 
 ---
 
 ## 3. Code Review — Findings by Area
 
-### 3.1 Backend
+### 3.1 Backend — ✅ Resolved by removal (2026-06-18)
+
+> `backend/` has been **deleted**. The findings below are retained for history only (useful if a backend is ever reintroduced) and need no action.
 
 #### 3.1.1 `server.js`
 - **Missing `PORT` fallback** — `const PORT = process.env.APP_SERVER_PORT;` ([backend/server.js:11](../../backend/server.js#L11)). If the env var is unset, `app.listen(undefined)` binds a **random** port and the startup log prints `http://localhost:undefined`. Add a default (`|| 8000`) and validate required env at boot.
@@ -146,13 +136,8 @@ Grouped by theme; each row notes rough **effort** and **impact**.
 | Commit a `schema.sql` (or migration) for `contact_form` | S | Med |
 | Delete dead `constants.js` and unused deps (`axios`, `@babel/*`, `mysql`) | S | Med |
 
-### 4.2 Robustness
-| Improvement | Effort | Impact |
-|---|---|---|
-| Migrate `config/db.js` + route to **`mysql2/promise`** with `async/await` and pool limits | M | Med |
-| Add request validation (e.g. `express-validator` or `zod`) + payload size cap | M | High |
-| Global error-handling middleware + `/health` endpoint + graceful shutdown | M | Med |
-| Replace `alert()` with inline form status + disabled-button-on-submit | S | Med |
+### 4.2 Robustness — ✅ Resolved by removal (2026-06-18)
+All four were backend/form concerns; with the backend and form gone they no longer apply: ~~migrate to `mysql2/promise`; request validation + size cap; error handler / `/health` / graceful shutdown; replace `alert()`~~.
 
 ### 4.3 Tooling & Process
 | Improvement | Effort | Impact |
@@ -161,7 +146,9 @@ Grouped by theme; each row notes rough **effort** and **impact**.
 | Add a GitHub Actions CI (lint, `npm audit`, build) | M | Med |
 | Add a Dockerfile / docker-compose (app + MySQL) for reproducible deploys | M | Med |
 | Add a smoke/integration test for `POST /submit-form` (e.g. supertest) | M | Med |
-| Expand README (env, DB setup, run, deploy) | S | Med |
+| ~~Expand README (env, DB setup, run, deploy)~~ → README rewritten to "frontend-only" (2026-06-18) | — | ✅ |
+
+> **Note (2026-06-18):** the backend-specific tooling rows above — *GitHub Actions `npm audit`*, *Docker (app + MySQL)*, *supertest for `POST /submit-form`* — are now **N/A**. ESLint / Prettier / `.editorconfig` remain optional for the static site.
 
 ### 4.4 Optional / Product
 - Email notification on submission (e.g. `nodemailer`) so messages aren't only in the DB.
@@ -193,15 +180,16 @@ The page pulls **several large render-blocking CDN libraries it doesn't need** a
 9. **Respect `prefers-reduced-motion`** — skip the starfield and slide-in animations for users who request reduced motion (perf + accessibility).
 10. **Debounce correctly on resize** — the current resize handler re-initialises stars on every settle; the `delete resizeTimeout` bug means the debounce doesn't fully work.
 
-### 5.4 Backend
-11. Set explicit **pool `connectionLimit`** and reuse a single promise pool (already pooled — just tune it).
-12. Add **`compression`** middleware only if the backend ever serves payloads (currently returns tiny JSON — low priority).
+### 5.4 Backend — ✅ Resolved by removal (2026-06-18)
+~~Pool tuning / `compression` middleware~~ — no longer applicable; the backend has been deleted.
 
 ---
 
 ## 6. Security Vulnerability Scan & Hardening
 
-### 6.1 Dependency scan (`npm audit`, backend)
+> ✅ **Resolved by backend removal (2026-06-18):** §6.1 and §6.2 were backend concerns. With `backend/` (and its `node_modules`) deleted, the **5 npm advisories are gone** and the server-hardening checklist (CORS, helmet, rate-limit, validation) is **no longer applicable**. Retained for history. Still relevant to the static frontend: **SRI on CDN assets** (§3.2.1) and **`.git/` / webroot exposure** (note at end of §6.3).
+
+### 6.1 Dependency scan (`npm audit`, backend) — ✅ Resolved by removal
 
 ```
 5 vulnerabilities (2 moderate, 3 high)
@@ -281,30 +269,24 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 ## 7. Prioritised Action Plan (Roadmap)
 
-### Phase 0 — Quick wins (≈ half a day, low risk)
-1. Remove unused deps → clears **all 5 npm vulnerabilities**: `npm uninstall @babel/core @babel/node @babel/preset-env axios mysql`.
-2. Fix the broken API URL in `script.js` (relative path / config) — **restores form functionality in prod**.
-3. Delete Bootstrap 4.1.1, jQuery 3.2.1, Font Awesome kit from `index.html`.
-4. Fix `</hé>` typo, duplicate `.card-container` CSS, delete empty `constants.js`.
-5. Add `name`/`version`/`scripts` to `package.json`; add `PORT` fallback.
+> **Revised 2026-06-18 (frontend-only).** Phase 1 (backend security) and the backend parts of Phases 0/2 are **resolved by removal**. The roadmap below is frontend-only. `[ ]` = pending, `[x]` = done.
 
-### Phase 1 — Security hardening (≈ 1 day)
-6. Add `helmet`, CORS allowlist, `express-rate-limit`, body-size limit.
-7. Add input validation (`express-validator`/`zod`) + honeypot.
-8. Add `.env.example`, startup env validation, and a `schema.sql` for `contact_form`.
-9. Verify/lock down Apache so `backend/`, `.env`, `.git/` aren't web-served; least-privilege DB user.
+### Phase A — Correctness, dead code & a11y (frontend)
+- [ ] Fix `</hé>` → `</p>`; remove the duplicate `.card-container` CSS rule.
+- [ ] Remove Bootstrap 4.1.1, jQuery 3.2.1, and the Font Awesome kit from `index.html`.
+- [ ] Delete the empty `frontend/src/shared/constants.js`.
+- [ ] Fix copy-pasted `alt` text; move inline `style="width:18rem"` to a class; add `aria-label`s to the carousel buttons.
 
-### Phase 2 — Quality & robustness (≈ 1–2 days)
-10. Migrate to `mysql2/promise` + `async/await`; tune pool.
-11. Global error handler, `/health`, graceful shutdown.
-12. ESLint + Prettier + `.editorconfig`; fix `alert()` UX, `delete resizeTimeout`, alt text, a11y on carousel.
-13. Smoke test for `POST /submit-form`; basic GitHub Actions CI (lint + `npm audit`).
+### Phase B — Performance & JS robustness (frontend)
+- [ ] `defer` the Bootstrap JS and `script.js`; add `loading="lazy"` + `decoding="async"` to images.
+- [ ] Fix `delete resizeTimeout` and the `ms` use-before-declaration; cache the canvas 2D context; pause the starfield when the tab is hidden.
+- [ ] Add a `prefers-reduced-motion` guard for the animations.
 
-### Phase 3 — Performance & polish (≈ 1–2 days)
-14. Optimise/convert images to WebP/AVIF + `srcset` + `loading="lazy"`.
-15. `defer` scripts; minify local CSS/JS; enable gzip/brotli + caching in Apache.
-16. Pause starfield off-screen/hidden; cache 2D context; honour `prefers-reduced-motion`.
-17. Expand README; optionally Dockerise; consider converging with `master`'s build pipeline.
+### Phase C — Deferred (need tooling or decisions)
+- Convert images to WebP/AVIF + `srcset` (needs an image pipeline).
+- Minify CSS/JS (needs a build step) — or converge with `master`'s Tailwind pipeline.
+- Add SRI hashes to the remaining CDN `<link>`s (needs the published hashes — a wrong hash breaks the page).
+- Optional: ESLint / Prettier / `.editorconfig`; self-host fonts; Apache gzip/brotli + caching + deny access to `.git/` (server-side, outside this repo).
 
 ---
 

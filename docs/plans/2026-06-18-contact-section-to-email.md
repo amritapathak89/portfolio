@@ -59,4 +59,4 @@ After this change, **no frontend code calls the backend.** The `backend/` Expres
 ## 9. Follow-ups
 
 - [x] Tooltip content confirmed — **option A (literal hint)** chosen.
-- [ ] Optionally delete `backend/` and update `Readme.md` + the review doc to "frontend-only". *(Not done this pass — `backend/` left intact pending your go-ahead.)*
+- [x] **Deleted `backend/`** and updated `Readme.md` + the review doc to "frontend-only" (2026-06-18). The site is now a pure static frontend.
