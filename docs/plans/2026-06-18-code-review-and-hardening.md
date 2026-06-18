@@ -87,6 +87,8 @@ portfolio/                            # Pure static frontend (backend removed 20
 
 ### 3.2 Frontend
 
+> ✅ **Largely implemented 2026-06-18** (commits `83d5ecd`, `bf8c927`). Resolved: malformed `</hé>`; Bootstrap 4 / jQuery / Font Awesome removal; descriptive `alt` text; carousel `aria-label`s; inline-style → `.card-work`; duplicate `.card-container`; `delete resizeTimeout`; `ms` use-before-declaration; cached 2D context; tab-hidden pause; `prefers-reduced-motion`. **Still open (deferred — see §7 Phase C):** SRI hashes on the remaining CDN `<link>`s, full IIFE/module encapsulation of the starfield globals, and image format/responsive optimisation.
+
 #### 3.2.1 `index.html`
 - 🔴 **Broken closing tag** — line 68 ends with `</hé>` instead of `</p>` ([frontend/public/index.html:68](../../frontend/public/index.html#L68)). Malformed markup.
 - 🔴 **Conflicting CSS frameworks** — loads **Bootstrap 5.0.2** ([:7](../../frontend/public/index.html#L7)) *and* **Bootstrap 4.1.1** ([:12](../../frontend/public/index.html#L12)). Two major versions fight over the same class names. Pick one (5.x) and delete the other.
@@ -160,6 +162,8 @@ All four were backend/form concerns; with the backend and form gone they no long
 ## 5. Performance Boosting Opportunities
 
 The page pulls **several large render-blocking CDN libraries it doesn't need** and ships **unoptimised raster images**. Biggest wins are removing redundant libraries and optimising images.
+
+> ✅ **Partly implemented 2026-06-18:** removed the redundant CDN libraries (Bootstrap 4 / jQuery / Font Awesome); added `defer` to scripts and `loading="lazy"` / `decoding="async"` to below-the-fold images; cached the canvas 2D context; pause the starfield on tab-hidden; honour `prefers-reduced-motion`. **Still open:** image format/responsive optimisation (§5.1.2) and minify/compression (§5.2) — see §7 Phase C.
 
 ### 5.1 Network / Asset weight (highest impact)
 1. **Remove redundant libraries** — deleting Bootstrap 4.1.1, jQuery 3.2.1, and the Font Awesome kit removes **3 render-blocking requests** plus their bytes, with **zero** functional loss (none are used). *Single biggest, lowest-risk win.*
@@ -272,15 +276,15 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 > **Revised 2026-06-18 (frontend-only).** Phase 1 (backend security) and the backend parts of Phases 0/2 are **resolved by removal**. The roadmap below is frontend-only. `[ ]` = pending, `[x]` = done.
 
 ### Phase A — Correctness, dead code & a11y (frontend)
-- [ ] Fix `</hé>` → `</p>`; remove the duplicate `.card-container` CSS rule.
-- [ ] Remove Bootstrap 4.1.1, jQuery 3.2.1, and the Font Awesome kit from `index.html`.
-- [ ] Delete the empty `frontend/src/shared/constants.js`.
-- [ ] Fix copy-pasted `alt` text; move inline `style="width:18rem"` to a class; add `aria-label`s to the carousel buttons.
+- [x] Fix `</hé>` → `</p>`; remove the duplicate `.card-container` CSS rule.
+- [x] Remove Bootstrap 4.1.1, jQuery 3.2.1, and the Font Awesome kit from `index.html`.
+- [x] Delete the empty `frontend/src/shared/constants.js`.
+- [x] Fix copy-pasted `alt` text; move inline `style="width:18rem"` to a class; add `aria-label`s to the carousel buttons.
 
 ### Phase B — Performance & JS robustness (frontend)
-- [ ] `defer` the Bootstrap JS and `script.js`; add `loading="lazy"` + `decoding="async"` to images.
-- [ ] Fix `delete resizeTimeout` and the `ms` use-before-declaration; cache the canvas 2D context; pause the starfield when the tab is hidden.
-- [ ] Add a `prefers-reduced-motion` guard for the animations.
+- [x] `defer` the Bootstrap JS and `script.js`; add `loading="lazy"` + `decoding="async"` to images.
+- [x] Fix `delete resizeTimeout` and the `ms` use-before-declaration; cache the canvas 2D context; pause the starfield when the tab is hidden.
+- [x] Add a `prefers-reduced-motion` guard for the animations.
 
 ### Phase C — Deferred (need tooling or decisions)
 - Convert images to WebP/AVIF + `srcset` (needs an image pipeline).
