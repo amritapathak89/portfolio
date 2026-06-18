@@ -7,6 +7,12 @@
 
 ---
 
+> ## 🔄 Update — 2026-06-18 (post-review)
+> The **contact form was replaced with a static, obfuscated email** (`Email: *****@gmail.com` + a reveal-on-hover/tap tooltip), decoupling the frontend from the backend. See [2026-06-18-contact-section-to-email.md](./2026-06-18-contact-section-to-email.md).
+> Findings resolved by this change are marked **✅ Resolved (2026-06-18)** below. The `backend/` service is now **unused** and a candidate for removal; until it is deleted, its hardening items in §6 still apply *if* it is ever deployed elsewhere.
+
+---
+
 ## 1. Executive Summary
 
 This is a small personal-portfolio website: a **static frontend** (plain HTML/CSS/vanilla JS) served by a web server (Apache, from `/var/www/html`), plus a **minimal Express backend** exposing a single `POST /submit-form` endpoint that writes contact-form submissions into a MySQL table.
@@ -15,8 +21,8 @@ The code is small, readable, and the one piece of database code already uses **p
 
 | # | Issue | Severity | Area |
 |---|-------|----------|------|
-| 1 | Contact form has **no rate limiting / anti-spam** — open to flooding & DB/cost abuse | 🔴 High | Security |
-| 2 | Frontend calls a **hardcoded `http://localhost:8000`** — broken in production + mixed-content | 🔴 High | Correctness |
+| 1 | ~~Contact form has **no rate limiting / anti-spam**~~ — **✅ Resolved (2026-06-18):** form removed (now a static email); endpoint no longer reachable from the site | ✅ | Security |
+| 2 | ~~Frontend calls a **hardcoded `http://localhost:8000`**~~ — **✅ Resolved (2026-06-18):** the `fetch` call was removed with the form | ✅ | Correctness |
 | 3 | **CORS is fully open** (`cors()` with no options) | 🟠 Medium-High | Security |
 | 4 | **No input validation / size limits** on the form payload | 🟠 Medium-High | Security |
 | 5 | **5 npm vulnerabilities (3 high)** from **unused** deps (`@babel/*`, `axios`) | 🟠 Medium | Supply chain |
@@ -52,12 +58,13 @@ portfolio/
     └── package-lock.json
 ```
 
-**Request flow:** Browser → `fetch('http://localhost:8000/submit-form')` → Express → `mysql` pool → `INSERT INTO contact_form`.
+**Request flow (original):** Browser → `fetch('http://localhost:8000/submit-form')` → Express → `mysql` pool → `INSERT INTO contact_form`.
+> **✅ Updated 2026-06-18:** the contact form was replaced by a static email, so this flow no longer exists — the site is now **fully static** with no backend calls.
 
 **Key architectural observations:**
 - The backend **does not serve the frontend** (no `express.static`); the two are deployed independently.
 - The frontend has **no build step** on this branch (raw files in `public/`).
-- The only dynamic feature is the contact form. Everything else is static content.
+- ~~The only dynamic feature is the contact form.~~ **✅ Updated 2026-06-18:** the contact form has been removed; the site is now entirely static and `backend/` is unused.
 
 ---
 
@@ -99,10 +106,10 @@ portfolio/
 - 🟡 **Copy-pasted / wrong `alt` text** — most project screenshots use `alt="Justhomes-homepage"` regardless of content ([:126-238](../../frontend/public/index.html#L126)). Hurts accessibility & SEO.
 - 🟡 **Inline styles** — `style="width: 18rem;"` repeated on every card; move to a class.
 - 🟡 **Non-semantic carousel controls** — `<button>…<</button>` / `>` ([:87-88](../../frontend/public/index.html#L87)) have no `aria-label`; screen readers announce "less-than".
-- 🟡 **Inputs:** phone uses `type="text"` (should be `type="tel"`); no `maxlength`; no `name` attributes (fine since JS reads by `id`, but `name` aids autofill).
+- ~~🟡 **Inputs:** phone uses `type="text"`…~~ **✅ Resolved (2026-06-18):** the form and its inputs were removed; replaced by a static email + tooltip.
 
 #### 3.2.2 `script.js`
-- 🔴 **Hardcoded API endpoint** — `fetch("http://localhost:8000/submit-form")` ([frontend/public/script.js:260](../../frontend/public/script.js#L260)). This **breaks in production** (wrong host) and triggers **mixed-content blocking** when the page is served over HTTPS (the canonical URL is `https://amritavidhate.com`). Make it a relative path (`/submit-form` behind a reverse proxy) or a build-time config value.
+- ✅ **Resolved (2026-06-18) — Hardcoded API endpoint** — the `fetch("http://localhost:8000/submit-form")` call was **removed** along with the contact form (see [2026-06-18-contact-section-to-email.md](./2026-06-18-contact-section-to-email.md)). The page no longer makes any network request, eliminating the production-breakage and mixed-content issues.
 - 🟡 **`delete resizeTimeout`** ([:15](../../frontend/public/script.js#L15)) — `delete` on a `let` binding is a no-op (and invalid in strict mode). Use `clearTimeout(resizeTimeout); resizeTimeout = null;`.
 - 🟡 **`ms` used before declaration** — referenced at [:28](../../frontend/public/script.js#L28) but declared at [:87](../../frontend/public/script.js#L87) (`let ms = 16`). Works only because the `requestAnimationFrame` branch short-circuits before the TDZ access; fragile.
 - 🟡 **`alert()` for feedback** ([:270,273,278](../../frontend/public/script.js#L270)) — blocking and dated UX; replace with inline status / toast.
@@ -111,7 +118,7 @@ portfolio/
 
 #### 3.2.3 `style.css`
 - 🟡 **Duplicate rule** — `.card-container { overflow: hidden; width: 100%; }` is declared twice ([frontend/public/style.css:215-223](../../frontend/public/style.css#L215)).
-- 🟡 **Contact form `opacity: 0.6`** ([:289](../../frontend/public/style.css#L289)) dims the *entire* form including inputs/labels, reducing text contrast (WCAG concern). Use a semi-transparent `background-color` instead.
+- ~~🟡 **Contact form `opacity: 0.6`** dims the entire form…~~ **✅ Resolved (2026-06-18):** the form styles were removed along with the form.
 - 🟡 No `prefers-reduced-motion` guard for the many animations (starfield, slide-ins, skill bars).
 
 ### 3.3 Project-wide / Tooling
@@ -132,7 +139,7 @@ Grouped by theme; each row notes rough **effort** and **impact**.
 ### 4.1 Correctness & DX (do first)
 | Improvement | Effort | Impact |
 |---|---|---|
-| Make the form's API URL relative / configurable (fix the localhost bug) | S | High |
+| ~~Make the form's API URL relative / configurable~~ — ✅ Resolved 2026-06-18 (form removed) | — | ✅ |
 | Fix `</hé>` tag, duplicate Bootstrap, dead jQuery/FA, duplicate CSS rule | S | High |
 | Add `name`, `version`, and `scripts` (`start`, `dev`) to `package.json` | S | Med |
 | Add `.env.example` + startup env validation (fail fast) | S | Med |
