@@ -10,9 +10,6 @@ let resizeTimeout = null;
 let resizeCooldown = 500;
 let lastResizeTime = Date.now();
 
-const prefersReducedMotion =
-  window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
 function initializeBackground() {
   canvas = document.getElementById("stars");
   if (!canvas) return;
@@ -31,20 +28,12 @@ function initializeBackground() {
     resizeTimeout = setTimeout(function () {
       fadeIn(canvas, 500);
       initializeStars();
-      drawStars(0); // repaint immediately (matters when the loop isn't running)
     }, 500);
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   });
 
   initializeStars();
-
-  // Respect the user's motion preference: draw a static starfield, no loop.
-  if (prefersReducedMotion) {
-    drawStars(0);
-    return;
-  }
-
   startLoop();
 }
 
@@ -126,7 +115,6 @@ function paintLoop(timestamp) {
 
 // Pause the animation when the tab is hidden; resume when it becomes visible.
 document.addEventListener("visibilitychange", function () {
-  if (prefersReducedMotion) return;
   if (document.hidden) {
     stopLoop();
   } else {
