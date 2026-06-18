@@ -21,25 +21,27 @@
 </head>
 
 <body class="font-sans bg-gray-50 text-gray-900">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-blue-700 focus:px-3 focus:py-2 focus:rounded focus:shadow">Skip to content</a>
 
   <!-- Header -->
   <header class="bg-white shadow">
     <nav class="container mx-auto flex justify-between items-center p-4">
       <a href="index.html" class="flex items-center gap-4">
-        <img src="./assets/images/amy-logo.svg" alt="logo" class="w-12 h-12">
+        <img src="./assets/images/amy-logo.svg" alt="Amrita Vidhate logo" class="w-12 h-12">
         <span class="font-bold text-xl">Amrita Vidhate | Web Developer</span>
       </a>
       <ul class="hidden md:flex gap-6 text-gray-700 font-medium">
-        <li><a href="project.html" class="hover:text-blue-500"></a></li>
+        <li><a href="project.html" class="hover:text-blue-500">Projects</a></li>
         <li><a href="https://fusionplatter.eu/" class="hover:text-blue-500">Blog</a></li>
         <li><a href="contact.html" class="hover:text-blue-500">Contact</a></li>
       </ul>
     </nav>
   </header>
+  <main id="main">
   <!-- Work Section -->
   <section id="work-section" class="py-16 bg-white">
       <div class="container mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-12">Some of my latest Work</h2>
+        <h1 class="text-3xl font-bold text-center mb-12">Some of my latest Work</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div class="bg-gray-100 rounded-lg shadow overflow-hidden">
             <img src="./assets/images/work-snippets/speedily/homepage.png" alt="Speedily delivery app homepage" loading="lazy" class="w-full">
@@ -66,26 +68,14 @@
       </div>
     </section>
 
+  </main>
+
   <!-- Footer -->
   <footer class="bg-white text-black py-8">
     <div class="container mx-auto flex justify-center gap-6">
       <p class="text-sm text-gray-500">Connect with me :</p>
-      <p class="text-sm text-gray-500">
-        <a id="contact-email" class="cursor-pointer hover:text-blue-600 underline" href="#">Email me</a>
-      </p>
+      <p class="text-sm text-gray-500">"my first name followed by my last name"@gmail.com</p>
     </div>
-    <script>
-      // Email is assembled at runtime so scrapers can't read a plaintext address.
-      (function () {
-        var user = "amritavidhate";
-        var domain = ["gmail", "com"].join(".");
-        var link = document.getElementById("contact-email");
-        if (!link) return;
-        var address = user + "@" + domain;
-        link.href = "mailto:" + address;
-        link.textContent = address;
-      })();
-    </script>
   </footer>
 </body>
 

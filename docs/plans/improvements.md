@@ -30,9 +30,9 @@ A prioritized list of possible improvements for the portfolio project. Items are
 
 ## 4. Frontend improvements
 
-- [~] **Consolidate repeated DOM-ready handlers** in `script.js` — handlers now guard for missing elements; full consolidation still pending.
-- [~] **Accessibility pass** — added `aria-live` status region, labelled honeypot, `tel` input; broader audit (alt text, focus states, carousel ARIA) still pending.
-- [~] **Performance** — added `loading="lazy"` to below-the-fold project images and resized/cropped the homepage photo to a square, optimized JPEG (`amrita-photo.jpg`); bulk compression of remaining large `assets/` images still pending.
+- [x] **Consolidate repeated DOM-ready handlers** in `script.js` — collapsed to a single `DOMContentLoaded` entry point; removed dead handlers (starfield, carousel, card/hobby/skills animations, mobile nav) whose target elements no longer exist after the `text.html` cleanup. Only the guarded contact-form initializer remains.
+- [x] **Accessibility pass** — skip-to-content link, `<main>` landmark, a single `<h1>` per page, descriptive `alt` text, visible keyboard focus rings (`:focus-visible` in `input.css`), fixed empty nav links, plus the earlier `aria-live` status region, labelled honeypot and `tel` input.
+- [x] **Performance** — `loading="lazy"` on project images, homepage photo resized/cropped to an optimized square JPEG, removed ~7.7MB of unused images, and bulk-recompressed the two remaining project screenshots (832K→175K, 162K→38K).
 - [x] **Replace `alert()` form feedback** — inline `#formStatus` messages instead of blocking alerts.
 - [x] **SEO/meta** — per-page titles, meta descriptions, and Open Graph/Twitter tags on all pages.
 
@@ -45,5 +45,4 @@ A prioritized list of possible improvements for the portfolio project. Items are
 
 ## Remaining next steps
 
-1. Frontend accessibility audit and bulk image compression of the larger `assets/` files.
-2. A real deploy step in the CI `cd` job.
+1. A real deploy step in the CI `cd` job.
