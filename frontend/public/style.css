@@ -97,6 +97,10 @@ header {
   box-shadow: var(--boxShadow);
 }
 
+.card-work {
+  width: 18rem;
+}
+
 .about-section {
   align-items: center;
 }
@@ -210,11 +214,6 @@ header {
 
 .outer {
   border-left: 2px solid #c5baba;
-}
-
-.card-container {
-  overflow: hidden;
-  width: 100%;
 }
 
 .card-container {
