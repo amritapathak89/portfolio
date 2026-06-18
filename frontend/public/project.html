@@ -10,7 +10,14 @@
   <link rel="stylesheet" href="./dist/output.css">
   <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
   <script src="https://kit.fontawesome.com/5ff543a53f.js" crossorigin="anonymous"></script>
-  <title>Amrita Vidhate - Designer & Coder</title>
+  <title>Projects — Amrita Vidhate</title>
+  <meta name="description" content="Selected web development projects by Amrita Vidhate — PWAs, lead-generation sites and more, built with React, Next.js, TypeScript and Node.js.">
+  <meta name="author" content="Amrita Vidhate">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Projects — Amrita Vidhate">
+  <meta property="og:description" content="Selected web development projects by Amrita Vidhate — PWAs, lead-generation sites and more.">
+  <meta property="og:image" content="./assets/images/amrita-photo.jpg">
+  <meta name="twitter:card" content="summary">
 </head>
 
 <body class="font-sans bg-gray-50 text-gray-900">
@@ -35,7 +42,7 @@
         <h2 class="text-3xl font-bold text-center mb-12">Some of my latest Work</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div class="bg-gray-100 rounded-lg shadow overflow-hidden">
-            <img src="./assets/images/work-snippets/speedily/homepage.png" alt="Speedily Homepage" class="w-full">
+            <img src="./assets/images/work-snippets/speedily/homepage.png" alt="Speedily delivery app homepage" loading="lazy" class="w-full">
             <div class="p-4">
               <h3 class="font-bold text-xl mb-2">Designed & Developed a delivery app</h3>
               <p class="text-gray-700 text-sm">
@@ -46,7 +53,7 @@
           </div>
 
           <div class="bg-gray-100 rounded-lg shadow overflow-hidden">
-            <img src="./assets/images/work-snippets/justhomes/homepage.png" alt="Justhomes Homepage" class="w-full">
+            <img src="./assets/images/work-snippets/justhomes/homepage.png" alt="Justhomes lead-generation website homepage" loading="lazy" class="w-full">
             <div class="p-4">
               <h3 class="font-bold text-xl mb-2">Built a Lead generation Website</h3>
               <p class="text-gray-700 text-sm">
@@ -63,8 +70,22 @@
   <footer class="bg-white text-black py-8">
     <div class="container mx-auto flex justify-center gap-6">
       <p class="text-sm text-gray-500">Connect with me :</p>
-      <p class="text-sm text-gray-500">amritavidhate@gmail.com</p>
+      <p class="text-sm text-gray-500">
+        <a id="contact-email" class="cursor-pointer hover:text-blue-600 underline" href="#">Email me</a>
+      </p>
     </div>
+    <script>
+      // Email is assembled at runtime so scrapers can't read a plaintext address.
+      (function () {
+        var user = "amritavidhate";
+        var domain = ["gmail", "com"].join(".");
+        var link = document.getElementById("contact-email");
+        if (!link) return;
+        var address = user + "@" + domain;
+        link.href = "mailto:" + address;
+        link.textContent = address;
+      })();
+    </script>
   </footer>
 </body>
 

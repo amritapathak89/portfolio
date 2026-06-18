@@ -32,9 +32,9 @@ A prioritized list of possible improvements for the portfolio project. Items are
 
 - [~] **Consolidate repeated DOM-ready handlers** in `script.js` — handlers now guard for missing elements; full consolidation still pending.
 - [~] **Accessibility pass** — added `aria-live` status region, labelled honeypot, `tel` input; broader audit (alt text, focus states, carousel ARIA) still pending.
-- [ ] **Performance** — optimize/compress images in `assets/`, add `loading="lazy"`.
+- [~] **Performance** — added `loading="lazy"` to below-the-fold project images and resized/cropped the homepage photo to a square, optimized JPEG (`amrita-photo.jpg`); bulk compression of remaining large `assets/` images still pending.
 - [x] **Replace `alert()` form feedback** — inline `#formStatus` messages instead of blocking alerts.
-- [ ] **SEO/meta** — per-page titles, descriptions, Open Graph tags.
+- [x] **SEO/meta** — per-page titles, meta descriptions, and Open Graph/Twitter tags on all pages.
 
 > Note: wiring the above also fixed a latent bug — `contact.html` previously had no form `id`, no phone field, and never loaded `script.js`, so the contact form did not actually submit.
 
@@ -45,6 +45,5 @@ A prioritized list of possible improvements for the portfolio project. Items are
 
 ## Remaining next steps
 
-1. Frontend accessibility audit and image optimization (`loading="lazy"`, compression).
-2. Per-page SEO/meta tags.
-3. A real deploy step in the CI `cd` job.
+1. Frontend accessibility audit and bulk image compression of the larger `assets/` files.
+2. A real deploy step in the CI `cd` job.

@@ -10,7 +10,14 @@
   <link rel="stylesheet" href="./dist/output.css">
   <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
   <script src="https://kit.fontawesome.com/5ff543a53f.js" crossorigin="anonymous"></script>
-  <title>Amrita Vidhate - Designer & Coder</title>
+  <title>Contact — Amrita Vidhate</title>
+  <meta name="description" content="Get in touch with Amrita Vidhate, a full-stack web developer based in Paris.">
+  <meta name="author" content="Amrita Vidhate">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact — Amrita Vidhate">
+  <meta property="og:description" content="Get in touch with Amrita Vidhate, a full-stack web developer based in Paris.">
+  <meta property="og:image" content="./assets/images/amrita-photo.jpg">
+  <meta name="twitter:card" content="summary">
 </head>
 
 <body class="font-sans bg-gray-50 text-gray-900">
@@ -64,7 +71,7 @@
             <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
           </div>
           <button type="submit"
-            class="w-full bg-blue-600 text-white font-bold py-3 rounded hover:bg-blue-700 transition">Submit</button>
+            class="cursor-pointer w-full bg-blue-600 text-white font-bold py-3 rounded hover:bg-blue-700 transition">Submit</button>
           <p id="formStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -74,8 +81,22 @@
   <footer class="bg-white text-black py-8">
     <div class="container mx-auto flex justify-center gap-6">
       <p class="text-sm text-gray-500">Connect with me :</p>
-      <p class="text-sm text-gray-500">amritavidhate@gmail.com</p>
+      <p class="text-sm text-gray-500">
+        <a id="contact-email" class="cursor-pointer hover:text-blue-600 underline" href="#">Email me</a>
+      </p>
     </div>
+    <script>
+      // Email is assembled at runtime so scrapers can't read a plaintext address.
+      (function () {
+        var user = "amritavidhate";
+        var domain = ["gmail", "com"].join(".");
+        var link = document.getElementById("contact-email");
+        if (!link) return;
+        var address = user + "@" + domain;
+        link.href = "mailto:" + address;
+        link.textContent = address;
+      })();
+    </script>
   </footer>
 
   <script src="./config.js"></script>

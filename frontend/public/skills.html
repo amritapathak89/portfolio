@@ -10,7 +10,14 @@
   <link rel="stylesheet" href="./dist/output.css">
   <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
   <script src="https://kit.fontawesome.com/5ff543a53f.js" crossorigin="anonymous"></script>
-  <title>Amrita Vidhate - Designer & Coder</title>
+  <title>Skills — Amrita Vidhate</title>
+  <meta name="description" content="Technical skills of Amrita Vidhate: TypeScript, React/Next.js, PHP/Laravel, MySQL, HTML, CSS, Tailwind and UX/UI design.">
+  <meta name="author" content="Amrita Vidhate">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Skills — Amrita Vidhate">
+  <meta property="og:description" content="Technical skills: TypeScript, React/Next.js, PHP/Laravel, MySQL, Tailwind and UX/UI design.">
+  <meta property="og:image" content="./assets/images/amrita-photo.jpg">
+  <meta name="twitter:card" content="summary">
 </head>
 
 <body class="font-sans bg-gray-50 text-gray-900">
@@ -105,8 +112,22 @@
   <footer class="bg-white text-black py-8">
     <div class="container mx-auto flex justify-center gap-6">
       <p class="text-sm text-gray-500">Connect with me :</p>
-      <p class="text-sm text-gray-500">amritavidhate@gmail.com</p>
+      <p class="text-sm text-gray-500">
+        <a id="contact-email" class="cursor-pointer hover:text-blue-600 underline" href="#">Email me</a>
+      </p>
     </div>
+    <script>
+      // Email is assembled at runtime so scrapers can't read a plaintext address.
+      (function () {
+        var user = "amritavidhate";
+        var domain = ["gmail", "com"].join(".");
+        var link = document.getElementById("contact-email");
+        if (!link) return;
+        var address = user + "@" + domain;
+        link.href = "mailto:" + address;
+        link.textContent = address;
+      })();
+    </script>
   </footer>
 </body>
 
