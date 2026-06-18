@@ -275,88 +275,67 @@ header {
   text-align: center;
 }
 
-/* General form styles */
-.contact-form {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #11161d;
-  border-radius: 10px;
-  background-color: #11161d;
-  opacity: 0.6;
+/* Contact email (replaces the old contact form) */
+.email-line {
+  text-align: center;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
 }
 
-.form-field {
+.email-reveal {
   position: relative;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.input-text {
-  width: 100%;
-  padding: 12px 10px 10px 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  transition: border-color 0.3s;
-  z-index: 1;
-}
-
-.input-text:focus {
-  outline: none;
-  border: 2px solid yellow;
-}
-
-.label {
-  position: absolute;
-  top: 14px;
-  left: 38px;
-  font-size: 16px;
-  color: #999;
-  pointer-events: none;
-  transition: all 0.6s;
-}
-
-.input-text:focus + .label,
-.input-text:not(:placeholder-shown) + .label {
-  top: -30px;
-  left: 10px;
-  font-size: 16px;
-  color: #007bff;
-}
-
-.form-submit-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.submit-btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 5px;
+  display: inline-block;
+  margin-left: 8px;
+  padding: 4px 10px;
+  font: inherit;
+  color: var(--font-color);
+  background: transparent;
+  border: 1px dashed rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  width: 150px;
-  height: 50px;
 }
 
-.submit-btn:hover {
-  background-color: #0056b3;
+.email-reveal:hover,
+.email-reveal:focus-visible {
+  outline: none;
+  border-color: #fff;
 }
 
-/* Styles for smaller screens */
-@media (max-width: 600px) {
-  .form-field {
-    width: 100%;
-  }
+.email-tooltip {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  white-space: nowrap;
+  background: #fff;
+  color: var(--backgroundColor);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  box-shadow: var(--boxShadow);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* little arrow above the tooltip, pointing up at the email */
+.email-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: #fff;
+}
+
+.email-reveal:hover .email-tooltip,
+.email-reveal:focus-visible .email-tooltip,
+.email-reveal.show-tooltip .email-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
 /*footer*/

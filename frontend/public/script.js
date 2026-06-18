@@ -240,42 +240,20 @@ document.addEventListener("DOMContentLoaded", () => {
   observer.observe(skillsSection);
 });
 
-/* form-submit */
+/* contact email tooltip — reveal on tap/click (hover & keyboard focus handled by CSS) */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("contactForm");
+  const emailReveal = document.querySelector(".email-reveal");
+  if (!emailReveal) return;
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
+  emailReveal.addEventListener("click", () => {
+    emailReveal.classList.toggle("show-tooltip");
+  });
 
-    const formData = {
-      name: document.getElementById("name").value,
-      email: document.getElementById("email").value,
-      company: document.getElementById("company").value,
-      phone: document.getElementById("phone").value,
-      message: document.getElementById("message").value,
-    };
-
-    try {
-      const response = await fetch("http://localhost:8000/submit-form", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        alert(result.message);
-        form.reset();
-      } else {
-        const error = await response.json();
-        alert(`Error: ${error.message}`);
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("An error occurred while submitting the form.");
+  // Hide the tooltip when tapping/clicking anywhere outside the email
+  document.addEventListener("click", (event) => {
+    if (!emailReveal.contains(event.target)) {
+      emailReveal.classList.remove("show-tooltip");
     }
   });
 });
