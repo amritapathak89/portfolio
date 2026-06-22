@@ -71,6 +71,6 @@ The site is static — once `output.css` exists you can also just open
 
 ## Gotchas
 
-- `Readme.md` still mentions Bootstrap CDN + `style.css`; the live setup is
-  Tailwind v4 + generated `output.css`. Trust this file and `package.json`.
-- `output.css` is committed but generated — regenerate, don't patch.
+- `output.css` is **generated and git-ignored** — never edit or commit it.
+  Run `make build` to (re)generate it locally before deploying (deploy is
+  manual; there is no server-side build step).

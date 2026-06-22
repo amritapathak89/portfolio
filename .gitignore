@@ -1,0 +1,9 @@
+# Dependencies
+node_modules/
+
+# Generated Tailwind output — build locally with `make build` before deploying
+frontend/public/output.css
+
+# Env / local
+.env
+.env.local
