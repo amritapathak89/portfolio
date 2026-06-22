@@ -44,6 +44,20 @@ build: ## Build minified production CSS
 	@cd $(FRONTEND) && npm run build
 	@printf "$(GREEN)✓ Built $(PUBLIC)/output.css$(RESET)\n"
 
+# ── Format ───────────────────────────────────────────────────────────────────
+PRETTIER := $(FRONTEND)/node_modules/.bin/prettier
+
+.PHONY: format
+format: ## Format HTML/CSS/JS/JSON/MD with Prettier
+	@printf "$(CYAN)→ Formatting with Prettier…$(RESET)\n"
+	@$(PRETTIER) --write "**/*.{js,css,html,json,md}"
+	@printf "$(GREEN)✓ Formatted$(RESET)\n"
+
+.PHONY: format-check
+format-check: ## Check formatting without writing changes
+	@printf "$(CYAN)→ Checking formatting…$(RESET)\n"
+	@$(PRETTIER) --check "**/*.{js,css,html,json,md}"
+
 # ── Serve ────────────────────────────────────────────────────────────────────
 .PHONY: serve
 serve: ## Serve the static site (PORT=8080 by default)

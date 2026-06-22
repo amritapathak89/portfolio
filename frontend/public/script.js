@@ -165,22 +165,54 @@
       const imageCount = images.length;
       let currentIndex = 0;
 
-      function update() {
-        carouselImages.style.transform = `translateX(${-currentIndex * 100}%)`;
+      // A11y: announce the carousel as a keyboard-operable group with a
+      // live region that reports the current slide. Single-image cards need
+      // none of this, so only enhance real (multi-image) carousels.
+      const multi = imageCount > 1;
+      let status = null;
+      if (multi) {
+        carousel.setAttribute("role", "group");
+        carousel.setAttribute("aria-roledescription", "carousel");
+        if (!carousel.hasAttribute("aria-label")) {
+          carousel.setAttribute("aria-label", "Project screenshots");
+        }
+        carousel.setAttribute("tabindex", "0");
+
+        status = document.createElement("p");
+        status.className = "sr-only";
+        status.setAttribute("aria-live", "polite");
+        carousel.appendChild(status);
       }
 
-      if (nextButton) {
-        nextButton.addEventListener("click", () => {
-          currentIndex = (currentIndex + 1) % imageCount;
-          update();
+      function update() {
+        carouselImages.style.transform = `translateX(${-currentIndex * 100}%)`;
+        if (status) status.textContent = `Image ${currentIndex + 1} of ${imageCount}`;
+      }
+
+      function next() {
+        currentIndex = (currentIndex + 1) % imageCount;
+        update();
+      }
+      function prev() {
+        currentIndex = (currentIndex - 1 + imageCount) % imageCount;
+        update();
+      }
+
+      if (nextButton) nextButton.addEventListener("click", next);
+      if (prevButton) prevButton.addEventListener("click", prev);
+
+      if (multi) {
+        carousel.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowRight") {
+            event.preventDefault();
+            next();
+          } else if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            prev();
+          }
         });
       }
-      if (prevButton) {
-        prevButton.addEventListener("click", () => {
-          currentIndex = (currentIndex - 1 + imageCount) % imageCount;
-          update();
-        });
-      }
+
       update();
     });
   }

@@ -183,8 +183,9 @@ items beyond CDN SRI.
 > no-tooling edits; C–D need an image/lint pipeline decision.
 
 > **Implemented 2026-06-22.** See checkbox state below. Dead links deliberately
-> left for the site owner to fill. SRI and a couple of optional items deferred
-> (notes inline).
+> left for the site owner to fill. SRI and the Phase-D optional items were
+> completed in a follow-up pass later the same day (notes inline). Only the dead
+> links and `srcset`/`sizes` (a reasoned no-op — no retina sources) remain open.
 
 ### Phase A — Content & correctness (no tooling, fast, high signal)
 - [x] Fix skills-bar 95%/90% mismatch (bar now fills 95%).
@@ -202,9 +203,10 @@ items beyond CDN SRI.
 - [x] Moved scroll-anchor IDs from `<hr>` onto their `<section>`s.
 - [x] Added `prefers-reduced-motion` guard in `input.css` for card/slide-in/
       skill-bar animations (starfield left on by design).
-- [ ] SRI on the Bootstrap-Icons CDN asset — **deferred:** the build host can't
-      reach jsDelivr to compute a trustworthy hash, and a wrong `integrity`
-      breaks the page. Do when online, or self-host the icon font.
+- [x] SRI on the Bootstrap-Icons CDN asset — added `integrity`
+      (`sha384-Ay26V7L8…`, computed from the live `@1.10.5` CSS, byte-stable
+      across re-fetches) + `crossorigin="anonymous"`. Google Fonts still left
+      bare (rotating CSS can't take a stable SRI).
 - [x] Added intrinsic `width`/`height` to all content images (carousel, hobby,
       portrait, hero, illustration) to cut CLS.
 
@@ -222,8 +224,24 @@ items beyond CDN SRI.
       blocks into one `ready()` init; no more `window` globals.
 - [x] Replaced the convoluted resize logic with a plain trailing debounce.
 - [x] Rewrote `Readme.md` to the Tailwind reality.
-- [ ] Optional carousel keyboard/aria-live; Prettier + `.editorconfig` + CI
-      build-sync check; favicon variants + `site.webmanifest` — not done.
+- [x] Carousel keyboard/aria-live — multi-image carousels are now `role="group"`
+      + `aria-roledescription="carousel"`, focusable (`tabindex="0"`), driven by
+      ←/→ keys, with an `aria-live="polite"` "Image N of M" status. Single-image
+      cards left untouched.
+- [x] Prettier + `.editorconfig` — added `.editorconfig`, `.prettierrc.json`,
+      `.prettierignore` (skips generated `output.css` + binary assets), `prettier`
+      devDep, and `make format` / `make format-check` targets (run from repo root
+      so the root config/ignore apply). Existing files not bulk-reformatted to
+      keep the diff reviewable.
+- [x] CI — added `.github/workflows/ci.yml`. The original "build-sync" check is
+      moot now that `output.css` is git-ignored, so CI instead runs
+      `npm ci && npm run build` and asserts `output.css` is produced (catches
+      `input.css`/token/keyframe breakage).
+- [x] Favicon variants + `site.webmanifest` — generated `apple-touch-icon.png`
+      (180), `favicon-16x16`/`favicon-32x32` (crisp, native ico sizes) and
+      `icon-192.png` from `favicon.ico`; wired `<link>`s + `theme-color` and added
+      `site.webmanifest`. Source ico maxes at 48 px, so the large icons are soft
+      — replace with a vector-sourced set if a sharper mark is wanted.
 
 ---
 
