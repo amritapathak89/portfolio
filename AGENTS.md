@@ -27,7 +27,11 @@ runtime. Deployed as static files (e.g. Apache from `/var/www/html`).
   `data-i18n` (sets textContent) or `data-i18n-content` / `-aria` / `-alt`
   (sets that attribute). Language resolves as localStorage → browser language
   (`fr*` → French) → English, persists the user's explicit choice to
-  `localStorage.lang`, and updates `<html lang>`.
+  `localStorage.lang`, and updates `<html lang>`. A tiny inline `<head>` script
+  resolves the language before first paint (stamps `data-lang` on `<html>` and,
+  for non-English, hides the body via `.i18n-loading`) so French visitors never
+  flash English; `script.js` reuses that value and clears `.i18n-loading` once
+  the swap is done.
 
 ## Layout
 
@@ -86,3 +90,6 @@ The site is static — once `output.css` exists you can also just open
 - `output.css` is **generated and git-ignored** — never edit or commit it.
   Run `make build` to (re)generate it locally before deploying (deploy is
   manual; there is no server-side build step).
+- The inline `<head>` language script + its `.i18n-loading` `<style>` exist to
+  prevent a flash of English for French visitors — don't remove them. They
+  mirror `resolveInitialLang()`; if you change the resolution rules, change both.

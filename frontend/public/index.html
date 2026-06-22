@@ -4,6 +4,34 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Resolve language before first paint so a French visitor never flashes
+       English. Mirrors resolveInitialLang() in script.js, which then reuses the
+       stamped data-lang and removes .i18n-loading once the text is swapped. -->
+  <script>
+    (function () {
+      try {
+        var de = document.documentElement;
+        var saved = null;
+        try { saved = localStorage.getItem("lang"); } catch (e) {}
+        var lang = saved === "en" || saved === "fr" ? saved : "";
+        if (!lang) {
+          var list = navigator.languages || [navigator.language || ""];
+          lang = "en";
+          for (var i = 0; i < list.length; i++) {
+            if (list[i] && list[i].toLowerCase().indexOf("fr") === 0) { lang = "fr"; break; }
+          }
+        }
+        de.lang = lang;
+        de.setAttribute("data-lang", lang);
+        if (lang !== "en") {
+          de.className += (de.className ? " " : "") + "i18n-loading";
+          // Failsafe: reveal anyway if script.js never loads/runs.
+          setTimeout(function () { de.classList.remove("i18n-loading"); }, 1200);
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <style>html.i18n-loading{background:#121420}html.i18n-loading body{visibility:hidden}</style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">

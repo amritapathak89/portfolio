@@ -220,6 +220,11 @@
   }
 
   function resolveInitialLang() {
+    // Prefer the language already resolved by the inline <head> script: it ran
+    // before first paint, so reusing it guarantees we match what was painted.
+    // Fall back to resolving here if that script was absent.
+    const stamped = document.documentElement.getAttribute("data-lang");
+    if (SUPPORTED_LANGS.indexOf(stamped) !== -1) return stamped;
     return getStoredLang() || detectBrowserLang();
   }
 
@@ -250,6 +255,10 @@
 
     updateLangUI(lang);
     carouselUpdaters.forEach((fn) => fn());
+
+    // Text is now in the correct language — reveal the page. The inline <head>
+    // script hides it (.i18n-loading) only for non-English to avoid a flash.
+    document.documentElement.classList.remove("i18n-loading");
   }
 
   function setLang(lang) {
