@@ -1,3 +1,61 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@source "../public/**/*.{html,js}";
+
+@theme {
+  --color-primary: #013ca7;
+  --color-bg: #121420;
+
+  --font-oswald: "Oswald", sans-serif;
+
+  --shadow-card: rgba(164, 178, 193, 0.2) 0px 8px 24px;
+  --shadow-skill: 0 20px 40px rgba(0, 0, 0, 0.5);
+
+  --animate-slideInOut: slideInOut 5s ease-out forwards;
+  --animate-fillBar: fillBar 2s ease-out forwards;
+
+  @keyframes slideInOut {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    50% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fillBar {
+    from {
+      width: 0%;
+    }
+    to {
+      width: var(--final-width);
+    }
+  }
+}
+
+@layer base {
+  h1 {
+    @apply text-4xl font-bold md:text-5xl;
+  }
+  h2 {
+    @apply text-3xl font-bold md:text-4xl;
+  }
+  h3 {
+    @apply text-2xl font-semibold md:text-3xl;
+  }
+  h4 {
+    @apply text-xl font-semibold;
+  }
+  h5 {
+    @apply text-lg font-medium;
+  }
+  h6 {
+    @apply text-base font-medium;
+  }
+}
