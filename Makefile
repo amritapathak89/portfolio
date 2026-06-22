@@ -14,6 +14,13 @@ FRONTEND := frontend
 PUBLIC   := $(FRONTEND)/public
 PORT     ?= 8080
 
+# Deploy: rsync the built site into the static-host doc root on a remote host.
+# SERVER is an ssh host (use an ~/.ssh/config alias), e.g.
+#   make deploy SERVER=my-vps
+SLUG     ?= amy-portfolio
+SERVER   ?= homelab
+DEST     ?= /srv/static/$(SLUG)/
+
 .DEFAULT_GOAL := help
 
 # ── Help ─────────────────────────────────────────────────────────────────────
@@ -69,6 +76,13 @@ open: ## Open the page directly in the default browser
 	@printf "$(CYAN)→ Opening $(PUBLIC)/index.html…$(RESET)\n"
 	@xdg-open $(PUBLIC)/index.html 2>/dev/null || open $(PUBLIC)/index.html 2>/dev/null || \
 		printf "$(YELLOW)! Open $(PUBLIC)/index.html manually$(RESET)\n"
+
+# ── Deploy ───────────────────────────────────────────────────────────────────
+.PHONY: deploy
+deploy: build ## Build, then rsync the site to SERVER:$(DEST) (override SERVER=)
+	@printf "$(CYAN)→ Deploying $(PUBLIC)/ → $(YELLOW)$(SERVER):$(DEST)$(RESET)\n"
+	@rsync -av --delete $(PUBLIC)/ $(SERVER):$(DEST)
+	@printf "$(GREEN)✓ Deployed to $(SERVER):$(DEST)$(RESET)\n"
 
 # ── Maintenance ──────────────────────────────────────────────────────────────
 .PHONY: clean
