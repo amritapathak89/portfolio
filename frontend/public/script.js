@@ -155,14 +155,26 @@ function ready(fn) {
   }
 }
 
+// navbar toggle (replaces Bootstrap's collapse plugin)
+const navToggle = document.querySelector("#navToggle");
+const navMenu = document.querySelector("#navbarNav");
+
+if (navToggle && navMenu) {
+  navToggle.addEventListener("click", () => {
+    const isOpen = navMenu.classList.toggle("hidden") === false;
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+}
+
 let navLinks = document.querySelectorAll(".nav-link");
 navLinks.forEach((navItem) => {
   navItem.addEventListener("click", hideNavBar);
 });
 
 function hideNavBar() {
-  let removeClass = document.querySelector("#navbarNav");
-  removeClass.classList.remove("show");
+  // only collapses on mobile; lg:flex keeps it visible on large screens
+  if (navMenu) navMenu.classList.add("hidden");
+  if (navToggle) navToggle.setAttribute("aria-expanded", "false");
 }
 
 // carousel
