@@ -1,4 +1,4 @@
-// Portfolio interactions — starfield, carousel, scroll reveals, navbar, email tooltip.
+// Portfolio interactions — starfield, carousel, scroll reveals, navbar, email tooltip, scroll-to-top.
 // Wrapped in an IIFE so nothing leaks onto `window`. Loaded with `defer`, so the
 // DOM is fully parsed by the time this runs; a single ready() drives all init.
 (function () {
@@ -283,11 +283,38 @@
     });
   }
 
+  // --- Scroll-to-top button (reveals after scrolling down; smooth scroll on click) ---
+  function initScrollTop() {
+    const btn = document.getElementById("scroll-top");
+    if (!btn) return;
+
+    const hidden = ["opacity-0", "invisible", "translate-y-2"];
+    const shown = ["opacity-100", "visible", "translate-y-0"];
+
+    function toggle() {
+      const show = window.scrollY > 400;
+      btn.classList.toggle(hidden[0], !show);
+      btn.classList.toggle(hidden[1], !show);
+      btn.classList.toggle(hidden[2], !show);
+      btn.classList.toggle(shown[0], show);
+      btn.classList.toggle(shown[1], show);
+      btn.classList.toggle(shown[2], show);
+    }
+
+    btn.addEventListener("click", () => {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    });
+    window.addEventListener("scroll", toggle, { passive: true });
+    toggle();
+  }
+
   ready(function () {
     initializeBackground();
     initNavbar();
     initCarousels();
     initReveals();
     initEmailTooltip();
+    initScrollTop();
   });
 })();
