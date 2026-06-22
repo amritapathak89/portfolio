@@ -49,7 +49,42 @@ Once `output.css` exists the site is fully static — you can also just open
 
 ## Deployment
 
-Serve the contents of `frontend/public/` from any static host or web server (e.g. Apache from `/var/www/html`). No server-side runtime is required.
+The site is just the contents of `frontend/public/` — serve it from any static
+host or web server (e.g. Apache from `/var/www/html`). No server-side runtime is
+required.
+
+### Homelab (static-host) deploy
+
+The homelab runs a shared nginx `static-host` container that serves each site
+from `/srv/static/<slug>/`. Deploying is a one-time provisioning step plus a
+repeatable `make deploy`.
+
+1. **Add the static site (once).** Provision the nginx vhost + doc root with the
+   homelab `add-site.sh` script. Answer **SPA mode → no** (single page, no
+   client-side routing) and **basic auth → no** (public site), then add the
+   Cloudflare route it prints:
+
+   ```bash
+   bash vps-setup/stacks/static-host/add-site.sh amy-portfolio
+   ```
+
+2. **Take ownership of the doc root (once).** `add-site.sh` creates
+   `/srv/static/amy-portfolio/` owned by root. Take ownership so deploys don't
+   need `sudo` (nginx still reads it fine — mounted read-only):
+
+   ```bash
+   sudo chown -R "$USER:$USER" /srv/static/amy-portfolio
+   ```
+
+3. **Deploy.** `make deploy` builds the CSS and rsyncs `frontend/public/` to
+   `SERVER:/srv/static/<slug>/`. `SERVER` is an ssh host (default `homelab`);
+   override it for your server:
+
+   ```bash
+   make deploy SERVER=name-of-my-server
+   ```
+
+   `SLUG` and `DEST` are overridable too if your slug or path differ.
 
 ---
 
