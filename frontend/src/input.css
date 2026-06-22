@@ -59,3 +59,25 @@
     @apply text-base font-medium;
   }
 }
+
+/* Respect reduced-motion: reveal content instantly, skip slide/fill animations.
+   The hero starfield (#stars) is intentionally left running — a previous guard
+   that stopped it entirely was reverted (see docs/plans). */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .hobby-imgs-div {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .animate-slideInOut,
+  .animate-fillBar {
+    animation: none !important;
+  }
+  .level {
+    width: var(--final-width) !important;
+  }
+}

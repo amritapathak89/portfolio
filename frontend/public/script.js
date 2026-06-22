@@ -1,305 +1,261 @@
-// --- Starfield background ---
-// All module state is declared up front so initializeBackground() is safe to
-// call synchronously (the deferred script runs while readyState is "interactive").
-let canvas;
-let ctx;
-let stars = [];
-let lastPaintTime = 0;
-let rafId = null;
-let resizeTimeout = null;
-let resizeCooldown = 500;
-let lastResizeTime = Date.now();
+// Portfolio interactions — starfield, carousel, scroll reveals, navbar, email tooltip.
+// Wrapped in an IIFE so nothing leaks onto `window`. Loaded with `defer`, so the
+// DOM is fully parsed by the time this runs; a single ready() drives all init.
+(function () {
+  "use strict";
 
-function initializeBackground() {
-  canvas = document.getElementById("stars");
-  if (!canvas) return;
-  ctx = canvas.getContext("2d"); // cache the 2D context once
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  // --- Starfield background ---
+  let canvas;
+  let ctx;
+  let stars = [];
+  let lastPaintTime = 0;
+  let rafId = null;
+  let resizeTimeout = null;
 
-  window.addEventListener("resize", function () {
-    if (Date.now() - lastResizeTime < resizeCooldown && resizeTimeout) {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = null;
-    }
-
-    lastResizeTime = Date.now();
-    canvas.style.display = "none";
-    resizeTimeout = setTimeout(function () {
-      fadeIn(canvas, 500);
-      initializeStars();
-    }, 500);
+  function initializeBackground() {
+    canvas = document.getElementById("stars");
+    if (!canvas) return;
+    ctx = canvas.getContext("2d"); // cache the 2D context once
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-  });
 
-  initializeStars();
-  startLoop();
-}
+    // Trailing debounce: re-init stars only once the user stops resizing.
+    window.addEventListener("resize", function () {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      canvas.style.display = "none";
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(function () {
+        fadeIn(canvas, 500);
+        initializeStars();
+      }, 500);
+    });
 
-function startLoop() {
-  if (rafId === null) {
-    rafId = requestAnimationFrame(paintLoop);
-  }
-}
-
-function stopLoop() {
-  if (rafId !== null) {
-    cancelAnimationFrame(rafId);
-    rafId = null;
-  }
-}
-
-function rand(max) {
-  return Math.random() * max;
-}
-
-function Star(size, speed) {
-  this.size = size;
-  this.speed = speed;
-  this.x = rand(window.innerWidth);
-  this.y = rand(window.innerHeight);
-}
-
-Star.prototype.animate = function (delta) {
-  this.x += this.speed * delta;
-  this.y -= this.speed * delta;
-  if (this.y < 0) {
-    this.y = window.innerHeight;
-  }
-  if (this.x > window.innerWidth) {
-    this.x = 0;
-  }
-  ctx.fillStyle = "#ffffff";
-  ctx.fillRect(this.x, this.y, this.size, this.size);
-};
-
-function initializeStars() {
-  let winArea = window.innerWidth * window.innerHeight;
-  let smallStarsDensity = 0.0001;
-  let mediumStarsDensity = 0.00005;
-  let largeStarsDensity = 0.00002;
-  let smallStarsCount = winArea * smallStarsDensity;
-  let mediumStarsCount = winArea * mediumStarsDensity;
-  let largeStarsCount = winArea * largeStarsDensity;
-  stars = [];
-  for (let i = 0; i < smallStarsCount; i++) {
-    stars.push(new Star(1, 30));
-  }
-
-  for (let i = 0; i < mediumStarsCount; i++) {
-    stars.push(new Star(2, 20));
-  }
-
-  for (let i = 0; i < largeStarsCount; i++) {
-    stars.push(new Star(3, 10));
-  }
-}
-
-function drawStars(delta) {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  for (let i = 0; i < stars.length; i++) {
-    stars[i].animate(delta);
-  }
-}
-
-function paintLoop(timestamp) {
-  let delta = (timestamp - lastPaintTime) / 1000;
-  if (delta > 0.05) {
-    delta = 0.05;
-  }
-  drawStars(delta);
-  lastPaintTime = timestamp;
-  rafId = requestAnimationFrame(paintLoop);
-}
-
-// Pause the animation when the tab is hidden; resume when it becomes visible.
-document.addEventListener("visibilitychange", function () {
-  if (document.hidden) {
-    stopLoop();
-  } else {
-    lastPaintTime = 0; // avoid a large delta jump on resume
+    initializeStars();
     startLoop();
   }
-});
 
-ready(function () {
-  initializeBackground();
-});
-
-function fadeIn(element, duration, callback) {
-  element.style.opacity = 0;
-  element.style.display = "block";
-
-  let startTime = Date.now();
-  let tick = function () {
-    let newOpacity = (Date.now() - startTime) / duration;
-    if (newOpacity > 1) {
-      newOpacity = 1;
-      callback && callback();
-    } else {
-      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+  function startLoop() {
+    if (rafId === null) {
+      rafId = requestAnimationFrame(paintLoop);
     }
-
-    element.style.opacity = newOpacity;
-  };
-  tick();
-}
-
-//http://youmightnotneedjquery.com/
-function ready(fn) {
-  if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-    fn();
-  } else {
-    document.addEventListener("DOMContentLoaded", fn);
   }
-}
 
-// navbar toggle (replaces Bootstrap's collapse plugin)
-const navToggle = document.querySelector("#navToggle");
-const navMenu = document.querySelector("#navbarNav");
-
-if (navToggle && navMenu) {
-  navToggle.addEventListener("click", () => {
-    const isOpen = navMenu.classList.toggle("hidden") === false;
-    navToggle.setAttribute("aria-expanded", String(isOpen));
-  });
-}
-
-let navLinks = document.querySelectorAll(".nav-link");
-navLinks.forEach((navItem) => {
-  navItem.addEventListener("click", hideNavBar);
-});
-
-function hideNavBar() {
-  // only collapses on mobile; lg:flex keeps it visible on large screens
-  if (navMenu) navMenu.classList.add("hidden");
-  if (navToggle) navToggle.setAttribute("aria-expanded", "false");
-}
-
-// carousel
-document.addEventListener("DOMContentLoaded", function () {
-  const carousels = document.querySelectorAll(".carousel");
-
-  carousels.forEach((carousel) => {
-    const carouselImages = carousel.querySelector(".carousel-images");
-    const images = carousel.querySelectorAll(".carousel-image");
-    const prevButton = carousel.querySelector(".carousel-control.prev");
-    const nextButton = carousel.querySelector(".carousel-control.next"); // Corrected the quotation mark here
-
-    let currentIndex = 0;
-    const imageCount = images.length;
-
-    function updateCarousel() {
-      const offset = -currentIndex * 100;
-      carouselImages.style.transform = `translateX(${offset}%)`;
+  function stopLoop() {
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
     }
+  }
 
-    function showNextImage() {
-      currentIndex = (currentIndex + 1) % imageCount; // Move to the next image
-      updateCarousel();
+  function rand(max) {
+    return Math.random() * max;
+  }
+
+  function Star(size, speed) {
+    this.size = size;
+    this.speed = speed;
+    this.x = rand(window.innerWidth);
+    this.y = rand(window.innerHeight);
+  }
+
+  Star.prototype.animate = function (delta) {
+    this.x += this.speed * delta;
+    this.y -= this.speed * delta;
+    if (this.y < 0) {
+      this.y = window.innerHeight;
     }
-
-    function showPreviousImage() {
-      currentIndex = (currentIndex - 1 + imageCount) % imageCount; // Move to the previous image
-      updateCarousel();
+    if (this.x > window.innerWidth) {
+      this.x = 0;
     }
-
-    prevButton.addEventListener("click", showPreviousImage);
-    nextButton.addEventListener("click", showNextImage);
-
-    // Initialize the carousel
-    updateCarousel();
-  });
-});
-
-// card animation
-
-document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll(".card");
-
-  const observerOptions = {
-    root: null, // Use the viewport as the root
-    rootMargin: "0px",
-    threshold: 0.02,
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(this.x, this.y, this.size, this.size);
   };
 
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // reveal: drop the hidden/offscreen utilities, add the visible ones
-        entry.target.classList.remove("opacity-0", "-translate-x-full");
-        entry.target.classList.add("opacity-100", "translate-x-0");
-        observer.unobserve(entry.target); // Stop observing once the animation is triggered
+  function initializeStars() {
+    const winArea = window.innerWidth * window.innerHeight;
+    const smallStarsCount = winArea * 0.0001;
+    const mediumStarsCount = winArea * 0.00005;
+    const largeStarsCount = winArea * 0.00002;
+    stars = [];
+    for (let i = 0; i < smallStarsCount; i++) stars.push(new Star(1, 30));
+    for (let i = 0; i < mediumStarsCount; i++) stars.push(new Star(2, 20));
+    for (let i = 0; i < largeStarsCount; i++) stars.push(new Star(3, 10));
+  }
+
+  function drawStars(delta) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < stars.length; i++) {
+      stars[i].animate(delta);
+    }
+  }
+
+  function paintLoop(timestamp) {
+    let delta = (timestamp - lastPaintTime) / 1000;
+    if (delta > 0.05) delta = 0.05;
+    drawStars(delta);
+    lastPaintTime = timestamp;
+    rafId = requestAnimationFrame(paintLoop);
+  }
+
+  // Pause the animation when the tab is hidden; resume when it becomes visible.
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+      stopLoop();
+    } else {
+      lastPaintTime = 0; // avoid a large delta jump on resume
+      startLoop();
+    }
+  });
+
+  function fadeIn(element, duration, callback) {
+    element.style.opacity = 0;
+    element.style.display = "block";
+
+    const startTime = Date.now();
+    const tick = function () {
+      let newOpacity = (Date.now() - startTime) / duration;
+      if (newOpacity > 1) {
+        newOpacity = 1;
+        callback && callback();
+      } else {
+        (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+      }
+      element.style.opacity = newOpacity;
+    };
+    tick();
+  }
+
+  // http://youmightnotneedjquery.com/
+  function ready(fn) {
+    if (document.readyState !== "loading") {
+      fn();
+    } else {
+      document.addEventListener("DOMContentLoaded", fn);
+    }
+  }
+
+  // --- Navbar toggle (replaces Bootstrap's collapse plugin) ---
+  function initNavbar() {
+    const navToggle = document.querySelector("#navToggle");
+    const navMenu = document.querySelector("#navbarNav");
+    if (!navToggle || !navMenu) return;
+
+    navToggle.addEventListener("click", () => {
+      const isOpen = navMenu.classList.toggle("hidden") === false;
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    // Collapse on link click (mobile only; lg:flex keeps it visible on large screens).
+    document.querySelectorAll(".nav-link").forEach((navItem) => {
+      navItem.addEventListener("click", () => {
+        navMenu.classList.add("hidden");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  // --- Carousels ---
+  function initCarousels() {
+    document.querySelectorAll(".carousel").forEach((carousel) => {
+      const carouselImages = carousel.querySelector(".carousel-images");
+      const images = carousel.querySelectorAll(".carousel-image");
+      const prevButton = carousel.querySelector(".carousel-control.prev");
+      const nextButton = carousel.querySelector(".carousel-control.next");
+      const imageCount = images.length;
+      let currentIndex = 0;
+
+      function update() {
+        carouselImages.style.transform = `translateX(${-currentIndex * 100}%)`;
+      }
+
+      if (nextButton) {
+        nextButton.addEventListener("click", () => {
+          currentIndex = (currentIndex + 1) % imageCount;
+          update();
+        });
+      }
+      if (prevButton) {
+        prevButton.addEventListener("click", () => {
+          currentIndex = (currentIndex - 1 + imageCount) % imageCount;
+          update();
+        });
+      }
+      update();
+    });
+  }
+
+  // --- Scroll-triggered reveals (cards, hobby strip, skill bars) ---
+  function initReveals() {
+    const cardObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("opacity-0", "-translate-x-full");
+            entry.target.classList.add("opacity-100", "translate-x-0");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { root: null, rootMargin: "0px", threshold: 0.02 }
+    );
+    document.querySelectorAll(".card").forEach((card) => cardObserver.observe(card));
+
+    const hobby = document.querySelector(".hobby-imgs-div");
+    if (hobby) {
+      const hobbyObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate-slideInOut");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.02 }
+      );
+      hobbyObserver.observe(hobby);
+    }
+
+    const skillsSection = document.querySelector(".skills-bar");
+    if (skillsSection) {
+      const skillsObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              document
+                .querySelectorAll(".level")
+                .forEach((level) => level.classList.add("animate-fillBar"));
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      skillsObserver.observe(skillsSection);
+    }
+  }
+
+  // --- Contact email tooltip (reveal on tap/click; hover & focus handled by CSS) ---
+  function initEmailTooltip() {
+    const emailReveal = document.querySelector(".email-reveal");
+    if (!emailReveal) return;
+
+    emailReveal.addEventListener("click", () => {
+      emailReveal.classList.toggle("show-tooltip");
+    });
+    document.addEventListener("click", (event) => {
+      if (!emailReveal.contains(event.target)) {
+        emailReveal.classList.remove("show-tooltip");
       }
     });
-  }, observerOptions);
+  }
 
-  cards.forEach((card) => {
-    observer.observe(card);
+  ready(function () {
+    initializeBackground();
+    initNavbar();
+    initCarousels();
+    initReveals();
+    initEmailTooltip();
   });
-});
-
-// hobby image animation
-
-document.addEventListener("DOMContentLoaded", () => {
-  const target = document.querySelector(".hobby-imgs-div");
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-slideInOut");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.02 }
-  );
-
-  observer.observe(target);
-});
-
-// animation for skills bar box
-
-document.addEventListener("DOMContentLoaded", () => {
-  const skillsSection = document.querySelector(".skills-bar");
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // fill each skill bar (fillBar keyframe reads the per-bar --final-width var)
-          document.querySelectorAll(".level").forEach((level) => {
-            level.classList.add("animate-fillBar");
-          });
-          // Once animated, we can unobserve the element if we only want the animation to happen once
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1 }
-  ); // Adjust the threshold as needed
-
-  observer.observe(skillsSection);
-});
-
-/* contact email tooltip — reveal on tap/click (hover & keyboard focus handled by CSS) */
-
-document.addEventListener("DOMContentLoaded", () => {
-  const emailReveal = document.querySelector(".email-reveal");
-  if (!emailReveal) return;
-
-  emailReveal.addEventListener("click", () => {
-    emailReveal.classList.toggle("show-tooltip");
-  });
-
-  // Hide the tooltip when tapping/clicking anywhere outside the email
-  document.addEventListener("click", (event) => {
-    if (!emailReveal.contains(event.target)) {
-      emailReveal.classList.remove("show-tooltip");
-    }
-  });
-});
-
-
+})();
