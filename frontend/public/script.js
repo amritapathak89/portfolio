@@ -227,7 +227,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("slide-in");
+        // reveal: drop the hidden/offscreen utilities, add the visible ones
+        entry.target.classList.remove("opacity-0", "-translate-x-full");
+        entry.target.classList.add("opacity-100", "translate-x-0");
         observer.unobserve(entry.target); // Stop observing once the animation is triggered
       }
     });
@@ -267,9 +269,9 @@ document.addEventListener("DOMContentLoaded", () => {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Add animation class to each skillbox
-          document.querySelectorAll(".skillbox").forEach((skillbox) => {
-            skillbox.classList.add("animate");
+          // fill each skill bar (fillBar keyframe reads the per-bar --final-width var)
+          document.querySelectorAll(".level").forEach((level) => {
+            level.classList.add("animate-fillBar");
           });
           // Once animated, we can unobserve the element if we only want the animation to happen once
           observer.unobserve(entry.target);

@@ -1,25 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: { primary: "#013ca7", bg: "#121420" },
-          fontFamily: { oswald: ["Oswald", "sans-serif"] },
-        },
-      },
-    };
-  </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./output.css">
   <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
   <link rel="canonical" href="https://amritavidhate.com" />
   <title>Amrita Vidhate - Designer - Coder</title>
@@ -29,8 +18,8 @@
   <meta property="og:url" content="https://amritavidhate.com/" />
 	<meta property="og:site_name" content="Amrita Vidhate" />
 </head>
-<body>
-  <header>
+<body class="font-oswald bg-bg text-white">
+  <header class="mb-[60px]">
     <nav class="fixed top-0 left-0 z-10 w-full bg-primary px-5 py-2.5">
       <div class="flex flex-wrap items-center justify-between">
         <a href="/" class="inline-block align-top">
@@ -59,248 +48,248 @@
     </nav>
   </header>
   <section>
-    <div id="background">
-      <canvas id="stars"></canvas>
+    <div id="background" class="fixed top-0 left-0 w-full h-full">
+      <canvas id="stars" class="fixed top-0 left-0 w-full h-full"></canvas>
     </div>
-    <div class="intro-div">
-      <div class="designer-part-div">
-        <h1>Designer</h1>
+    <div class="flex flex-col md:flex-row md:my-10 lg:justify-between lg:px-[30px] lg:py-[60px] lg:my-[110px]">
+      <div class="flex flex-col items-center text-center p-2.5 m-2.5">
+        <h1 class="my-5 text-white">Designer</h1>
         <p>Product designer specialising in UX, UI & UML design </p>
       </div>
-      <div class="intro-img">
-        <img class="center-image-girl" src="./assets/images/coder-girl.png" alt="girl-coder">
+      <div class="text-center">
+        <img class="h-[200px] w-[200px]" src="./assets/images/coder-girl.png" alt="girl-coder">
       </div>
-      <div class="designer-part-div">
-        <h1>Coder</h1>
+      <div class="flex flex-col items-center text-center p-2.5 m-2.5">
+        <h1 class="my-5 text-white">Coder</h1>
         <p>Full stack developer who writes clean, elegant and efficient code</p>
       </div>
     </div>
   </section>
   <section id="work-section">
     <hr>
-    <div class="display-work-div">
+    <div class="flex flex-col items-center lg:mt-10">
       <h3>Some of my latest Work</h3>
     </div>
-    <div class="work-snippets">
-      <div class="card card-work">
-        <div class="carousel">
-          <div class="carousel-images">
-            <img src="./assets/images/work-snippets/speedily/homepage.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Speedily-homepage">
-            <img src="./assets/images/work-snippets/speedily/login.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Speedily-loginpage">
-            <img src="./assets/images/work-snippets/speedily/shopping-list.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Speedily-shopping-page">
-            <img src="./assets/images/work-snippets/speedily/delivery.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Speedily-deliverypage">
+    <div class="flex flex-col items-center p-2.5 m-5 md:m-2.5 lg:flex-row lg:justify-evenly">
+      <div class="card relative my-5 p-2.5 w-[18rem] max-w-[400px] bg-[rgb(230,245,250)] text-bg rounded-lg shadow-card opacity-0 -translate-x-full transition-[transform,opacity] duration-1000 ease-out">
+        <div class="carousel relative overflow-hidden w-full h-[200px]">
+          <div class="carousel-images flex transition-transform duration-500 ease-in-out">
+            <img src="./assets/images/work-snippets/speedily/homepage.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Speedily-homepage">
+            <img src="./assets/images/work-snippets/speedily/login.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Speedily-loginpage">
+            <img src="./assets/images/work-snippets/speedily/shopping-list.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Speedily-shopping-page">
+            <img src="./assets/images/work-snippets/speedily/delivery.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Speedily-deliverypage">
           </div>
-          <div class="carousel-buttons">
-            <button class="carousel-control prev" aria-label="Previous image">&lt;</button>
-            <button class="carousel-control next" aria-label="Next image">&gt;</button>
+          <div class="carousel-buttons w-full flex absolute top-1/2 justify-between gap-1 -translate-y-1/2">
+            <button class="carousel-control prev rounded-[17px] w-7 border border-transparent bg-white opacity-30 transition-[opacity,background-color] duration-300 text-primary p-px hover:opacity-100 hover:bg-primary hover:text-white" aria-label="Previous image">&lt;</button>
+            <button class="carousel-control next rounded-[17px] w-7 border border-transparent bg-white opacity-30 transition-[opacity,background-color] duration-300 text-primary p-px hover:opacity-100 hover:bg-primary hover:text-white" aria-label="Next image">&gt;</button>
           </div>
         </div>
-        <div class="card-body">
-          <h4 class="card-title">Designed & Developed a delivery app</h4>
-          <p class="card-text">
+        <div class="p-4">
+          <h4 class="mb-2">Designed & Developed a delivery app</h4>
+          <p class="mb-3">
             Made a fully functional, secure PWA from scratch
             <br>#nextjs #tailwind #react #typescript #sequelize #mysql
           </p>
-          <a href="https://speedily.pro/" class="btn">View Project</a>
+          <a href="https://speedily.pro/" class="inline-block px-3 py-1.5 rounded-md no-underline text-white bg-gradient-to-b from-[#3827a7] to-primary hover:text-[#d7d7f0]">View Project</a>
         </div>
       </div>
-      <div class="card card-work">
-        <div class="carousel">
-          <div class="carousel-images">
-            <img src="./assets/images/work-snippets/justhomes/homepage.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Justhomes-homepage">
-            <img src="./assets/images/work-snippets/justhomes/properties.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Justhomes-properties">
-            <img src="./assets/images/work-snippets/justhomes/filterproperties.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Justhomes-filter-properties">
-            <img src="./assets/images/work-snippets/justhomes/contactusform.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Justhomes-contactus-form">
-            <img src="./assets/images/work-snippets/justhomes/searchprperty.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Justhomes-search-property">
+      <div class="card relative my-5 p-2.5 w-[18rem] max-w-[400px] bg-[rgb(230,245,250)] text-bg rounded-lg shadow-card opacity-0 -translate-x-full transition-[transform,opacity] duration-1000 ease-out">
+        <div class="carousel relative overflow-hidden w-full h-[200px]">
+          <div class="carousel-images flex transition-transform duration-500 ease-in-out">
+            <img src="./assets/images/work-snippets/justhomes/homepage.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Justhomes-homepage">
+            <img src="./assets/images/work-snippets/justhomes/properties.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Justhomes-properties">
+            <img src="./assets/images/work-snippets/justhomes/filterproperties.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Justhomes-filter-properties">
+            <img src="./assets/images/work-snippets/justhomes/contactusform.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Justhomes-contactus-form">
+            <img src="./assets/images/work-snippets/justhomes/searchprperty.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Justhomes-search-property">
           </div>
-          <div class="carousel-buttons">
-            <button class="carousel-control prev" aria-label="Previous image">&lt;</button>
-            <button class="carousel-control next" aria-label="Next image">&gt;</button>
+          <div class="carousel-buttons w-full flex absolute top-1/2 justify-between gap-1 -translate-y-1/2">
+            <button class="carousel-control prev rounded-[17px] w-7 border border-transparent bg-white opacity-30 transition-[opacity,background-color] duration-300 text-primary p-px hover:opacity-100 hover:bg-primary hover:text-white" aria-label="Previous image">&lt;</button>
+            <button class="carousel-control next rounded-[17px] w-7 border border-transparent bg-white opacity-30 transition-[opacity,background-color] duration-300 text-primary p-px hover:opacity-100 hover:bg-primary hover:text-white" aria-label="Next image">&gt;</button>
         </div>
         </div>
-        <div class="card-body">
-          <h4 class="card-title">Built a Lead generation Website</h4>
-          <p class="card-text">
+        <div class="p-4">
+          <h4 class="mb-2">Built a Lead generation Website</h4>
+          <p class="mb-3">
             Worked on a website for generating leads for a real estate company
             <br>#nodejs #bootstrap #react #typescript #express #mysql
           </p>
-          <a href="#" class="btn">View Project</a>
+          <a href="#" class="inline-block px-3 py-1.5 rounded-md no-underline text-white bg-gradient-to-b from-[#3827a7] to-primary hover:text-[#d7d7f0]">View Project</a>
         </div>
       </div>
-      <div class="card card-work">
-        <div class="carousel">
-          <div class="carousel-images">
-            <img src="./assets/images/work-snippets/desktop-app/mainpage.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="PDF utility app - home screen">
-            <img src="./assets/images/work-snippets/desktop-app/page2.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="PDF utility app - compression options">
+      <div class="card relative my-5 p-2.5 w-[18rem] max-w-[400px] bg-[rgb(230,245,250)] text-bg rounded-lg shadow-card opacity-0 -translate-x-full transition-[transform,opacity] duration-1000 ease-out">
+        <div class="carousel relative overflow-hidden w-full h-[200px]">
+          <div class="carousel-images flex transition-transform duration-500 ease-in-out">
+            <img src="./assets/images/work-snippets/desktop-app/mainpage.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="PDF utility app - home screen">
+            <img src="./assets/images/work-snippets/desktop-app/page2.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="PDF utility app - compression options">
           </div>
-          <div class="carousel-buttons">
-            <button class="carousel-control prev" aria-label="Previous image">&lt;</button>
-            <button class="carousel-control next" aria-label="Next image">&gt;</button>
+          <div class="carousel-buttons w-full flex absolute top-1/2 justify-between gap-1 -translate-y-1/2">
+            <button class="carousel-control prev rounded-[17px] w-7 border border-transparent bg-white opacity-30 transition-[opacity,background-color] duration-300 text-primary p-px hover:opacity-100 hover:bg-primary hover:text-white" aria-label="Previous image">&lt;</button>
+            <button class="carousel-control next rounded-[17px] w-7 border border-transparent bg-white opacity-30 transition-[opacity,background-color] duration-300 text-primary p-px hover:opacity-100 hover:bg-primary hover:text-white" aria-label="Next image">&gt;</button>
           </div>
         </div>
-        <div class="card-body">
-          <h4 class="card-title">A ready to use PDF Utility App</h4>
-          <p class="card-text">
+        <div class="p-4">
+          <h4 class="mb-2">A ready to use PDF Utility App</h4>
+          <p class="mb-3">
             A classic desktop application that compresses PDF size
             <br>#react #electronJS #tailwind #nodeJs
           </p>
-          <a href="#" class="btn">View Project</a>
+          <a href="#" class="inline-block px-3 py-1.5 rounded-md no-underline text-white bg-gradient-to-b from-[#3827a7] to-primary hover:text-[#d7d7f0]">View Project</a>
         </div>
       </div>
-      <div class="card card-work">
-        <div class="carousel">
-          <div class="carousel-images">
-            <img src="./assets/images/wiki.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="WikiStage website">
+      <div class="card relative my-5 p-2.5 w-[18rem] max-w-[400px] bg-[rgb(230,245,250)] text-bg rounded-lg shadow-card opacity-0 -translate-x-full transition-[transform,opacity] duration-1000 ease-out">
+        <div class="carousel relative overflow-hidden w-full h-[200px]">
+          <div class="carousel-images flex transition-transform duration-500 ease-in-out">
+            <img src="./assets/images/wiki.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="WikiStage website">
           </div>
-          <div class="carousel-buttons">
-            <button class="carousel-control prev" aria-label="Previous image">&lt;</button>
-            <button class="carousel-control next" aria-label="Next image">&gt;</button>
+          <div class="carousel-buttons w-full flex absolute top-1/2 justify-between gap-1 -translate-y-1/2">
+            <button class="carousel-control prev rounded-[17px] w-7 border border-transparent bg-white opacity-30 transition-[opacity,background-color] duration-300 text-primary p-px hover:opacity-100 hover:bg-primary hover:text-white" aria-label="Previous image">&lt;</button>
+            <button class="carousel-control next rounded-[17px] w-7 border border-transparent bg-white opacity-30 transition-[opacity,background-color] duration-300 text-primary p-px hover:opacity-100 hover:bg-primary hover:text-white" aria-label="Next image">&gt;</button>
           </div>
         </div>
-        <div class="card-body">
-          <h4 class="card-title">Worked as a freelancer for Wikistage</h4>
-          <p class="card-text">
+        <div class="p-4">
+          <h4 class="mb-2">Worked as a freelancer for Wikistage</h4>
+          <p class="mb-3">
             Helped in enhancing the seo and testing the site
             <br>#asana #seo #mongodb #storybook
           </p>
-          <a href="#" class="btn">View Project</a>
+          <a href="#" class="inline-block px-3 py-1.5 rounded-md no-underline text-white bg-gradient-to-b from-[#3827a7] to-primary hover:text-[#d7d7f0]">View Project</a>
         </div>
       </div>
     </div>
-    <div class="work-snippets">
-      <div class="card card-work">
-        <div class="carousel">
-          <div class="carousel-images">
-            <img src="./assets/images/work-snippets/travaux-decor/home.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Travaux Decor - home page">
-            <img src="./assets/images/work-snippets/travaux-decor/dropdown.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Travaux Decor - services menu">
-            <img src="./assets/images/work-snippets/travaux-decor/ratecards.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Travaux Decor - rate cards">
-            <img src="./assets/images/work-snippets/travaux-decor/login.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Travaux Decor - login page">
-            <img src="./assets/images/work-snippets/travaux-decor/contact.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Travaux Decor - contact page">
+    <div class="flex flex-col items-center p-2.5 m-5 md:m-2.5 lg:flex-row lg:justify-evenly">
+      <div class="card relative my-5 p-2.5 w-[18rem] max-w-[400px] bg-[rgb(230,245,250)] text-bg rounded-lg shadow-card opacity-0 -translate-x-full transition-[transform,opacity] duration-1000 ease-out">
+        <div class="carousel relative overflow-hidden w-full h-[200px]">
+          <div class="carousel-images flex transition-transform duration-500 ease-in-out">
+            <img src="./assets/images/work-snippets/travaux-decor/home.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Travaux Decor - home page">
+            <img src="./assets/images/work-snippets/travaux-decor/dropdown.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Travaux Decor - services menu">
+            <img src="./assets/images/work-snippets/travaux-decor/ratecards.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Travaux Decor - rate cards">
+            <img src="./assets/images/work-snippets/travaux-decor/login.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Travaux Decor - login page">
+            <img src="./assets/images/work-snippets/travaux-decor/contact.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Travaux Decor - contact page">
           </div>
-          <div class="carousel-buttons">
-            <button class="carousel-control prev" aria-label="Previous image">&lt;</button>
-            <button class="carousel-control next" aria-label="Next image">&gt;</button>
+          <div class="carousel-buttons w-full flex absolute top-1/2 justify-between gap-1 -translate-y-1/2">
+            <button class="carousel-control prev rounded-[17px] w-7 border border-transparent bg-white opacity-30 transition-[opacity,background-color] duration-300 text-primary p-px hover:opacity-100 hover:bg-primary hover:text-white" aria-label="Previous image">&lt;</button>
+            <button class="carousel-control next rounded-[17px] w-7 border border-transparent bg-white opacity-30 transition-[opacity,background-color] duration-300 text-primary p-px hover:opacity-100 hover:bg-primary hover:text-white" aria-label="Next image">&gt;</button>
           </div>
         </div>
-        <div class="card-body">
-          <h4 class="card-title">Developed a Work and Services App</h4>
-          <p class="card-text">
+        <div class="p-4">
+          <h4 class="mb-2">Developed a Work and Services App</h4>
+          <p class="mb-3">
             A website that allows you to book services online
             <br>#react #nextJS #typescript #mysql #tailwind #flowbite
           </p>
-          <a href="#" class="btn">View Project</a>
+          <a href="#" class="inline-block px-3 py-1.5 rounded-md no-underline text-white bg-gradient-to-b from-[#3827a7] to-primary hover:text-[#d7d7f0]">View Project</a>
         </div>
     </div>
-    <div class="card card-work">
-      <div class="carousel">
-        <div class="carousel-images">
-          <img src="./assets/images/work-snippets/brasseire-project/home.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Brasserie website - home page">
-          <img src="./assets/images/work-snippets/brasseire-project/footer.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Brasserie website - footer">
-          <img src="./assets/images/work-snippets/brasseire-project/booking.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Brasserie website - booking page">
-          <img src="./assets/images/work-snippets/brasseire-project/menu.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Brasserie website - menu">
+    <div class="card relative my-5 p-2.5 w-[18rem] max-w-[400px] bg-[rgb(230,245,250)] text-bg rounded-lg shadow-card opacity-0 -translate-x-full transition-[transform,opacity] duration-1000 ease-out">
+      <div class="carousel relative overflow-hidden w-full h-[200px]">
+        <div class="carousel-images flex transition-transform duration-500 ease-in-out">
+          <img src="./assets/images/work-snippets/brasseire-project/home.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Brasserie website - home page">
+          <img src="./assets/images/work-snippets/brasseire-project/footer.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Brasserie website - footer">
+          <img src="./assets/images/work-snippets/brasseire-project/booking.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Brasserie website - booking page">
+          <img src="./assets/images/work-snippets/brasseire-project/menu.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Brasserie website - menu">
         </div>
-        <div class="carousel-buttons">
-          <button class="carousel-control prev" aria-label="Previous image">&lt;</button>
-          <button class="carousel-control next" aria-label="Next image">&gt;</button>
+        <div class="carousel-buttons w-full flex absolute top-1/2 justify-between gap-1 -translate-y-1/2">
+          <button class="carousel-control prev rounded-[17px] w-7 border border-transparent bg-white opacity-30 transition-[opacity,background-color] duration-300 text-primary p-px hover:opacity-100 hover:bg-primary hover:text-white" aria-label="Previous image">&lt;</button>
+          <button class="carousel-control next rounded-[17px] w-7 border border-transparent bg-white opacity-30 transition-[opacity,background-color] duration-300 text-primary p-px hover:opacity-100 hover:bg-primary hover:text-white" aria-label="Next image">&gt;</button>
         </div>
       </div>
-      <div class="card-body">
-        <h4 class="card-title">Designed an elegant Website for a Client</h4>
-        <p class="card-text">
+      <div class="p-4">
+        <h4 class="mb-2">Designed an elegant Website for a Client</h4>
+        <p class="mb-3">
           A minimilstic yet sophisticated Brasserie Website for a client which offers menu and booking details.
           <br>#react #ts #github #css #html
         </p>
-        <a href="#" class="btn">View Project</a>
+        <a href="#" class="inline-block px-3 py-1.5 rounded-md no-underline text-white bg-gradient-to-b from-[#3827a7] to-primary hover:text-[#d7d7f0]">View Project</a>
       </div>
     </div>
-    <div class="card card-work">
-      <div class="carousel">
-        <div class="carousel-images">
-          <img src="./assets/images/work-snippets/hdm/hdm1.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="HDM Network dashboard - view 1">
-          <img src="./assets/images/work-snippets/hdm/hdm2.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="HDM Network dashboard - view 2">
-          <img src="./assets/images/work-snippets/hdm/hdm3.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="HDM Network dashboard - view 3">
-          <img src="./assets/images/work-snippets/hdm/hdm4.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="HDM Network dashboard - view 4">
+    <div class="card relative my-5 p-2.5 w-[18rem] max-w-[400px] bg-[rgb(230,245,250)] text-bg rounded-lg shadow-card opacity-0 -translate-x-full transition-[transform,opacity] duration-1000 ease-out">
+      <div class="carousel relative overflow-hidden w-full h-[200px]">
+        <div class="carousel-images flex transition-transform duration-500 ease-in-out">
+          <img src="./assets/images/work-snippets/hdm/hdm1.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="HDM Network dashboard - view 1">
+          <img src="./assets/images/work-snippets/hdm/hdm2.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="HDM Network dashboard - view 2">
+          <img src="./assets/images/work-snippets/hdm/hdm3.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="HDM Network dashboard - view 3">
+          <img src="./assets/images/work-snippets/hdm/hdm4.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="HDM Network dashboard - view 4">
         </div>
-        <div class="carousel-buttons">
-          <button class="carousel-control prev" aria-label="Previous image">&lt;</button>
-          <button class="carousel-control next" aria-label="Next image">&gt;</button>
+        <div class="carousel-buttons w-full flex absolute top-1/2 justify-between gap-1 -translate-y-1/2">
+          <button class="carousel-control prev rounded-[17px] w-7 border border-transparent bg-white opacity-30 transition-[opacity,background-color] duration-300 text-primary p-px hover:opacity-100 hover:bg-primary hover:text-white" aria-label="Previous image">&lt;</button>
+          <button class="carousel-control next rounded-[17px] w-7 border border-transparent bg-white opacity-30 transition-[opacity,background-color] duration-300 text-primary p-px hover:opacity-100 hover:bg-primary hover:text-white" aria-label="Next image">&gt;</button>
         </div>
       </div>
-      <div class="card-body">
-        <h4 class="card-title">Worked on a Dashboard for HDM Network</h4>
-        <p class="card-text">
+      <div class="p-4">
+        <h4 class="mb-2">Worked on a Dashboard for HDM Network</h4>
+        <p class="mb-3">
           A fully functional mobile and desktop version of a logistics app
           A fully functional mobile
           <br>#react #nextJS #ts #mysql #node
         </p>
-        <a href="#" class="btn">View Project</a>
+        <a href="#" class="inline-block px-3 py-1.5 rounded-md no-underline text-white bg-gradient-to-b from-[#3827a7] to-primary hover:text-[#d7d7f0]">View Project</a>
       </div>
     </div>
-    <div class="card card-work">
-      <div class="carousel">
-        <div class="carousel-images">
-          <img src="./assets/images/work-snippets/desktop-app/home.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Video converter app - home screen">
-          <img src="./assets/images/work-snippets/desktop-app/convert.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Video converter app - choose format">
-          <img src="./assets/images/work-snippets/desktop-app/converting.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Video converter app - converting">
-          <img src="./assets/images/work-snippets/desktop-app/convert-complete.png" class="carousel-image card-img-top" loading="lazy" decoding="async" alt="Video converter app - conversion complete">
+    <div class="card relative my-5 p-2.5 w-[18rem] max-w-[400px] bg-[rgb(230,245,250)] text-bg rounded-lg shadow-card opacity-0 -translate-x-full transition-[transform,opacity] duration-1000 ease-out">
+      <div class="carousel relative overflow-hidden w-full h-[200px]">
+        <div class="carousel-images flex transition-transform duration-500 ease-in-out">
+          <img src="./assets/images/work-snippets/desktop-app/home.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Video converter app - home screen">
+          <img src="./assets/images/work-snippets/desktop-app/convert.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Video converter app - choose format">
+          <img src="./assets/images/work-snippets/desktop-app/converting.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Video converter app - converting">
+          <img src="./assets/images/work-snippets/desktop-app/convert-complete.png" class="carousel-image min-w-full h-[200px] object-cover" loading="lazy" decoding="async" alt="Video converter app - conversion complete">
         </div>
-        <div class="carousel-buttons">
-          <button class="carousel-control prev" aria-label="Previous image">&lt;</button>
-          <button class="carousel-control next" aria-label="Next image">&gt;</button>
+        <div class="carousel-buttons w-full flex absolute top-1/2 justify-between gap-1 -translate-y-1/2">
+          <button class="carousel-control prev rounded-[17px] w-7 border border-transparent bg-white opacity-30 transition-[opacity,background-color] duration-300 text-primary p-px hover:opacity-100 hover:bg-primary hover:text-white" aria-label="Previous image">&lt;</button>
+          <button class="carousel-control next rounded-[17px] w-7 border border-transparent bg-white opacity-30 transition-[opacity,background-color] duration-300 text-primary p-px hover:opacity-100 hover:bg-primary hover:text-white" aria-label="Next image">&gt;</button>
         </div>
       </div>
-      <div class="card-body">
-        <h4 class="card-title">Created a Video Convertor App</h4>
-        <p class="card-text">
+      <div class="p-4">
+        <h4 class="mb-2">Created a Video Convertor App</h4>
+        <p class="mb-3">
           A light desktop app that allows you to convert videos into AVI, MP4n MOV format
           <br>#react #nextJS #ts #mysql #node
         </p>
-        <a href="#" class="btn">View Project</a>
+        <a href="#" class="inline-block px-3 py-1.5 rounded-md no-underline text-white bg-gradient-to-b from-[#3827a7] to-primary hover:text-[#d7d7f0]">View Project</a>
       </div>
     </div>
     </div>
   </section>
   <hr id="about-me-section">
   <section>
-    <div class="about-section">
-      <div class="about-me-div">
-      <h1>About Me</h1>
+    <div class="items-center md:flex md:flex-row md:justify-around md:my-10 lg:my-[60px]">
+      <div class="flex flex-col items-center p-[30px] m-5 font-sans md:items-start md:justify-around md:flex-[0_0_30%] md:my-10 lg:my-[60px] lg:flex-[0_0_40%]">
+      <h1 class="my-5">About Me</h1>
       <h4>Passionate Front-End Developer</h4>
       <p>
         With over 3 years of professional experience, I specialize in creating dynamic, responsive web applications with a strong focus on user experience and performance optimization. Leveraging technologies like React, TypeScript, and Tailwind CSS, I build scalable and maintainable solutions. My journey in web development began in 2018, transforming a hobby into a rewarding career. Based in Grand Paris, France, I thrive on integrating APIs, implementing state management libraries, and utilizing modern development tools to deliver high-quality code. Let's build something amazing together!
       </p>
       </div>
-    <div class="about-me-img">
-      <img class="cv-img" src="./assets/images/amrita-photocv.jpg" alt="Amrita - portrait" loading="lazy" decoding="async">
+    <div class="text-center lg:my-[60px]">
+      <img class="h-[200px] w-[200px] object-cover border border-transparent rounded-full shadow-card mb-10 md:my-10" src="./assets/images/amrita-photocv.jpg" alt="Amrita - portrait" loading="lazy" decoding="async">
     </div>
     </div>
   </section>
   <section>
     <hr>
-    <div class="display-leisure-time">
+    <div class="flex flex-col items-center my-5">
       <h4>When I'm not Developing I'm ...</h4>
     </div>
-    <div class="hobby-imgs-div">
-      <img class="hobby-imgs" loading="lazy" decoding="async"src="./assets/images/cooking.jpg" alt="Cooking">
-      <img class="hobby-imgs" loading="lazy" decoding="async"src="./assets/images/readinggirl.jpeg" alt="Reading">
-      <img class="hobby-imgs" loading="lazy" decoding="async"src="./assets/images/creativity.jpg" alt="Diy-art-craft">
-      <img class="hobby-imgs" loading="lazy" decoding="async"src="./assets/images/travel.jpg" alt="Travelling">
+    <div class="hobby-imgs-div flex flex-row justify-center gap-5 md:my-10">
+      <img class="h-[70px] w-[70px] object-cover shadow-card md:h-[150px] md:w-[150px] md:p-2.5 lg:h-[200px] lg:w-[200px] lg:p-2.5" loading="lazy" decoding="async" src="./assets/images/cooking.jpg" alt="Cooking">
+      <img class="h-[70px] w-[70px] object-cover shadow-card md:h-[150px] md:w-[150px] md:p-2.5 lg:h-[200px] lg:w-[200px] lg:p-2.5" loading="lazy" decoding="async" src="./assets/images/readinggirl.jpeg" alt="Reading">
+      <img class="h-[70px] w-[70px] object-cover shadow-card md:h-[150px] md:w-[150px] md:p-2.5 lg:h-[200px] lg:w-[200px] lg:p-2.5" loading="lazy" decoding="async" src="./assets/images/creativity.jpg" alt="Diy-art-craft">
+      <img class="h-[70px] w-[70px] object-cover shadow-card md:h-[150px] md:w-[150px] md:p-2.5 lg:h-[200px] lg:w-[200px] lg:p-2.5" loading="lazy" decoding="async" src="./assets/images/travel.jpg" alt="Travelling">
     </div>
   </section>
   <section>
     <hr>
-    <div class="qualities-div">
-      <div class="designing-skill-div">
-        <h1>Strengths as a Designer</h1>
+    <div class="flex flex-col items-center my-5 gap-5 md:flex-row md:justify-center md:my-10">
+      <div class="text-center md:flex md:flex-col md:m-5 md:p-5 lg:leading-[2px]">
+        <h1 class="my-[30px]">Strengths as a Designer</h1>
         <h5>Creative</h5>
         <h5>Attentive</h5>
         <h5>Detail Oriented</h5>
       </div>
       <div>
-        <img class="designer-coder-img" src="./assets/images/amy-dev.svg" alt="Illustration of a developer" loading="lazy" decoding="async">
+        <img class="h-[200px] w-[250px] md:h-[300px] md:w-[300px]" src="./assets/images/amy-dev.svg" alt="Illustration of a developer" loading="lazy" decoding="async">
       </div>
-      <div class="designing-skill-div">
-        <h1>Traits as a Coder</h1>
+      <div class="text-center md:flex md:flex-col md:m-5 md:p-5 lg:leading-[2px]">
+        <h1 class="my-[30px]">Traits as a Coder</h1>
         <h5>Meticulous</h5>
         <h5>Team Player</h5>
         <h5>Problem solver</h5>
@@ -308,176 +297,152 @@
     </div>
   </section>
   <hr>
-  <section class="edu-exp-section">
-    <div class="edu-section">
-      <h1>Education</h1>
-    <div class="timeline">
-      <div class="outer">
-        <div class="card card-timeline">
-          <div class="info">
-            <h3 class="title">2023</h3>
+  <section class="flex flex-col text-center md:flex-row md:justify-center">
+    <div>
+      <h1 class="m-10">Education</h1>
+    <div class="bg-bg my-5 mx-auto p-5 flex justify-center">
+      <div class="border-l-2 border-[#c5baba]">
+        <div class="card relative p-2.5 bg-[rgb(230,245,250)] text-bg rounded-lg max-w-[400px] shadow-card opacity-0 -translate-x-full transition-[transform,opacity] duration-1000 ease-out m-[0_0_20px_20px]">
+          <div class="flex flex-col gap-2.5">
+            <h3 class="text-primary relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:bg-white before:rounded-full before:left-[-37px] before:border-[3px] before:border-[orangered]">2023</h3>
             <p>Pursued a full time course in Web Designing and Web Development from G2R, Paris France.</p>
           </div>
         </div>
-        <div class="card card-timeline">
-          <div class="info">
-            <h3 class="title">2022</h3>
+        <div class="card relative p-2.5 bg-[rgb(230,245,250)] text-bg rounded-lg max-w-[400px] shadow-card opacity-0 -translate-x-full transition-[transform,opacity] duration-1000 ease-out m-[0_0_20px_20px]">
+          <div class="flex flex-col gap-2.5">
+            <h3 class="text-primary relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:bg-white before:rounded-full before:left-[-37px] before:border-[3px] before:border-[orangered]">2022</h3>
             <p>Successfully completed an intense Full Stack Web Developer Bootcamp from Udemy.</p>
           </div>
         </div>
-        <div class="card card-timeline">
-          <div class="info">
-            <h3 class="title">2018</h3>
+        <div class="card relative p-2.5 bg-[rgb(230,245,250)] text-bg rounded-lg max-w-[400px] shadow-card opacity-0 -translate-x-full transition-[transform,opacity] duration-1000 ease-out m-[0_0_20px_20px]">
+          <div class="flex flex-col gap-2.5">
+            <h3 class="text-primary relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:bg-white before:rounded-full before:left-[-37px] before:border-[3px] before:border-[orangered]">2018</h3>
             <p>Started coding with a Diploma course in Full-stack Development from Disha Computers, India</p>
           </div>
         </div>
-        <div class="card card-timeline">
-          <div class="info">
-            <h3 class="title">2015</h3>
+        <div class="card relative p-2.5 bg-[rgb(230,245,250)] text-bg rounded-lg max-w-[400px] shadow-card opacity-0 -translate-x-full transition-[transform,opacity] duration-1000 ease-out m-[0_0_20px_20px]">
+          <div class="flex flex-col gap-2.5">
+            <h3 class="text-primary relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:bg-white before:rounded-full before:left-[-37px] before:border-[3px] before:border-[orangered]">2015</h3>
             <p>Secured distinction in Master's in English Literature from Pune University, India</p>
           </div>
         </div>
-        <!-- <div class="card card-timeline">
-          <div class="info">
-            <h3 class="title">2013</h3>
-            <p>Completed Bacherlor's in Education from Pune University, India</p>
-          </div>
-        </div> -->
       </div>
     </div>
     </div>
-    <div class="exp-section">
-      <h1>Experience</h1>
-      <div class="timeline">
-        <div class="outer">
-          <div class="card card-timeline">
-            <div class="info">
-              <h3 class="title">2023</h3>
+    <div>
+      <h1 class="m-10">Experience</h1>
+      <div class="bg-bg my-5 mx-auto p-5 flex justify-center">
+        <div class="border-l-2 border-[#c5baba]">
+          <div class="card relative p-2.5 bg-[rgb(230,245,250)] text-bg rounded-lg max-w-[400px] shadow-card opacity-0 -translate-x-full transition-[transform,opacity] duration-1000 ease-out m-[0_0_20px_20px]">
+            <div class="flex flex-col gap-2.5">
+              <h3 class="text-primary relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:bg-white before:rounded-full before:left-[-37px] before:border-[3px] before:border-[orangered]">2023</h3>
               <p>A Full-Stack Developer for HDM Netowrk, Belgium
                 <br>Tech used: LAMP stack, ReactJS, Tailwind, PHP, Symfony, Apiplatform, Github, SCRUM
               </p>
             </div>
           </div>
-          <div class="card card-timeline">
-            <div class="info">
-              <h3 class="title">2022-2023</h3>
+          <div class="card relative p-2.5 bg-[rgb(230,245,250)] text-bg rounded-lg max-w-[400px] shadow-card opacity-0 -translate-x-full transition-[transform,opacity] duration-1000 ease-out m-[0_0_20px_20px]">
+            <div class="flex flex-col gap-2.5">
+              <h3 class="text-primary relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:bg-white before:rounded-full before:left-[-37px] before:border-[3px] before:border-[orangered]">2022-2023</h3>
               <p>
                 Frontend developer (Freelance), WikiStage, Paris, FR.
                 <br>Tech used: LAMP stack, MongoDB, Node, NextJs
               </p>
             </div>
           </div>
-          <div class="card card-timeline">
-            <div class="info">
-              <h3 class="title">2020-2022</h3>
+          <div class="card relative p-2.5 bg-[rgb(230,245,250)] text-bg rounded-lg max-w-[400px] shadow-card opacity-0 -translate-x-full transition-[transform,opacity] duration-1000 ease-out m-[0_0_20px_20px]">
+            <div class="flex flex-col gap-2.5">
+              <h3 class="text-primary relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:bg-white before:rounded-full before:left-[-37px] before:border-[3px] before:border-[orangered]">2020-2022</h3>
               <p>
                 Frontend Developer, 9ONIONS CULTURE INFOTECH Pvt. Ltd, Pune, IN.
                 <br>Tech used: LAMP stack, ReactJS, Typescript, Bootstrap, Jest, Cypress, GitHub Actions
               </p>
             </div>
           </div>
-          <!-- <div class="card card-timeline">
-            <div class="info">
-              <h3 class="title">2018-2022</h3>
-              <p>Business Language Teacher at Monceau Langues, Paris-FR</p>
-            </div>
-          </div>
-          <div class="card card-timeline">
-            <div class="info">
-              <h3 class="title">2010-2018</h3>
-              <p>Lecturer at St Felix High School, Pune-IN</p>
-            </div>
-          </div>
-          <div class="card card-timeline">
-            <div class="info">
-              <h3 class="title">2009-2010</h3>
-              <p>Primary Teacher at Symboisis School, Pune-IN</p>
-            </div>
-          </div> -->
         </div>
       </div>
     </div>
   </section>
   <hr>
-  <section class="skills-bar">
-    <div class="box">
-		<h1>Skills Bar</h1>
-    <div class="skillbox">
-        <p>TypeScript</p>
-        <p>90%</p>
-			<div class="skill">
-				<div class="level" style="--final-width: 90%; background: #3ee064;"></div>
+  <section class="skills-bar flex justify-center p-5">
+    <div class="w-[300px] h-auto px-5 py-[25px] box-border shadow-skill md:w-[600px] md:h-[500px] lg:w-[800px]">
+		<h1 class="m-0 p-0 text-white text-center tracking-[2px] uppercase">Skills Bar</h1>
+    <div class="skillbox box-border w-full my-5">
+        <p class="p-0 tracking-[1px] mb-[15px] uppercase text-white font-bold">TypeScript</p>
+        <p class="p-0 tracking-[1px] mb-[15px] uppercase text-white font-bold float-right relative -top-[25px]">90%</p>
+			<div class="relative overflow-hidden bg-white rounded-lg">
+				<div class="level h-[15px] rounded-lg transition-[width] duration-1000 ease-out" style="--final-width: 90%; background: #3ee064;"></div>
 			</div>
       </div>
-      <div class="skillbox">
-        <p>React - NextJS</p>
-        <p>90%</p>
-			<div class="skill">
-				<div class="level" style="--final-width: 90%; background: #fed330;"></div>
+      <div class="skillbox box-border w-full my-5">
+        <p class="p-0 tracking-[1px] mb-[15px] uppercase text-white font-bold">React - NextJS</p>
+        <p class="p-0 tracking-[1px] mb-[15px] uppercase text-white font-bold float-right relative -top-[25px]">90%</p>
+			<div class="relative overflow-hidden bg-white rounded-lg">
+				<div class="level h-[15px] rounded-lg transition-[width] duration-1000 ease-out" style="--final-width: 90%; background: #fed330;"></div>
 			</div>
       </div>
-      <div class="skillbox">
-        <p>HTML, CSS & Bootstrap, Tailwind</p>
-        <p>95%</p>
-        <div class="skill">
-          <div class="level" style="--final-width: 90%; background: #2fc4b2;"></div>
+      <div class="skillbox box-border w-full my-5">
+        <p class="p-0 tracking-[1px] mb-[15px] uppercase text-white font-bold">HTML, CSS & Bootstrap, Tailwind</p>
+        <p class="p-0 tracking-[1px] mb-[15px] uppercase text-white font-bold float-right relative -top-[25px]">95%</p>
+        <div class="relative overflow-hidden bg-white rounded-lg">
+          <div class="level h-[15px] rounded-lg transition-[width] duration-1000 ease-out" style="--final-width: 90%; background: #2fc4b2;"></div>
         </div>
       </div>
-      <div class="skillbox">
-        <p>UX, UI, UML, Figma</p>
-        <p>90%</p>
-        <div class="skill">
-          <div class="level" style="--final-width: 90%; background: #d32626;"></div>
+      <div class="skillbox box-border w-full my-5">
+        <p class="p-0 tracking-[1px] mb-[15px] uppercase text-white font-bold">UX, UI, UML, Figma</p>
+        <p class="p-0 tracking-[1px] mb-[15px] uppercase text-white font-bold float-right relative -top-[25px]">90%</p>
+        <div class="relative overflow-hidden bg-white rounded-lg">
+          <div class="level h-[15px] rounded-lg transition-[width] duration-1000 ease-out" style="--final-width: 90%; background: #d32626;"></div>
         </div>
       </div>
-      <div class="skillbox">
-        <p>NodeJS, Express, MongoDB</p>
-        <p>85%</p>
-      <div class="skill">
-        <div class="level" style="--final-width: 85%; background: #79d70f;"></div>
+      <div class="skillbox box-border w-full my-5">
+        <p class="p-0 tracking-[1px] mb-[15px] uppercase text-white font-bold">NodeJS, Express, MongoDB</p>
+        <p class="p-0 tracking-[1px] mb-[15px] uppercase text-white font-bold float-right relative -top-[25px]">85%</p>
+      <div class="relative overflow-hidden bg-white rounded-lg">
+        <div class="level h-[15px] rounded-lg transition-[width] duration-1000 ease-out" style="--final-width: 85%; background: #79d70f;"></div>
       </div>
       </div>
-      <div class="skillbox">
-        <p>PHP, Mysql, Symfony</p>
-        <p>80%</p>
-			<div class="skill">
-				<div class="level" style="--final-width: 80%; background: #b5076b;"></div>
+      <div class="skillbox box-border w-full my-5">
+        <p class="p-0 tracking-[1px] mb-[15px] uppercase text-white font-bold">PHP, Mysql, Symfony</p>
+        <p class="p-0 tracking-[1px] mb-[15px] uppercase text-white font-bold float-right relative -top-[25px]">80%</p>
+			<div class="relative overflow-hidden bg-white rounded-lg">
+				<div class="level h-[15px] rounded-lg transition-[width] duration-1000 ease-out" style="--final-width: 80%; background: #b5076b;"></div>
 			</div>
       </div>
     </div>
   </section>
   <hr id="contact-page-section">
-  <section class="get-in-touch">
-    <h1 class="title-contact">Get in touch</h1>
-    <p class="email-line">
+  <section class="get-in-touch md:max-w-[600px] md:mx-auto md:relative lg:max-w-[800px]">
+    <h1 class="md:text-[3.2rem] md:text-center md:mb-5">Get in touch</h1>
+    <p class="text-center text-[1.4rem] tracking-[1px]">
       Email:
-      <button type="button" class="email-reveal" aria-describedby="email-hint">
-        <span class="email-address">*****@gmail.com</span>
-        <span class="email-tooltip" id="email-hint" role="tooltip">My first name followed by my last name</span>
+      <button type="button" class="email-reveal group relative inline-block ml-2 px-2.5 py-1 [font:inherit] text-white bg-transparent border border-dashed border-white/40 rounded-md cursor-pointer hover:outline-none hover:border-white focus-visible:outline-none focus-visible:border-white" aria-describedby="email-hint">
+        <span>*****@gmail.com</span>
+        <span id="email-hint" role="tooltip" class="absolute top-[calc(100%+10px)] left-1/2 -translate-x-1/2 translate-y-[-6px] whitespace-nowrap bg-white text-bg px-3 py-2 rounded-md text-[0.95rem] shadow-card opacity-0 invisible pointer-events-none transition-[opacity,transform] duration-200 ease-linear after:content-[''] after:absolute after:bottom-full after:left-1/2 after:-translate-x-1/2 after:border-[6px] after:border-transparent after:border-b-white group-hover:opacity-100 group-hover:visible group-hover:-translate-x-1/2 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:-translate-x-1/2 group-focus-within:translate-y-0 group-[.show-tooltip]:opacity-100 group-[.show-tooltip]:visible group-[.show-tooltip]:-translate-x-1/2 group-[.show-tooltip]:translate-y-0">My first name followed by my last name</span>
       </button>
     </p>
   </section>
   <section>
-    <footer>
-      <div class="footer-div">
-        <ul class="footer-list">
-          <li class="footer-links">
-            <a href="https://www.linkedin.com/in/amritapathak89/" aria-label="Linkden link">
+    <footer class="relative z-10">
+      <div class="w-full bg-primary md:leading-[1.3] md:[font-family:Menlo,monospace]">
+        <ul class="p-[30px] flex flex-row justify-center gap-[30px] m-0 list-none md:[grid-auto-flow:column]">
+          <li class="md:cursor-pointer">
+            <a href="https://www.linkedin.com/in/amritapathak89/" class="text-white no-underline" aria-label="Linkden link">
               <i class="bi bi-linkedin"></i>
             </a>
           </li>
-          <li class="footer-links">
-            <a href="https://github.com/amritapathak89" aria-label="Github link">
+          <li class="md:cursor-pointer">
+            <a href="https://github.com/amritapathak89" class="text-white no-underline" aria-label="Github link">
               <i class="bi bi-github"></i>
             </a>
           </li>
-          <li class="footer-links">
-            <a href="#" aria-label="Facebook link">
+          <li class="md:cursor-pointer">
+            <a href="#" class="text-white no-underline" aria-label="Facebook link">
               <i class="bi bi-facebook"></i>
             </a>
           </li>
-          <li class="footer-links">
-            <a href="https://stackoverflow.com/users/16912931/amrita-pathak?tab=topactivity" aria-label="Stackoverflow link">
+          <li class="md:cursor-pointer">
+            <a href="https://stackoverflow.com/users/16912931/amrita-pathak?tab=topactivity" class="text-white no-underline" aria-label="Stackoverflow link">
               <i class="bi bi-stack-overflow"></i>
             </a>
           </li>
