@@ -7,9 +7,10 @@ A personal portfolio — a single **static** page showcasing education, experien
 - **HTML + vanilla JavaScript** — no framework, no backend.
 - **Tailwind CSS v4** (`@tailwindcss/cli`) is the only build step: it compiles
   `frontend/src/input.css` → `frontend/public/output.css`.
-- **Bootstrap Icons** + **Oswald** font, loaded via CDN in `index.html`.
+- Icons are **inline SVGs** (sourced from Bootstrap Icons, MIT); the **Oswald**
+  font is loaded via CDN in `index.html`.
 - A custom `script.js` provides the starfield canvas, image carousel, scroll/fade
-  animations, navbar toggle, and the contact-email tooltip.
+  animations, navbar toggle, the contact-email tooltip, and a scroll-to-top button.
 
 ## Project structure
 

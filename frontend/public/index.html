@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" integrity="sha384-Ay26V7L8bsJTsX9Sxclnvsn+hkdiwRnrjZJXqKmkIDobPgIIWBOVguEcQQLDuhfN" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -38,8 +37,10 @@
         <a href="/" class="inline-block align-top">
           <img src="./assets/images/amy-logo.svg" alt="logo" width="50" height="30">
         </a>
-        <button id="navToggle" type="button" class="cursor-pointer text-2xl text-white lg:hidden" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="bi bi-list"></i>
+        <button id="navToggle" type="button" class="cursor-pointer text-white lg:hidden" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-6 h-6" aria-hidden="true">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+          </svg>
         </button>
         <div class="hidden w-full lg:flex lg:w-auto lg:justify-end" id="navbarNav">
           <ul class="flex flex-col py-2 lg:flex-row lg:gap-8 lg:py-0">
@@ -50,7 +51,7 @@
               <a class="nav-link relative block py-1 text-white transition-colors duration-200 hover:text-gray-200 after:absolute after:left-0 after:-bottom-px after:h-0.5 after:w-0 after:bg-white after:transition-[width] after:duration-300 after:ease-out hover:after:w-full" href="#work-section">My Work</a>
             </li>
             <li>
-              <a class="nav-link relative block py-1 text-white transition-colors duration-200 hover:text-gray-200 after:absolute after:left-0 after:-bottom-px after:h-0.5 after:w-0 after:bg-white after:transition-[width] after:duration-300 after:ease-out hover:after:w-full" href="https://fusionplatter.eu/">Blog</a>
+              <a class="nav-link relative block py-1 text-white transition-colors duration-200 hover:text-gray-200 after:absolute after:left-0 after:-bottom-px after:h-0.5 after:w-0 after:bg-white after:transition-[width] after:duration-300 after:ease-out hover:after:w-full" href="https://fusionplatter.eu/" target="_blank" rel="noopener noreferrer">Blog</a>
             </li>
             <li>
               <a class="nav-link relative block py-1 text-white transition-colors duration-200 hover:text-gray-200 after:absolute after:left-0 after:-bottom-px after:h-0.5 after:w-0 after:bg-white after:transition-[width] after:duration-300 after:ease-out hover:after:w-full" href="#contact-page-section">Contact</a>
@@ -63,8 +64,8 @@
   <main class="mx-auto max-w-7xl px-4">
   <h1 class="sr-only">Amrita Vidhate — Designer &amp; Coder portfolio</h1>
   <section class="flex items-center text-center justify-center">
-    <div id="background" class="fixed top-0 left-0 w-full h-full">
-      <canvas id="stars" class="fixed top-0 left-0 w-full h-full"></canvas>
+    <div id="background" class="fixed top-0 left-0 w-full h-full pointer-events-none">
+      <canvas id="stars" class="fixed top-0 left-0 w-full h-full pointer-events-none"></canvas>
     </div>
     <div class="flex flex-col md:flex-row md:my-10 lg:gap-10 lg:justify-between lg:px-7 lg:py-[60px] lg:my-[110px]">
       <div class="flex flex-col items-center text-center p-2.5 m-2.5">
@@ -105,7 +106,7 @@
             Made a fully functional, secure PWA from scratch
             <br><span class="text-primary font-medium">#nextjs #tailwind #react #typescript #sequelize #mysql</span>
           </p>
-          <a href="https://github.com/amritapathak89/speedily-app"
+          <a href="https://github.com/amritapathak89/speedily-app" target="_blank" rel="noopener noreferrer"
             class="mt-auto self-start inline-block px-3 py-1.5 rounded-md no-underline text-white bg-linear-to-b from-[#3827a7] to-primary transition duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.03] hover:shadow-lg hover:shadow-primary/40 hover:brightness-110">View
             Project</a>
         </div>
@@ -173,7 +174,7 @@
             Helped in enhancing the seo and testing the site
             <br><span class="text-primary font-medium">#asana #seo #mongodb #storybook</span>
           </p>
-          <a href="https://en.wikipedia.org/wiki/WikiStage"
+          <a href="https://en.wikipedia.org/wiki/WikiStage" target="_blank" rel="noopener noreferrer"
             class="mt-auto self-start inline-block px-3 py-1.5 rounded-md no-underline text-white bg-linear-to-b from-[#3827a7] to-primary transition duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.03] hover:shadow-lg hover:shadow-primary/40 hover:brightness-110">View
             Project</a>
         </div>
@@ -200,7 +201,7 @@
             A website that allows you to book services online
             <br><span class="text-primary font-medium">#react #nextJS #typescript #mysql #tailwind #flowbite</span>
           </p>
-          <a href="https://github.com/amritapathak89/travaux-decor-app"
+          <a href="https://github.com/amritapathak89/travaux-decor-app" target="_blank" rel="noopener noreferrer"
             class="mt-auto self-start inline-block px-3 py-1.5 rounded-md no-underline text-white bg-linear-to-b from-[#3827a7] to-primary transition duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.03] hover:shadow-lg hover:shadow-primary/40 hover:brightness-110">View
             Project</a>
         </div>
@@ -224,7 +225,7 @@
           A minimalistic yet sophisticated Brasserie Website for a client which offers menu and booking details.
           <br><span class="text-primary font-medium">#react #ts #github #css #html</span>
         </p>
-        <a href="https://github.com/amritapathak89/Brasserie-Project"
+        <a href="https://github.com/amritapathak89/Brasserie-Project" target="_blank" rel="noopener noreferrer"
           class="mt-auto self-start inline-block px-3 py-1.5 rounded-md no-underline text-white bg-linear-to-b from-[#3827a7] to-primary transition duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.03] hover:shadow-lg hover:shadow-primary/40 hover:brightness-110">View
           Project</a>
       </div>
@@ -272,7 +273,7 @@
           A light desktop app that allows you to convert videos into AVI, MP4, MOV format
           <br><span class="text-primary font-medium">#react #nextJS #ts #mysql #node</span>
         </p>
-        <a href="https://github.com/amritapathak89/video-convertor-app"
+        <a href="https://github.com/amritapathak89/video-convertor-app" target="_blank" rel="noopener noreferrer"
           class="mt-auto self-start inline-block px-3 py-1.5 rounded-md no-underline text-white bg-linear-to-b from-[#3827a7] to-primary transition duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.03] hover:shadow-lg hover:shadow-primary/40 hover:brightness-110">View
           Project</a>
       </div>
@@ -286,7 +287,7 @@
       <h2 class="my-5 text-3xl font-bold md:text-5xl">About Me</h2>
       <h4>Passionate Front-End Developer</h4>
       <p>
-        With over 5 years of professional experience, I specialize in creating dynamic, responsive web applications with a strong focus on user experience and performance optimization. Leveraging technologies like React, TypeScript, and Tailwind CSS, I build scalable and maintainable solutions. My journey in web development began in 2018, transforming a hobby into a rewarding career. Based in Grand Paris, France, I thrive on integrating APIs, implementing state management libraries, and utilizing modern development tools to deliver high-quality code. Let's build something amazing together!
+        With over 5 years of professional experience, I specialize in creating dynamic, responsive web applications with a strong focus on user experience and performance optimization. Leveraging trending technologies, I build scalable and maintainable solutions. My journey in web development began in 2018, transforming a hobby into a rewarding career. Based in Grand Paris, France, I thrive on integrating APIs, implementing state management libraries, and utilizing modern development tools to deliver high-quality code. I also blog occasionally for <a href="https://digitalfortress.com" target="_blank" rel="noopener noreferrer" class="font-medium text-indigo-300 underline underline-offset-2 decoration-indigo-300/50 transition-colors duration-200 hover:text-white hover:decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300/70 rounded-sm">Digital Fortress</a>. Let's build something amazing together!
       </p>
       </div>
     <div class="text-center lg:my-[60px]">
@@ -469,25 +470,34 @@
       <div class="w-full bg-primary md:leading-[1.3] md:[font-family:Menlo,monospace]">
         <ul class="p-[30px] flex flex-row justify-center gap-[30px] m-0 list-none md:[grid-auto-flow:column]">
           <li class="md:cursor-pointer">
-            <a href="https://www.linkedin.com/in/amritapathak89/" class="inline-block text-white no-underline transition duration-300 ease-out hover:-translate-y-1 hover:scale-125 hover:text-gray-200" aria-label="Linkden link">
-              <i class="bi bi-linkedin"></i>
+            <a href="https://www.linkedin.com/in/amritapathak89/" target="_blank" rel="noopener noreferrer" class="inline-block text-white no-underline transition duration-300 ease-out hover:-translate-y-1 hover:scale-125 hover:text-gray-200" aria-label="Linkden link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4" aria-hidden="true">
+                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+              </svg>
             </a>
           </li>
           <li class="md:cursor-pointer">
-            <a href="https://github.com/amritapathak89" class="inline-block text-white no-underline transition duration-300 ease-out hover:-translate-y-1 hover:scale-125 hover:text-gray-200" aria-label="Github link">
-              <i class="bi bi-github"></i>
+            <a href="https://github.com/amritapathak89" target="_blank" rel="noopener noreferrer" class="inline-block text-white no-underline transition duration-300 ease-out hover:-translate-y-1 hover:scale-125 hover:text-gray-200" aria-label="Github link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
             </a>
           </li>
           <li class="md:cursor-pointer">
-            <a href="https://www.facebook.com/amritavidhate"
+            <a href="https://www.facebook.com/amritavidhate" target="_blank" rel="noopener noreferrer"
               class="inline-block text-white no-underline transition duration-300 ease-out hover:-translate-y-1 hover:scale-125 hover:text-gray-200"
               aria-label="Facebook link">
-              <i class="bi bi-facebook"></i>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4" aria-hidden="true">
+                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+              </svg>
             </a>
           </li>
           <li class="md:cursor-pointer">
-            <a href="https://stackoverflow.com/users/16912931/amrita-pathak?tab=topactivity" class="inline-block text-white no-underline transition duration-300 ease-out hover:-translate-y-1 hover:scale-125 hover:text-gray-200" aria-label="Stackoverflow link">
-              <i class="bi bi-stack-overflow"></i>
+            <a href="https://stackoverflow.com/users/16912931/amrita-pathak?tab=topactivity" target="_blank" rel="noopener noreferrer" class="inline-block text-white no-underline transition duration-300 ease-out hover:-translate-y-1 hover:scale-125 hover:text-gray-200" aria-label="Stackoverflow link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4" aria-hidden="true">
+                <path d="M12.412 14.572V10.29h1.428V16H1v-5.71h1.428v4.282h9.984z"/>
+                <path d="M3.857 13.145h7.137v-1.428H3.857v1.428zM10.254 0 9.108.852l4.26 5.727 1.146-.852L10.254 0zm-3.54 3.377 5.484 4.567.913-1.097L7.627 2.28l-.914 1.097zM4.922 6.55l6.47 3.013.603-1.294-6.47-3.013-.603 1.294zm-.925 3.344 6.985 1.469.294-1.398-6.985-1.468-.294 1.397z"/>
+              </svg>
             </a>
           </li>
         </ul>
@@ -495,7 +505,9 @@
     </footer>
   </section>
   <button id="scroll-top" type="button" aria-label="Scroll back to top" class="fixed bottom-6 right-6 z-50 grid place-items-center w-11 h-11 rounded-full text-white bg-linear-to-b from-[#3827a7] to-primary shadow-lg shadow-primary/40 cursor-pointer opacity-0 invisible translate-y-2 transition-[opacity,transform] duration-300 ease-out hover:-translate-y-0.5 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70">
-    <i class="bi bi-arrow-up text-xl"></i>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-5 h-5" aria-hidden="true">
+      <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+    </svg>
   </button>
   <script src="./script.js" defer></script>
 </body>

@@ -17,9 +17,11 @@ runtime. Deployed as static files (e.g. Apache from `/var/www/html`).
 - **HTML + vanilla JavaScript** — no framework.
 - **Tailwind CSS v4** (`@tailwindcss/cli`) — the only build step. Compiles
   `frontend/src/input.css` → `frontend/public/output.css`.
-- **Bootstrap Icons** + **Oswald** font, loaded via CDN in `index.html`.
+- Icons are **inline SVGs** (sourced from Bootstrap Icons, MIT) — no icon
+  font / CDN. The **Oswald** font is still loaded via CDN in `index.html`.
 - Custom `script.js`: starfield canvas, image carousel, scroll/fade animations,
-  navbar toggle (replaces Bootstrap's collapse), contact-email tooltip.
+  navbar toggle (replaces Bootstrap's collapse), contact-email tooltip,
+  scroll-to-top button.
 
 ## Layout
 
